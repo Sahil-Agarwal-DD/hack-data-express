@@ -2,7 +2,7 @@ import * as React from "react";
 
 import { TreeView } from "../../TreeView/TreeView";
 import { treeData } from "../../TreeView/sampleTreeView";
-import { useDataExpressStore } from "../useDataExpressStore";
+import { useDataExpressStore } from "../../../stores/useDataExpressStore";
 
 export const DiscoveryPane: React.FC = () => {
   const setSelectedColumns = useDataExpressStore(

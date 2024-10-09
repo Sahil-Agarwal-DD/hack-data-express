@@ -1,9 +1,9 @@
 import * as React from "react";
 
-import { useDataExpressStore } from "../useDataExpressStore";
 import { SelectionItemContainer } from "../PaneContainer.styles";
 import { IconButton, Stack } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
+import { useDataExpressStore } from "../../../stores/useDataExpressStore";
 
 export const SelectionPane: React.FC = () => {
   const {

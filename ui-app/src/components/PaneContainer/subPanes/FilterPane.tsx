@@ -1,10 +1,9 @@
 import * as React from "react";
 
-import { useDataExpressStore } from "../useDataExpressStore";
-
 import "react-querybuilder/dist/query-builder-layout.css";
 import { QueryBuilderStyles } from "./FilterPane.styles";
 import { QueryBuilder } from "react-querybuilder";
+import { useDataExpressStore } from "../../../stores/useDataExpressStore";
 
 export const FilterPane: React.FC = () => {
   const selectedColumns = useDataExpressStore(

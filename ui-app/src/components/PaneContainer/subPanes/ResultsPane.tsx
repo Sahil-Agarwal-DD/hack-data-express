@@ -4,12 +4,11 @@ import AceEditor from "react-ace";
 import "ace-builds/src-noconflict/theme-textmate";
 import "gethue/ext/ace/mode-sql";
 
-import { useDataExpressStore } from "../useDataExpressStore";
-
 import { formatQuery, RuleGroupTypeAny } from "react-querybuilder";
 import "react-querybuilder/dist/query-builder.css";
 import { formatDialect, sql } from "sql-formatter";
 import { Stack } from "@mui/material";
+import { useDataExpressStore } from "../../../stores/useDataExpressStore";
 
 export const ResultsPane: React.FC = () => {
   const query = useDataExpressStore((state) => state.values.query);

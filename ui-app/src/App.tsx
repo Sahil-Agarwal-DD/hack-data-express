@@ -16,12 +16,6 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  React.useEffect(() => {
-    fetch("http://localhost:8000/data-domain-list")
-      .then((v) => v.json())
-      .then((v) => console.log(v));
-  }, []);
-
   return (
     <>
       <CssBaseline />
