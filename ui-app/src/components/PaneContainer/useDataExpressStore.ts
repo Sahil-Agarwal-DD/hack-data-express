@@ -1,4 +1,4 @@
-import { omit } from "lodash";
+import omit from "lodash/omit";
 import { RuleGroupTypeAny } from "react-querybuilder";
 import { create } from "zustand";
 import { createJSONStorage, devtools, persist } from "zustand/middleware";
