@@ -4,6 +4,7 @@
   "description": "Hackathon Project Data Express",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -18,6 +19,7 @@
   "homepage": "https://github.com/Sahil-Agarwal-DD/hack-data-express#readme",
   "dependencies": {
     "express": "^4.21.1",
-    "fs": "^0.0.1-security"
+    "fs": "^0.0.1-security",
+    "cors": "^2.8.5"    
   }
 }
