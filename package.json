@@ -1,0 +1,22 @@
+{
+  "name": "hack-data-express",
+  "version": "1.0.0",
+  "description": "Hackathon Project Data Express",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sahil-Agarwal-DD/hack-data-express.git"
+  },
+  "author": "sahil.agarwal@doordash.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Sahil-Agarwal-DD/hack-data-express/issues"
+  },
+  "homepage": "https://github.com/Sahil-Agarwal-DD/hack-data-express#readme",
+  "dependencies": {
+    "express": "^4.21.1"
+  }
+}
