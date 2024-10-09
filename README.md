@@ -5,4 +5,4 @@ Hackathon Project Data Express
 1. Install dependencies
 ```npm install```
 2. Start the server
-```npm start```
+```node index.js```
