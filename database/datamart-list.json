@@ -1,0 +1,8 @@
+{
+  "consumer": ["datamart1", "datamart2", "datamart3"],
+  "dashmart": ["datamart4", "datamart5"],
+  "dasher": ["datamart6", "datamart7", "datamart8"],
+  "storefront": ["datamart9", "datamart10"],
+  "drive": ["datamart11", "datamart12", "datamart13"],
+  "new verticals": ["datamart14", "datamart15"]
+}

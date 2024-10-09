@@ -1,4 +1,5 @@
 const express = require('express');
+const fs = require('fs');
 
 const app = express();
 const port = process.env.PORT || 8000;
@@ -17,18 +18,32 @@ const port = process.env.PORT || 8000;
 //});
 
 // Define a route
+
+const data_domain_list_file_path = './database/data-domain-list.json';
+const datamart_list_file_path = './database/datamart-list.json';
+
+
 app.get('/data-domain-list', (req, res) => {
-    const dataDomainList = {
-        "domain_list": [
-            'consumer',
-            'dashmart',
-            'dasher',
-            'storefront',
-            'drive',
-            'new verticals'
-        ]
-    };
-    return res.json(dataDomainList);
+    const rawData = fs.readFileSync(data_domain_list_file_path, 'utf8');
+    return res.json(JSON.parse(rawData));
+});
+
+// Endpoint to get datamarts for a specific domain
+app.get('/datamart-list/:domain', (req, res) => {
+    const domain = req.params.domain;
+    const rawData = fs.readFileSync(datamart_list_file_path, 'utf8');
+    const data = JSON.parse(rawData);
+
+    if (data[domain]) {
+        res.json({
+            domain: domain,
+            datamarts: data[domain]
+        });
+    } else {
+        res.status(404).json({
+            error: "Domain not found"
+        });
+    }
 });
 
 // Start the server
