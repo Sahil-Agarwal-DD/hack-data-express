@@ -58,6 +58,17 @@ app.get("/datamart-list/:domain", (req, res) => {
   }
 });
 
+// Endpoint to resolve date for a given query
+app.get("/querybook/:sql", (req, res) => {
+  const sql = req.params.sql;
+  const spawn = require("child_process").spawn;
+  const pythonProcess = spawn('python', ['./querybook/query_transformer.py', "date", sql]);
+  pythonProcess.stdout.on('data', (data) => {
+  const result = data.toString().trim();
+  res.send({ result });
+  });
+});
+
 // Start the server
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
