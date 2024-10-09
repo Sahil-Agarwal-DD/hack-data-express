@@ -4,9 +4,10 @@ import { create } from "zustand";
 import { createJSONStorage, devtools, persist } from "zustand/middleware";
 import { immer } from "zustand/middleware/immer";
 import { DataMart, Domain } from "../types";
+import { TreeNode } from "../components/TreeView/type";
 
 type useDataExpressStoreTypeValues = {
-  selectedColumns: Record<string, boolean>;
+  selectedColumns: Record<string, TreeNode>;
   query?: RuleGroupTypeAny;
   domains: Domain[];
   selectedDomain?: Domain | null;
@@ -15,7 +16,7 @@ type useDataExpressStoreTypeValues = {
 };
 type useDataExpressStoreType = {
   values: useDataExpressStoreTypeValues;
-  setSelectedColumns: (value: string) => void;
+  setSelectedColumns: (value: TreeNode) => void;
   setQuery: (value: RuleGroupTypeAny) => void;
   setDomains: (value: Domain[]) => void;
   setSelectedDomain: (value: Domain | null) => void;
@@ -40,18 +41,18 @@ export const useDataExpressStore = create<useDataExpressStoreType>()(
     persist(
       immer((set) => ({
         values: initialValues,
-        setSelectedColumns(value: string) {
+        setSelectedColumns(value: TreeNode) {
           set((state) => {
-            if (state.values.selectedColumns[value]) {
+            if (state.values.selectedColumns[value.name]) {
               // remove if already exists
               state.values.selectedColumns = {
-                ...omit(state.values.selectedColumns, value),
+                ...omit(state.values.selectedColumns, value.name),
               };
             } else {
               // add if not exists
               state.values.selectedColumns = {
                 ...state.values.selectedColumns,
-                [value]: true,
+                [value.name]: value,
               };
             }
           });

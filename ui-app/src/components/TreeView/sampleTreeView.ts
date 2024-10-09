@@ -1,48 +1,48 @@
-import { TreeNode } from './type'
+import { TreeNode } from "./type";
 
 export const treeData: TreeNode[] = [
   {
-    name: 'Financials',
+    name: "Financials",
     isExpanded: true,
     children: [
       {
-        name: 'gov',
+        name: "gov",
         isExpanded: true,
       },
       {
-        name: 'delivery_volume',
+        name: "delivery_volume",
         isExpanded: true,
       },
       {
-        name: 'subtotal',
+        name: "subtotal",
         isExpanded: true,
       },
       {
-        name: 'variable_profit',
+        name: "variable_profit",
         isExpanded: true,
       },
     ],
   },
   {
-    name: 'geo',
+    name: "geo",
     isExpanded: true,
     children: [
       {
-        name: 'submarket',
+        name: "submarket",
         isExpanded: true,
       },
       {
-        name: 'market',
+        name: "market",
         isExpanded: true,
       },
       {
-        name: 'region',
+        name: "region",
         isExpanded: true,
       },
       {
-        name: 'country',
+        name: "country",
         isExpanded: true,
       },
     ],
   },
-]
+];

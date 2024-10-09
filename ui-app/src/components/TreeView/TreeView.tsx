@@ -2,14 +2,15 @@ import * as React from "react";
 import { TreeNode } from "./type";
 import { TreeViewContainer } from "./TreeView.styles";
 
-import { IconButton, Stack } from "@mui/material";
+import { IconButton, Stack, Typography } from "@mui/material";
 import { ChevronRight, ExpandMore } from "@mui/icons-material";
 
 type TreeNodeItemPropsType = {
   node: TreeNode;
   onClick?: (item: TreeNode) => void;
   highlightSelected?: boolean;
-  selectedNodes?: Record<string, boolean>;
+  parentPath?: string;
+  selectedNodes?: Record<string, TreeNode>;
 };
 type TreeViewPropsType = Omit<TreeNodeItemPropsType, "node"> & {
   treeData: TreeNode[];
@@ -21,6 +22,7 @@ const TreeNodeItem: React.FC<TreeNodeItemPropsType> = ({
   onClick = () => {},
   highlightSelected = false,
   selectedNodes = {},
+  parentPath = "",
 }) => {
   const [isOpen, setIsOpen] = React.useState(node.isExpanded);
 
@@ -36,15 +38,12 @@ const TreeNodeItem: React.FC<TreeNodeItemPropsType> = ({
     [highlightSelected, selectedNodes, node.name]
   );
 
-  console.log(
-    "====> shouldHighlight",
-    shouldHighlight,
-    node.name,
-    selectedNodes
-  );
-
   // Check if the current node has children
   const hasChildren = node.children && node.children.length > 0;
+
+  React.useEffect(()=>{
+    node.parentPath = parentPath
+  }, [])
 
   return (
     <TreeViewContainer className="ml-4">
@@ -67,7 +66,7 @@ const TreeNodeItem: React.FC<TreeNodeItemPropsType> = ({
               {isOpen ? <ExpandMore /> : <ChevronRight />}
             </IconButton>
           )}
-          <span>{node.name}</span>
+          <Typography variant="body2">{node.name}</Typography>
         </Stack>
       </div>
       {/* If open, render children recursively */}
@@ -80,6 +79,7 @@ const TreeNodeItem: React.FC<TreeNodeItemPropsType> = ({
               onClick={onClick}
               selectedNodes={selectedNodes}
               highlightSelected={highlightSelected}
+              parentPath={`${parentPath}/${node.name}`}
             />
           ))}
         </div>
@@ -102,6 +102,7 @@ export const TreeView: React.FC<TreeViewPropsType> = ({
           selectedNodes={selectedNodes}
           key={node.name}
           node={node}
+          parentPath=""
         />
       ))}
     </div>

@@ -20,7 +20,7 @@ export const DiscoveryPane: React.FC = () => {
         treeData={treeData}
         onClick={(item) => {
           console.log(item);
-          setSelectedColumns(item.name);
+          setSelectedColumns(item);
         }}
       />
     </div>

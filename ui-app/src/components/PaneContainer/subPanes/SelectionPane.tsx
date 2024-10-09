@@ -13,7 +13,7 @@ export const SelectionPane: React.FC = () => {
 
   return (
     <Stack direction="column" spacing={1} sx={{ mb: 1 }}>
-      {Object.keys(selectedColumns || []).map((v, i) => (
+      {Object.values(selectedColumns || []).map((v, i) => (
         // eslint-disable-next-line react/no-array-index-key
         <SelectionItemContainer key={`${v}-${i}`}>
           <Stack
@@ -23,7 +23,9 @@ export const SelectionPane: React.FC = () => {
             spacing={1}
             sx={{ mb: 1 }}
           >
-            <span>{v}</span>
+            <span>
+              {v.parentPath ? `${v.parentPath}/`: ''}{v.name}
+            </span>
 
             <IconButton
               aria-label="delete"
