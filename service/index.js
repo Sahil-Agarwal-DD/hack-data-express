@@ -16,6 +16,8 @@ const port = process.env.PORT || 8000;
 //    allowedHeaders: ['Content-Type', 'Authorization'], // Allow only these headers
 //    credentials: true, // Allow cookies to be sent with requests
 //}));
+app.use(express.json());
+
 app.use(
   cors({
     origin: ["http://localhost:3001", "https://localhost:3001"], // Allow these origins to access
@@ -35,6 +37,7 @@ app.use(
 const data_domain_list_file_path = "./database/data-domain-list.json";
 const datamart_list_file_path = "./database/datamart-list.json";
 const business_model = "./database/business-model.json"
+const data_express_saved_model_file_path = "./database/data-express-saved-model.json";
 
 app.get("/data-domain-list", (req, res) => {
   const rawData = fs.readFileSync(data_domain_list_file_path, "utf8");
@@ -79,6 +82,50 @@ app.get("/business-model/:domain/:datamart", (req, res) => {
     }
 });
 
+// Endpoint to save the business model to database
+app.post("/business-model", (req, res) => {
+    console.log('Headers:', req.headers);
+    console.log('Body:', req.body);
+    const newData = req.body; // Get the JSON data from the request body
+    // Define the path to the JSON file
+    const filePath = data_express_saved_model_file_path;
+    console.log("new Data" + newData)
+    // Read the current content of the JSON file
+    fs.readFile(filePath, 'utf8', (err, fileContent) => {
+        if (err) {
+            console.error('Error reading file', err);
+            return res.status(500).send('Internal Server Error');
+        }
+
+        // Parse the existing JSON content
+        let jsonData;
+        try {
+            jsonData = JSON.parse(fileContent);
+        } catch (parseErr) {
+            console.error('Error parsing JSON', parseErr);
+            return res.status(500).send('Internal Server Error');
+        }
+
+        console.log("post parsing")
+
+        // Ensure the data_express_model is an array
+        if (!Array.isArray(jsonData.data_express_model)) {
+            jsonData.data_express_model = [];
+        }
+
+        // Add the new data to the data_express_model array
+        jsonData.data_express_model.push(newData);
+
+        // Write the updated JSON back to the file
+        fs.writeFile(filePath, JSON.stringify(jsonData, null, 2), (writeErr) => {
+            if (writeErr) {
+                console.error('Error writing to file', writeErr);
+                return res.status(500).send('Internal Server Error');
+            }
+            res.send('Data successfully added to file');
+        });
+    });
+});
 // Start the server
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
