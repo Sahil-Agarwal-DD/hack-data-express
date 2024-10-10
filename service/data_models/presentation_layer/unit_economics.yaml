@@ -1,16 +1,21 @@
 version: 1
 description: "DataMart for finance unit economics"
 datamart: unit_economics
+domain: finance
 attributes:
   - name: Delivery ID
     mapping: delivery_id
+    type: number
   - name: Active Date
     mapping: active_date
     description: based on quoted delivery time, in Local Timezone
+    type: date
   - name: Created At
     mapping: created_at
     description: When the delivery was created by the customer (UTC)
+    type: timestamp
   - name: lob
+    type: string
     mapping: line_of_business
     description: delivery ie Subscription, Pickup etc
     enum_values:
