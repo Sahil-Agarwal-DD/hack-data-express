@@ -1,7 +1,8 @@
-import { Stack, Button } from "@mui/material";
+import { Stack } from "@mui/material";
 import * as React from "react";
 import { DataDomainDropdown } from "../DataDomainDropdown";
 import { DataMartDropdown } from "../DataMartDropdown";
+import LoadSaved from "../LoadSaved/LoadSaved";
 
 interface TopBarControlProps {}
 
@@ -20,7 +21,7 @@ export const TopBarControl: React.FC<TopBarControlProps> = () => {
         <DataDomainDropdown />
         <DataMartDropdown />
       </Stack>
-      <Button variant="contained">Load</Button>
+      <LoadSaved />
     </Stack>
   );
 };

@@ -2,7 +2,7 @@
   "data_express_model": [
     {
       "name": "test_model",
-      "value":"other_value",
+      "value": "other_value",
       "nested_object": {
         "key": "value",
         "key2": "value2"
@@ -10,10 +10,76 @@
     },
     {
       "name": "test_model2",
-      "value":"other_value2",
+      "value": "other_value2",
       "nested_object": {
         "key": "value2",
         "key2": "value23"
+      }
+    },
+    {
+      "name": "bsp1",
+      "value": {
+        "selectedColumns": {
+          "Dasher Base Pay": {
+            "name": "Dasher Base Pay",
+            "type": "date",
+            "description": "The base pay amount for a Dasher.",
+            "alias": "",
+            "is_calculated_field": false,
+            "calculated_field_statement": "",
+            "isExpanded": true,
+            "parentNodes": [
+              {
+                "name": "Dasher Cost",
+                "type": "parent",
+                "description": "",
+                "alias": "",
+                "is_calculated_field": false,
+                "calculated_field_statement": "",
+                "isExpanded": true
+              }
+            ]
+          }
+        },
+        "calculatedComponents": {
+          "av": {
+            "label": "av",
+            "value": {
+              "rules": [
+                {
+                  "id": "e7bff58e-47d1-4351-a634-25eb312aac99",
+                  "field": "Total Other Revenue",
+                  "operator": "=",
+                  "valueSource": "value",
+                  "value": {
+                    "mainValue": "1",
+                    "thenValue": "1"
+                  }
+                }
+              ],
+              "id": "25a59220-52fa-4d55-8735-4552057c685a"
+            }
+          }
+        },
+        "query": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "17cf6271-3427-4899-a68c-e14e7f1fe6c3",
+              "field": "Dasher Cost/Dasher Base Pay",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "kkk"
+            }
+          ],
+          "id": "a298e7c0-5cb0-443d-ba04-abc8efc0b089"
+        },
+        "selectedDomain": {
+          "label": "finance"
+        },
+        "selectedDataMart": {
+          "label": "unit-economics"
+        }
       }
     }
   ]
