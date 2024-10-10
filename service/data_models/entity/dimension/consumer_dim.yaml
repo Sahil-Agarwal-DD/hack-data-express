@@ -1,0 +1,11 @@
+version: 1
+description: "Table containing information about customers"
+entity: consumer_dim
+snf_table_name: edw.consumer.dimension_consumer
+dl_table_name: edw_consumer.dimension_consumer
+fields:
+  - name: consumer_id
+    type: integer
+    is_primary_key: true
+  - name: consumer_email
+    type: string

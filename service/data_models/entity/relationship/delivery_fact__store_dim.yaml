@@ -1,0 +1,8 @@
+relationships:
+  - from: delivery_fact
+    to: store_dim
+    type: OneToMany
+    join_key:
+      from: delivery_fact.store_id
+      to: store_dim.store_id
+    join_type: LEFT  # Type of join

@@ -1,0 +1,8 @@
+relationships:
+  - from: delivery_fact
+    to: consumer_dim
+    type: OneToMany
+    join_key:
+      from: delivery_fact.creator_id
+      to: consumer_dim.consumer_id
+    join_type: LEFT  # Type of join

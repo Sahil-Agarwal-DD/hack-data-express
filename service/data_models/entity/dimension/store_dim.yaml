@@ -1,0 +1,11 @@
+version: 1
+description: "Table containing information about merchants"
+entity: store_dim
+snf_table_name: edw.merchant.dimension_store
+dl_table_name: edw_merchant.dimension_store
+fields:
+  - name: store_id
+    type: integer
+    is_primary_key: true
+  - name: store_location
+    type: string

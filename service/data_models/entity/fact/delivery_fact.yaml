@@ -1,0 +1,37 @@
+version: 1
+description: "Table containing the orders placed by customers"
+entity: delivery_fact
+snf_table_name: proddb.public.firefly_measure_financials
+dl_table_name: edw_finance.dimension_deliveries
+fields:
+  - name: delivery_id
+    type: integer
+    is_primary_key: true
+  - name: creator_id
+    type: integer
+  - name: active_date
+    type: date
+  - name: created_at
+    type: timestamp
+  - name: gov
+    type: numeric
+  - name: dasher_base_pay
+    type: numeric
+  - name: dasher_incentive_pay
+    type: numeric
+  - name: dasher_referrals
+    type: numeric
+  - name: dasher_base_pay
+    type: numeric
+  - name: fast_pay_revenue
+    type: numeric
+  - name: credit_issuance_expense
+    type: numeric
+  - name: support_credits
+    type: numeric
+  - name: total_refunds
+    type: numeric
+  - name: dasher_costs
+    type: numeric
+  - name: line_of_business
+    type: string
