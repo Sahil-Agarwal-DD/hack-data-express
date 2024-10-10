@@ -4,6 +4,13 @@ import { TreeView } from "../../TreeView/TreeView";
 import { treeData } from "../../TreeView/sampleTreeView";
 import { useDataExpressStore } from "../../../stores/useDataExpressStore";
 import { addParentPathsAndGetLeafNodes } from "../../../utils";
+import {
+  PaneBody,
+  PaneFooter,
+  PaneStackChildren,
+  PaneTitle,
+} from "../PaneContainer.styles";
+import { Stack, Typography } from "@mui/material";
 
 export const DiscoveryPane: React.FC = () => {
   const setSelectedColumns = useDataExpressStore(
@@ -25,16 +32,29 @@ export const DiscoveryPane: React.FC = () => {
 
   return (
     <div style={{ width: "100%" }}>
-      <TreeView
-        selectedNodes={selectedColumns}
-        highlightSelected
-        treeData={nodes}
-        onClick={(item) => {
-          if (!item.children || item.children?.length === 0) {
-            setSelectedColumns(item);
-          }
-        }}
-      />
+      <PaneStackChildren>
+        <PaneTitle>
+          <Stack>
+            <Typography variant="body1">Discovery Pane</Typography>
+            <Typography variant="caption">
+              Click on the Item to move/remove to and from selection pane
+            </Typography>
+          </Stack>
+        </PaneTitle>
+        <PaneBody>
+          <TreeView
+            selectedNodes={selectedColumns}
+            highlightSelected
+            treeData={nodes}
+            onClick={(item) => {
+              if (!item.children || item.children?.length === 0) {
+                setSelectedColumns(item);
+              }
+            }}
+          />
+        </PaneBody>
+        <PaneFooter>Calculated Components</PaneFooter>
+      </PaneStackChildren>
     </div>
   );
 };

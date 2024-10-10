@@ -6,6 +6,12 @@ import { QueryBuilder } from "react-querybuilder";
 import { useDataExpressStore } from "../../../stores/useDataExpressStore";
 import { TreeNode } from "../../TreeView/type";
 import { getFullPathOfNode } from "../../../utils";
+import { Stack } from "@mui/material";
+import {
+  PaneStackChildren,
+  PaneTitle,
+  PaneBody,
+} from "../PaneContainer.styles";
 
 export const FilterPane: React.FC = () => {
   const setQuery = useDataExpressStore((state) => state.setQuery);
@@ -22,16 +28,25 @@ export const FilterPane: React.FC = () => {
   }, [leafNodes]);
 
   return (
-    <QueryBuilderStyles>
-      {/* @ts-expect-error */}
-      <QueryBuilder
-        controlClassnames={{ queryBuilder: "queryBuilder-branches" }}
-        showCombinatorsBetweenRules={false}
-        fields={fields}
-        query={query}
-        onQueryChange={setQuery}
-        showShiftActions
-      />
-    </QueryBuilderStyles>
+    <PaneStackChildren>
+      <PaneTitle>
+        <Stack>
+          <span>Filter Pane</span>
+        </Stack>
+      </PaneTitle>
+      <PaneBody>
+        <QueryBuilderStyles>
+          {/* @ts-expect-error */}
+          <QueryBuilder
+            controlClassnames={{ queryBuilder: "queryBuilder-branches" }}
+            showCombinatorsBetweenRules={false}
+            fields={fields}
+            query={query}
+            onQueryChange={setQuery}
+            showShiftActions
+          />
+        </QueryBuilderStyles>
+      </PaneBody>
+    </PaneStackChildren>
   );
 };
