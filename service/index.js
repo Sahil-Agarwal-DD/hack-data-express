@@ -34,6 +34,7 @@ app.use(
 
 const data_domain_list_file_path = "./database/data-domain-list.json";
 const datamart_list_file_path = "./database/datamart-list.json";
+const business_model = "./database/business-model.json"
 
 app.get("/data-domain-list", (req, res) => {
   const rawData = fs.readFileSync(data_domain_list_file_path, "utf8");
@@ -56,6 +57,26 @@ app.get("/datamart-list/:domain", (req, res) => {
       error: "Domain not found",
     });
   }
+});
+
+// Endpoint to get business model for a specific domain and datamart
+app.get("/business-model/:domain/:datamart", (req, res) => {
+    const domain = req.params.domain;
+    const datamart = req.params.datamart;
+    const rawData = fs.readFileSync(business_model, "utf8");
+    const json_key = domain+"-"+datamart
+    const data = JSON.parse(rawData);
+    if (data["business_model"]) {
+        res.json({
+        domain: domain,
+        datamart: datamart,
+        business_model: data["business_model"][0][json_key],
+        });
+    } else {
+        res.status(404).json({
+        error: "Business model for given Domain, Datamart not found",
+        });
+    }
 });
 
 // Start the server

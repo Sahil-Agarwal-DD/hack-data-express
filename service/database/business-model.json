@@ -1,0 +1,110 @@
+{
+  "business_model": [
+    {
+      "finance-unit-economics": {
+        "fields": [
+          {
+            "name": "Total Other Revenue",
+            "type": "number",
+            "description": "Total Other Revenue",
+            "alias": "",
+            "is_calculated_field": false,
+            "calculated_field_statement": ""
+          },
+          {
+            "name": "Dasher Cost",
+            "type": "parent",
+            "description": "",
+            "alias": "",
+            "is_calculated_field": false,
+            "calculated_field_statement": "",
+            "children": [
+              {
+                "name": "Dasher Base Pay",
+                "type": "number",
+                "description": "The base pay amount for a Dasher.",
+                "alias": "",
+                "is_calculated_field": false,
+                "calculated_field_statement": ""
+              },
+              {
+                "name": "Dasher Incentive Pay",
+                "type": "number",
+                "description": "The incentive pay amount for a Dasher.",
+                "alias": "",
+                "is_calculated_field": false,
+                "calculated_field_statement": ""
+              },
+              {
+                "name": "Dasher Referrals",
+                "type": "number",
+                "description": "The referral earnings for a Dasher.",
+                "alias": "",
+                "is_calculated_field": false,
+                "calculated_field_statement": ""
+              },
+              {
+                "name": "Fast Pay Revenue",
+                "type": "number",
+                "description": "The revenue generated from Fast Pay transactions.",
+                "alias": "",
+                "is_calculated_field": false,
+                "calculated_field_statement": ""
+              }
+            ]
+          },
+          {
+            "name": "Gross Fees",
+            "type": "number",
+            "description": "Gross Fees",
+            "alias": "",
+            "is_calculated_field": false,
+            "calculated_field_statement": ""
+          },
+          {
+            "name": "Total Dasher Costs",
+            "type": "number",
+            "description": "Total Dasher Costs",
+            "alias": "",
+            "is_calculated_field": false,
+            "calculated_field_statement": ""
+          },
+          {
+            "name": "R&C",
+            "type": "parent",
+            "description": "",
+            "alias": "",
+            "is_calculated_field": false,
+            "calculated_field_statement": "",
+            "children": [
+              {
+                "name": "Credit Issuance Expense",
+                "type": "number",
+                "description": "The expense incurred from issuing credits.",
+                "alias": "",
+                "is_calculated_field": false,
+                "calculated_field_statement": ""
+              },
+              {
+                "name": "Support Credits",
+                "type": "number",
+                "description": "The amount of credits provided for support purposes.",
+                "alias": "",
+                "is_calculated_field": false,
+                "calculated_field_statement": ""
+              },
+              {
+                "name": "Total Refunds",
+                "type": "number",
+                "description": "The total amount refunded to customers.",
+                "alias": "",
+                "is_calculated_field": false,
+                "calculated_field_statement": ""
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}
