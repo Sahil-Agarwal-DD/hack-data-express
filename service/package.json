@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/Sahil-Agarwal-DD/hack-data-express#readme",
   "dependencies": {
+    "chance": "^1.1.12",
     "cors": "^2.8.5",
     "express": "^4.21.1",
     "fs": "^0.0.1-security"

@@ -2,6 +2,11 @@ const fs = require("fs");
 const express = require("express");
 const path = require("path");
 const cors = require("cors");
+const Chance = require("chance");
+
+const chance = Chance();
+
+const randomEmail = () => `${chance.first()}.${chance.last()}@doordash.com`;
 
 const app = express();
 
@@ -114,6 +119,8 @@ app.post("/data-express-model", (req, res) => {
       jsonData.data_express_model = [];
     }
 
+    newData.createdAt = new Date().toISOString();
+    newData.createdBy = randomEmail();
     // Add the new data to the data_express_model array
     jsonData.data_express_model.push(newData);
 
@@ -135,7 +142,11 @@ app.get("/data-express-model/name-list", (req, res) => {
   data_express_model_list = data["data_express_model"];
 
   // Map over the jsonDataList to extract names
-  const namesList = data_express_model_list.map((item) => item.name);
+  const namesList = data_express_model_list.map((item) => ({
+    name: item.name,
+    createdAt: item.createdAt,
+    createdBy: item.createdBy || randomEmail(),
+  }));
   // Return the list of names as JSON
   res.json(namesList);
 });
