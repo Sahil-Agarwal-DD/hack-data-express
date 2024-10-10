@@ -23,6 +23,8 @@ type useDataExpressStoreTypeValues = {
   blockUI: boolean;
   queryExecutionState: QueryExecutionState;
   showSql: boolean;
+  queryResultsTabs: number;
+  selectedQueryTabIndex: number;
 };
 type useDataExpressStoreType = {
   values: useDataExpressStoreTypeValues;
@@ -43,6 +45,8 @@ type useDataExpressStoreType = {
   setBlockUI: (val: boolean) => void;
   setQueryExecuting: (val: QueryExecutionState) => void;
   setShowSql: (val: boolean) => void;
+  setQueryResultsTabs: (val: number) => void;
+  setSelectedQueryTabIndex: (val: number) => void;
 };
 
 const initialValues: useDataExpressStoreTypeValues = {
@@ -68,6 +72,8 @@ const initialValues: useDataExpressStoreTypeValues = {
   blockUI: false,
   queryExecutionState: "stopped",
   showSql: false,
+  queryResultsTabs: 0,
+  selectedQueryTabIndex: 0,
 };
 
 export const useDataExpressStore = create<useDataExpressStoreType>()(
@@ -75,6 +81,16 @@ export const useDataExpressStore = create<useDataExpressStoreType>()(
     persist(
       immer((set) => ({
         values: cloneDeep(initialValues),
+        setSelectedQueryTabIndex(val: number) {
+          set((state) => {
+            state.values.selectedQueryTabIndex = val;
+          });
+        },
+        setQueryResultsTabs(val: number) {
+          set((state) => {
+            state.values.queryResultsTabs = val;
+          });
+        },
         setShowSql(val: boolean) {
           set((state) => {
             state.values.showSql = val;

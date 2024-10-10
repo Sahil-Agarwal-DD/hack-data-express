@@ -7,7 +7,8 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Chance from "chance";
-import { TablePagination } from "@mui/material";
+import { Box, Tab, TablePagination, Tabs } from "@mui/material";
+import { useDataExpressStore } from "../../stores/useDataExpressStore";
 
 interface Data {
   id: number;
@@ -31,12 +32,23 @@ function createData(id: number): Data {
   };
 }
 
-const paginationModel = { page: 0, pageSize: 5 };
-
 export const QueryResults = () => {
   const [page, setPage] = React.useState(0);
-  const [dense, setDense] = React.useState(false);
+
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
+
+  const {
+    values: { selectedColumns, calculatedComponents },
+  } = useDataExpressStore();
+
+  const tableHeaders = React.useMemo(() => {
+    const cols = Object.values(selectedColumns || {}).map(
+      (v) => v.alias || v.name
+    );
+    const calCols = Object.keys(calculatedComponents || {});
+
+    return [...cols, ...calCols];
+  }, [selectedColumns, calculatedComponents]);
 
   const rows: Data[] = React.useMemo(
     () => Array.from({ length: 20 }, (_, index) => createData(index)),
@@ -57,17 +69,16 @@ export const QueryResults = () => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
+
   return (
-    <div>
+    <div style={{ width: "100%" }}>
       <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 650 }} size="small">
+        <Table sx={{ width: "100%" }} size="small">
           <TableHead>
             <TableRow>
-              <TableCell>First Name</TableCell>
-              <TableCell>Last Name</TableCell>
-              <TableCell>Age</TableCell>
-              <TableCell>Phone</TableCell>
-              <TableCell>State</TableCell>
+              {tableHeaders.map((col) => (
+                <TableCell key={col}>{col}</TableCell>
+              ))}
             </TableRow>
           </TableHead>
           <TableBody>
@@ -76,13 +87,11 @@ export const QueryResults = () => {
                 key={row.id}
                 //   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
-                <TableCell component="th" scope="row">
-                  {row.firstName}
-                </TableCell>
-                <TableCell>{row.lastName}</TableCell>
-                <TableCell>{row.age}</TableCell>
-                <TableCell>{row.phone}</TableCell>
-                <TableCell>{row.state}</TableCell>
+                {tableHeaders.map((col) => (
+                  <TableCell component="th" scope="row">
+                    {row.firstName}
+                  </TableCell>
+                ))}
               </TableRow>
             ))}
           </TableBody>
