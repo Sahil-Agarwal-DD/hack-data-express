@@ -11,6 +11,8 @@ import {
   PaneTitle,
 } from "../PaneContainer.styles";
 import { Stack, Typography } from "@mui/material";
+import { CalculatedComponents } from "../../CalculatedComponents";
+import cloneDeep from "lodash/cloneDeep";
 
 export const DiscoveryPane: React.FC = () => {
   const setSelectedColumns = useDataExpressStore(
@@ -24,7 +26,9 @@ export const DiscoveryPane: React.FC = () => {
   const setLeafNodes = useDataExpressStore((state) => state.setLeafNodes);
 
   React.useEffect(() => {
-    const { leafNodes, updatedTree } = addParentPathsAndGetLeafNodes(treeData);
+    const { leafNodes, updatedTree } = addParentPathsAndGetLeafNodes(
+      cloneDeep(treeData)
+    );
     console.log("====>", { leafNodes, updatedTree });
     setNodes(updatedTree);
     setLeafNodes(leafNodes);
@@ -53,7 +57,9 @@ export const DiscoveryPane: React.FC = () => {
             }}
           />
         </PaneBody>
-        <PaneFooter>Calculated Components</PaneFooter>
+        <PaneFooter>
+          <CalculatedComponents />
+        </PaneFooter>
       </PaneStackChildren>
     </div>
   );

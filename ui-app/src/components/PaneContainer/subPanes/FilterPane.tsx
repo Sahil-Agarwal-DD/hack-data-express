@@ -22,7 +22,7 @@ export const FilterPane: React.FC = () => {
 
   const fields = React.useMemo(() => {
     return (leafNodes || []).map((v: TreeNode) => ({
-      name: v.name,
+      name: getFullPathOfNode(v),
       label: getFullPathOfNode(v),
     }));
   }, [leafNodes]);
