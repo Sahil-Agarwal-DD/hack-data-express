@@ -13,6 +13,8 @@ type useDataExpressStoreTypeValues = {
   selectedDomain?: Domain | null;
   dataMarts: DataMart[];
   selectedDataMart?: DataMart | null;
+  leafNodes: TreeNode[];
+  nodes: TreeNode[];
 };
 type useDataExpressStoreType = {
   values: useDataExpressStoreTypeValues;
@@ -22,6 +24,8 @@ type useDataExpressStoreType = {
   setSelectedDomain: (value: Domain | null) => void;
   setDataMarts: (value: DataMart[]) => void;
   setSelectedDataMart: (value: DataMart | null) => void;
+  setLeafNodes: (value: TreeNode[]) => void;
+  setNodes: (value: TreeNode[]) => void;
 };
 
 const initialValues: useDataExpressStoreTypeValues = {
@@ -34,6 +38,8 @@ const initialValues: useDataExpressStoreTypeValues = {
   selectedDomain: undefined,
   dataMarts: [],
   selectedDataMart: undefined,
+  leafNodes: [],
+  nodes: [],
 };
 
 export const useDataExpressStore = create<useDataExpressStoreType>()(
@@ -80,6 +86,18 @@ export const useDataExpressStore = create<useDataExpressStoreType>()(
         setSelectedDataMart(value: DataMart | null) {
           set((state) => {
             state.values.selectedDataMart = value;
+          });
+        },
+        setLeafNodes(value: TreeNode[]) {
+          set((state) => {
+            const val = Array.isArray(value) ? value : [];
+            state.values.leafNodes = val;
+          });
+        },
+        setNodes(value: TreeNode[]) {
+          set((state) => {
+            const val = Array.isArray(value) ? value : [];
+            state.values.nodes = val;
           });
         },
       })),

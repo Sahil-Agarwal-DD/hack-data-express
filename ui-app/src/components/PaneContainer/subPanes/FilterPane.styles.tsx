@@ -20,4 +20,14 @@ export const QueryBuilderStyles = styled.div`
   .ruleGroup-body > .ruleGroup:first-child:not(:only-child) {
     grid-column-start: 2;
   }
+
+  .rule > .rule-fields {
+    width: 20%;
+  }
+  .rule > .rule-operators {
+    width: 20%;
+  }
+  .rule > .rule-value {
+    width: 40%;
+  }
 `;

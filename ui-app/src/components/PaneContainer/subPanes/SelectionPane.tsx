@@ -1,9 +1,10 @@
 import * as React from "react";
 
 import { SelectionItemContainer } from "../PaneContainer.styles";
-import { IconButton, Stack } from "@mui/material";
+import { IconButton, Stack, Typography } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import { useDataExpressStore } from "../../../stores/useDataExpressStore";
+import { getFullPathOfNode } from "../../../utils";
 
 export const SelectionPane: React.FC = () => {
   const {
@@ -23,9 +24,7 @@ export const SelectionPane: React.FC = () => {
             spacing={1}
             sx={{ mb: 1 }}
           >
-            <span>
-              {v.parentPath ? `${v.parentPath}/`: ''}{v.name}
-            </span>
+            <Typography variant="body2">{getFullPathOfNode(v)}</Typography>
 
             <IconButton
               aria-label="delete"

@@ -9,7 +9,6 @@ type TreeNodeItemPropsType = {
   node: TreeNode;
   onClick?: (item: TreeNode) => void;
   highlightSelected?: boolean;
-  parentPath?: string;
   selectedNodes?: Record<string, TreeNode>;
 };
 type TreeViewPropsType = Omit<TreeNodeItemPropsType, "node"> & {
@@ -22,7 +21,6 @@ const TreeNodeItem: React.FC<TreeNodeItemPropsType> = ({
   onClick = () => {},
   highlightSelected = false,
   selectedNodes = {},
-  parentPath = "",
 }) => {
   const [isOpen, setIsOpen] = React.useState(node.isExpanded);
 
@@ -40,10 +38,6 @@ const TreeNodeItem: React.FC<TreeNodeItemPropsType> = ({
 
   // Check if the current node has children
   const hasChildren = node.children && node.children.length > 0;
-
-  React.useEffect(()=>{
-    node.parentPath = parentPath
-  }, [])
 
   return (
     <TreeViewContainer className="ml-4">
@@ -79,7 +73,6 @@ const TreeNodeItem: React.FC<TreeNodeItemPropsType> = ({
               onClick={onClick}
               selectedNodes={selectedNodes}
               highlightSelected={highlightSelected}
-              parentPath={`${parentPath}/${node.name}`}
             />
           ))}
         </div>
@@ -90,8 +83,8 @@ const TreeNodeItem: React.FC<TreeNodeItemPropsType> = ({
 
 // Tree component that takes treeData as a prop
 export const TreeView: React.FC<TreeViewPropsType> = ({
-  treeData,
-  selectedNodes,
+  treeData = [],
+  selectedNodes = {},
   ...otherProps
 }) => {
   return (
@@ -102,7 +95,6 @@ export const TreeView: React.FC<TreeViewPropsType> = ({
           selectedNodes={selectedNodes}
           key={node.name}
           node={node}
-          parentPath=""
         />
       ))}
     </div>
