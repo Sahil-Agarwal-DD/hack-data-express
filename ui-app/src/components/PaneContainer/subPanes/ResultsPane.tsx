@@ -7,9 +7,6 @@ import "gethue/ext/ace/mode-sql";
 import {
   formatQuery,
   RuleGroupTypeAny,
-  convertFromIC,
-  defaultValueProcessorByRule,
-  ValueProcessorByRule,
   defaultRuleProcessorSQL,
   RuleProcessor,
 } from "react-querybuilder";
@@ -58,7 +55,11 @@ export const ResultsPane: React.FC = () => {
         const casee = formatQuery(c.value, {
           format: "sql",
           ruleProcessor: customRuleProcessor,
-        });
+        })
+        // TODO: check how to remove "and" and brackets from generated case when statement
+          .replaceAll("and", "")
+          .replace("(", "")
+          .replace(")", "");
 
         const caseC = `
         CASE
