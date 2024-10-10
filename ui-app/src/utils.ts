@@ -38,3 +38,11 @@ export const getFullPathOfNode = (v: TreeNode) => {
 
   return returnValue;
 };
+
+export const delay = (ts = 300) => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(true);
+    }, ts);
+  });
+};

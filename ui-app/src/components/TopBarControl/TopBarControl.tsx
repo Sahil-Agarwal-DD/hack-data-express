@@ -2,7 +2,7 @@ import { Stack } from "@mui/material";
 import * as React from "react";
 import { DataDomainDropdown } from "../DataDomainDropdown";
 import { DataMartDropdown } from "../DataMartDropdown";
-import LoadSaved from "../LoadSaved/LoadSaved";
+import { LoadSaved } from "../LoadSaved/LoadSaved";
 
 interface TopBarControlProps {}
 

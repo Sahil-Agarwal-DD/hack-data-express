@@ -88,12 +88,12 @@ const CaseWhen: React.FC<{
 
 export const SelectionPane: React.FC = () => {
   const {
-    values: { selectedColumns, calculatedComponents: calculatedConmponents },
+    values: { selectedColumns, calculatedComponents },
   } = useDataExpressStore();
 
   const caseWhens = React.useMemo(
-    () => Object.values(calculatedConmponents || {}),
-    [calculatedConmponents]
+    () => Object.values(calculatedComponents || {}),
+    [calculatedComponents]
   );
 
   return (

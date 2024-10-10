@@ -39,7 +39,7 @@ const customRuleProcessor: RuleProcessor = (rule, options) => {
 
 export const ResultsPane: React.FC = () => {
   const query = useDataExpressStore((state) => state.values.query);
-  const calculatedConmponents = useDataExpressStore(
+  const calculatedComponents = useDataExpressStore(
     (state) => state.values.calculatedComponents
   );
   const selectedColumns = useDataExpressStore(
@@ -47,9 +47,9 @@ export const ResultsPane: React.FC = () => {
   );
 
   const cases = React.useMemo(() => {
-    console.log("====> calculatedConmponents", calculatedConmponents);
+    console.log("====> calculatedConmponents", calculatedComponents);
 
-    const cc = Object.values(calculatedConmponents || {});
+    const cc = Object.values(calculatedComponents || {});
 
     if (cc.length > 0) {
       const allCases = [];
@@ -72,7 +72,7 @@ export const ResultsPane: React.FC = () => {
       return allCases.join(",\n\t\t");
     }
     return "";
-  }, [calculatedConmponents]);
+  }, [calculatedComponents]);
 
   const fields = React.useMemo(
     () => [...Object.keys(selectedColumns), cases],

@@ -81,6 +81,103 @@
           "label": "unit-economics"
         }
       }
+    },
+    {
+      "name": "enum",
+      "value": {
+        "selectedColumns": {
+          "Dasher Base Pay": {
+            "name": "Dasher Base Pay",
+            "type": "date",
+            "description": "The base pay amount for a Dasher.",
+            "alias": "",
+            "is_calculated_field": false,
+            "calculated_field_statement": "",
+            "isExpanded": true,
+            "parentNodes": [
+              {
+                "name": "Dasher Cost",
+                "type": "parent",
+                "description": "",
+                "alias": "",
+                "is_calculated_field": false,
+                "calculated_field_statement": "",
+                "isExpanded": true
+              }
+            ]
+          },
+          "Status": {
+            "name": "Status",
+            "type": "string",
+            "description": "Status of payment",
+            "alias": "",
+            "is_calculated_field": false,
+            "calculated_field_statement": "",
+            "enum_values": [
+              "pending",
+              "completed"
+            ],
+            "isExpanded": true,
+            "parentNodes": [
+              {
+                "name": "Dasher Cost",
+                "type": "parent",
+                "description": "",
+                "alias": "",
+                "is_calculated_field": false,
+                "calculated_field_statement": "",
+                "isExpanded": true
+              }
+            ]
+          }
+        },
+        "calculatedComponents": {
+          "av": {
+            "label": "av",
+            "value": {
+              "rules": [
+                {
+                  "id": "e7bff58e-47d1-4351-a634-25eb312aac99",
+                  "field": "Total Other Revenue",
+                  "operator": "=",
+                  "valueSource": "value",
+                  "value": {
+                    "mainValue": "1",
+                    "thenValue": "1"
+                  }
+                }
+              ],
+              "id": "25a59220-52fa-4d55-8735-4552057c685a"
+            }
+          }
+        },
+        "query": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "17cf6271-3427-4899-a68c-e14e7f1fe6c3",
+              "field": "Dasher Cost/Status",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "completed"
+            },
+            {
+              "id": "5ec5305d-c438-4281-8596-180888d1c2b9",
+              "field": "Total Other Revenue",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "3"
+            }
+          ],
+          "id": "a298e7c0-5cb0-443d-ba04-abc8efc0b089"
+        },
+        "selectedDomain": {
+          "label": "finance"
+        },
+        "selectedDataMart": {
+          "label": "unit-economics"
+        }
+      }
     }
   ]
 }

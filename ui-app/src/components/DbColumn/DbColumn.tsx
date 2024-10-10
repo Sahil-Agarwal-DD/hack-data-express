@@ -24,7 +24,7 @@ export const DbColumn: React.FC<DbColumnProps> = ({ node }) => {
         alignItems: "center",
       }}
     >
-      {!hasChildren && <div />}
+      {/* {!hasChildren && <div />} */}
       {node.type === "number" && (
         <Numbers
           style={{

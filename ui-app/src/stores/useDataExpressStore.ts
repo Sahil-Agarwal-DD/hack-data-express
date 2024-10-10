@@ -5,6 +5,7 @@ import { createJSONStorage, devtools, persist } from "zustand/middleware";
 import { immer } from "zustand/middleware/immer";
 import { CalculatedColumn, DataMart, Domain } from "../types";
 import { TreeNode } from "../components/TreeView/type";
+import { cloneDeep } from "lodash";
 
 type useDataExpressStoreTypeValues = {
   selectedColumns: Record<string, TreeNode>;
@@ -18,6 +19,7 @@ type useDataExpressStoreTypeValues = {
   leafNodes: TreeNode[];
   nodes: TreeNode[];
   showCalculatedModal: boolean;
+  blockUI: boolean;
 };
 type useDataExpressStoreType = {
   values: useDataExpressStoreTypeValues;
@@ -33,6 +35,9 @@ type useDataExpressStoreType = {
   removeCalculatedComponent: (value: CalculatedColumn) => void;
   setShowCalculatedModal: (value: boolean) => void;
   setEditCalculatedComponent: (value: CalculatedColumn | null) => void;
+  load: (val: Partial<useDataExpressStoreTypeValues>) => void;
+  reset: () => void;
+  setBlockUI: (val: boolean) => void;
 };
 
 const initialValues: useDataExpressStoreTypeValues = {
@@ -55,13 +60,33 @@ const initialValues: useDataExpressStoreTypeValues = {
   leafNodes: [],
   nodes: [],
   showCalculatedModal: false,
+  blockUI: false,
 };
 
 export const useDataExpressStore = create<useDataExpressStoreType>()(
   devtools(
     persist(
       immer((set) => ({
-        values: initialValues,
+        values: cloneDeep(initialValues),
+        setBlockUI(val: boolean) {
+          set((state) => {
+            state.values.blockUI = val;
+          });
+        },
+        reset() {
+          set((state) => {
+            state.values = cloneDeep(initialValues);
+          });
+        },
+        load(value: Partial<useDataExpressStoreTypeValues>) {
+          set((state) => {
+            state.values = {
+              ...cloneDeep(initialValues),
+              ...state.values,
+              ...value,
+            };
+          });
+        },
         setSelectedColumns(value: TreeNode) {
           set((state) => {
             if (state.values.selectedColumns[value.name]) {
