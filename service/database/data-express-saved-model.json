@@ -1,23 +1,7 @@
 {
   "data_express_model": [
     {
-      "name": "test_model",
-      "value": "other_value",
-      "nested_object": {
-        "key": "value",
-        "key2": "value2"
-      }
-    },
-    {
-      "name": "test_model2",
-      "value": "other_value2",
-      "nested_object": {
-        "key": "value2",
-        "key2": "value23"
-      }
-    },
-    {
-      "name": "bsp1",
+      "name": "Dasher Values",
       "value": {
         "selectedColumns": {
           "Dasher Base Pay": {
@@ -83,7 +67,7 @@
       }
     },
     {
-      "name": "enum",
+      "name": "Dasher with enum",
       "value": {
         "selectedColumns": {
           "Dasher Base Pay": {
@@ -113,10 +97,7 @@
             "alias": "",
             "is_calculated_field": false,
             "calculated_field_statement": "",
-            "enum_values": [
-              "pending",
-              "completed"
-            ],
+            "enum_values": ["pending", "completed"],
             "isExpanded": true,
             "parentNodes": [
               {
