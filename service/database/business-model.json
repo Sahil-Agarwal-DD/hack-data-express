@@ -20,6 +20,15 @@
             "calculated_field_statement": "",
             "children": [
               {
+                "name": "Status",
+                "type": "string",
+                "description": "Status of payment",
+                "alias": "",
+                "is_calculated_field": false,
+                "calculated_field_statement": "",
+                "enum_values": ["pending", "completed"]
+              },
+              {
                 "name": "Dasher Base Pay",
                 "type": "number",
                 "description": "The base pay amount for a Dasher.",

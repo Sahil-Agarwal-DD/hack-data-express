@@ -2,7 +2,7 @@ import * as React from "react";
 
 import "react-querybuilder/dist/query-builder-layout.css";
 import { QueryBuilderStyles } from "./FilterPane.styles";
-import { QueryBuilder } from "react-querybuilder";
+import { OptionGroup, QueryBuilder } from "react-querybuilder";
 import { useDataExpressStore } from "../../../stores/useDataExpressStore";
 import { TreeNode } from "../../TreeView/type";
 import { getFullPathOfNode } from "../../../utils";
@@ -12,6 +12,7 @@ import {
   PaneTitle,
   PaneBody,
 } from "../PaneContainer.styles";
+import { values } from "lodash";
 
 export const FilterPane: React.FC = () => {
   const setQuery = useDataExpressStore((state) => state.setQuery);
@@ -21,10 +22,25 @@ export const FilterPane: React.FC = () => {
   console.log("====> query", query);
 
   const fields = React.useMemo(() => {
-    return (leafNodes || []).map((v: TreeNode) => ({
-      name: getFullPathOfNode(v),
-      label: getFullPathOfNode(v),
-    }));
+    return (leafNodes || []).map((v: TreeNode) => {
+      const returnValue = {
+        name: getFullPathOfNode(v),
+        label: getFullPathOfNode(v),
+      };
+
+      if (v.enumValues) {
+        (returnValue as any).valueEditorType = "select";
+
+        (returnValue as any).values = [
+          {
+            label: v.name,
+            options: v.enumValues.map((v) => ({ name: v, label: v })),
+          },
+        ] as OptionGroup[];
+      }
+
+      return returnValue;
+    });
   }, [leafNodes]);
 
   return (
