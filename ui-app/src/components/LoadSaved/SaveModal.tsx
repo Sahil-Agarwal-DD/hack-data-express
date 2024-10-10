@@ -14,6 +14,7 @@ export const SaveModal: React.FC<SaveModalProps> = () => {
       query,
       selectedDomain,
       selectedDataMart,
+      queryExecutionState: queryExecuting
     },
   } = useDataExpressStore();
 
@@ -55,7 +56,7 @@ export const SaveModal: React.FC<SaveModalProps> = () => {
   };
   return (
     <>
-      <Button variant="contained" onClick={() => setOpen(true)}>
+      <Button variant="contained" onClick={() => setOpen(true)} disabled={queryExecuting === 'loading'}>
         Save
       </Button>
 

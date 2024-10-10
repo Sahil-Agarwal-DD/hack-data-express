@@ -7,6 +7,7 @@ import { CalculatedColumn, DataMart, Domain } from "../types";
 import { TreeNode } from "../components/TreeView/type";
 import { cloneDeep } from "lodash";
 
+type QueryExecutionState = "loading" | "stopped" | "success";
 type useDataExpressStoreTypeValues = {
   selectedColumns: Record<string, TreeNode>;
   query?: RuleGroupTypeAny;
@@ -20,6 +21,8 @@ type useDataExpressStoreTypeValues = {
   nodes: TreeNode[];
   showCalculatedModal: boolean;
   blockUI: boolean;
+  queryExecutionState: QueryExecutionState;
+  showSql: boolean;
 };
 type useDataExpressStoreType = {
   values: useDataExpressStoreTypeValues;
@@ -38,6 +41,8 @@ type useDataExpressStoreType = {
   load: (val: Partial<useDataExpressStoreTypeValues>) => void;
   reset: () => void;
   setBlockUI: (val: boolean) => void;
+  setQueryExecuting: (val: QueryExecutionState) => void;
+  setShowSql: (val: boolean) => void;
 };
 
 const initialValues: useDataExpressStoreTypeValues = {
@@ -61,6 +66,8 @@ const initialValues: useDataExpressStoreTypeValues = {
   nodes: [],
   showCalculatedModal: false,
   blockUI: false,
+  queryExecutionState: "stopped",
+  showSql: false,
 };
 
 export const useDataExpressStore = create<useDataExpressStoreType>()(
@@ -68,6 +75,16 @@ export const useDataExpressStore = create<useDataExpressStoreType>()(
     persist(
       immer((set) => ({
         values: cloneDeep(initialValues),
+        setShowSql(val: boolean) {
+          set((state) => {
+            state.values.showSql = val;
+          });
+        },
+        setQueryExecuting(val: QueryExecutionState) {
+          set((state) => {
+            state.values.queryExecutionState = val;
+          });
+        },
         setBlockUI(val: boolean) {
           set((state) => {
             state.values.blockUI = val;

@@ -6,7 +6,7 @@ import { API_PATH } from "../../constants";
 type Props = {};
 
 export const DataDomainDropdown: React.FC<Props> = () => {
-  const { domains, selectedDomain } = useDataExpressStore((s) => s.values);
+  const { domains, selectedDomain, queryExecutionState: queryExecuting } = useDataExpressStore((s) => s.values);
   const { setDomains, setSelectedDomain, setDataMarts, setSelectedDataMart } =
     useDataExpressStore();
 
@@ -25,6 +25,7 @@ export const DataDomainDropdown: React.FC<Props> = () => {
 
   return (
     <Autocomplete
+      disabled={queryExecuting === 'loading'}
       disablePortal
       options={domains}
       size="small"

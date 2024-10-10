@@ -8,8 +8,14 @@ import { delay } from "../../utils";
 interface SaveModalProps {}
 
 export const FetchSaved: React.FC<SaveModalProps> = () => {
-  const { reset, load, setBlockUI, setSelectedDataMart, setSelectedDomain } =
-    useDataExpressStore();
+  const {
+    reset,
+    load,
+    setBlockUI,
+    setSelectedDataMart,
+    setSelectedDomain,
+    values: { queryExecutionState: queryExecuting },
+  } = useDataExpressStore();
 
   const [open, setOpen] = React.useState(false);
 
@@ -76,7 +82,11 @@ export const FetchSaved: React.FC<SaveModalProps> = () => {
 
   return (
     <>
-      <Button variant="contained" onClick={() => setOpen(true)}>
+      <Button
+        variant="contained"
+        onClick={() => setOpen(true)}
+        disabled={queryExecuting === "loading"}
+      >
         Load
       </Button>
 

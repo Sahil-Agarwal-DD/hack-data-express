@@ -10,6 +10,7 @@ export const DataMartDropdown: React.FC<Props> = () => {
     dataMarts = [],
     selectedDomain,
     selectedDataMart,
+    queryExecutionState: queryExecuting,
   } = useDataExpressStore((s) => s.values);
   const { setSelectedDataMart, setDataMarts } = useDataExpressStore();
 
@@ -29,6 +30,7 @@ export const DataMartDropdown: React.FC<Props> = () => {
 
   return (
     <Autocomplete
+      disabled={queryExecuting === 'loading'}
       disablePortal
       options={dataMarts}
       size="small"

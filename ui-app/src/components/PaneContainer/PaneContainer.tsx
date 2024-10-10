@@ -4,8 +4,10 @@ import { SelectionPane } from "./subPanes/SelectionPane";
 import { DiscoveryPane } from "./subPanes/DiscoveryPane";
 import { FilterPane } from "./subPanes/FilterPane";
 import { ResultsPane } from "./subPanes/ResultsPane";
-import { Grid2 } from "@mui/material";
+import { Button, Grid2 } from "@mui/material";
 import { TopBarControl } from "../TopBarControl";
+import { Actions } from "../Actions/Actions";
+import BottomResults from "../BottomResults/BottomResults";
 
 export const PaneContainer: React.FC = () => {
   return (
@@ -24,8 +26,11 @@ export const PaneContainer: React.FC = () => {
           <FilterPane />
         </Grid2>
       </Grid2>
+      <Grid2 size={12}>
+        <Actions />
+      </Grid2>
       <Grid2 size={12} height={"50%"}>
-        <ResultsPane />
+        <BottomResults />
       </Grid2>
     </Grid2>
   );
