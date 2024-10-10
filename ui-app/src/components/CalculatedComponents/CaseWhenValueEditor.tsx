@@ -22,7 +22,7 @@ export const CaseWhenValueEditor = (props: ValueEditorProps) => {
         placeholder=""
         title="Value"
         className="rule-value case-when-value-editor"
-        // value={}
+        value={props.value?.thenValue}
         onChange={(e) => {
           props.handleOnChange({
             ...(props.value || {}),

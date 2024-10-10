@@ -16,8 +16,8 @@ export const QueryBuilderStyles = styled.div`
   }
 
   /* Indent the first rule/subgroup since it has no preceding combinator */
-  .ruleGroup-body > .rule:first-child:not(:only-child),
-  .ruleGroup-body > .ruleGroup:first-child:not(:only-child) {
+  .ruleGroup-body > .rule:first-of-type:not(:only-child),
+  .ruleGroup-body > .ruleGroup:first-of-type:not(:only-child) {
     grid-column-start: 2;
   }
 

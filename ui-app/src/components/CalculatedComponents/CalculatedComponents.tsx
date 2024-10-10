@@ -10,9 +10,8 @@ import * as React from "react";
 import { QueryBuilder, RuleGroupTypeAny } from "react-querybuilder";
 import { CalculatedQueryBuilderStyles } from "./styles";
 import { useDataExpressStore } from "../../stores/useDataExpressStore";
-import { getFullPathOfNode } from "../../utils";
-import { TreeNode } from "../TreeView/type";
 import { CaseWhenValueEditor } from "./CaseWhenValueEditor";
+import { useGetFields } from "../../hooks/useGetFields";
 
 const style = {
   position: "absolute",
@@ -56,28 +55,28 @@ export const CalculatedComponents: React.FC<CalculatedComponentsProps> = () => {
   };
 
   React.useEffect(() => {
-    if (editCalculatedComponent) {
-      setAlias(editCalculatedComponent.label);
-      setCaseStatement({ ...editCalculatedComponent.value });
-    } else {
-      setAlias("");
-      setCaseStatement({
-        rules: [],
-      });
-    }
+    let timer = setTimeout(() => {
+      if (editCalculatedComponent) {
+        setAlias(editCalculatedComponent.label);
+        setCaseStatement({ ...editCalculatedComponent.value });
+      } else {
+        setAlias("");
+        setCaseStatement({
+          rules: [],
+        });
+      }
+    }, 10);
+
+    return () => {
+      clearTimeout(timer);
+    };
   }, [editCalculatedComponent]);
 
-  const leafNodes = useDataExpressStore((state) => state.values.leafNodes);
   const setCalculatedComponent = useDataExpressStore(
     (state) => state.setCalculatedComponent
   );
 
-  const fields = React.useMemo(() => {
-    return (leafNodes || []).map((v: TreeNode) => ({
-      name: getFullPathOfNode(v),
-      label: getFullPathOfNode(v),
-    }));
-  }, [leafNodes]);
+  const { fields } = useGetFields();
 
   const cancelClicked = () => {
     handleClose();
@@ -102,7 +101,6 @@ export const CalculatedComponents: React.FC<CalculatedComponentsProps> = () => {
       setEditCalculatedComponent(null);
     }
     handleClose();
-
   };
 
   React.useEffect(() => {
@@ -130,33 +128,26 @@ export const CalculatedComponents: React.FC<CalculatedComponentsProps> = () => {
               onChange={(event) => setAlias(event.target.value)}
             />
 
-            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-              <CalculatedQueryBuilderStyles>
-                <QueryBuilder
-                  controlClassnames={{
-                    queryBuilder: "queryBuilder-branches",
-                  }}
-                  combinators={[
-                    {
-                      name: "",
-                      label: "",
-                    },
-                  ]}
-                  showCombinatorsBetweenRules={false}
-                  fields={fields}
-                  // @ts-expect-error
-                  query={caseStatement as RuleGroupTypeAny}
-                  onQueryChange={(v) => {
-                    setCaseStatement(v as RuleGroupTypeAny);
-                  }}
-                  showShiftActions
-                  controlElements={{
-                    // addGroupAction: () => null,
-                    valueEditor: CaseWhenValueEditor,
-                  }}
-                />
-              </CalculatedQueryBuilderStyles>
-            </Typography>
+            <CalculatedQueryBuilderStyles>
+              <QueryBuilder
+                controlClassnames={{
+                  queryBuilder: "queryBuilder-branches",
+                }}
+                showCombinatorsBetweenRules={false}
+                fields={fields}
+                // @ts-expect-error
+                query={caseStatement as RuleGroupTypeAny}
+                onQueryChange={(v) => {
+                  setCaseStatement(v as RuleGroupTypeAny);
+                }}
+                showShiftActions
+                controlElements={{
+                  // addGroupAction: () => null,
+                  valueEditor: CaseWhenValueEditor,
+                }}
+              />
+            </CalculatedQueryBuilderStyles>
+
             <Stack
               direction="row"
               spacing={1}
