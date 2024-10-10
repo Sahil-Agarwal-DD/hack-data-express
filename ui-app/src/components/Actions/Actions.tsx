@@ -8,7 +8,9 @@ export const Actions: React.FC<ActionsProps> = () => {
   const {
     setShowSql,
     setQueryExecuting,
-    values: { showSql, queryExecutionState: queryExecuting },
+    setQueryResultsTabs,
+    setSelectedQueryTabIndex,
+    values: { showSql, queryExecutionState: queryExecuting, queryResultsTabs },
   } = useDataExpressStore();
 
   return (
@@ -39,6 +41,8 @@ export const Actions: React.FC<ActionsProps> = () => {
           setQueryExecuting(
             queryExecuting === "loading" ? "stopped" : "loading"
           );
+          setQueryResultsTabs(queryResultsTabs + 1);
+          setSelectedQueryTabIndex(queryResultsTabs);
           setShowSql(false);
         }}
       >
