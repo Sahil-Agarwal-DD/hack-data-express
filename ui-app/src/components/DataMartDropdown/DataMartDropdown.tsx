@@ -31,6 +31,7 @@ export const DataMartDropdown: React.FC<Props> = () => {
     <Autocomplete
       disablePortal
       options={dataMarts}
+      size="small"
       sx={{ width: 300 }}
       renderInput={(params) => <TextField {...params} label="DataMarts" />}
       value={selectedDataMart}

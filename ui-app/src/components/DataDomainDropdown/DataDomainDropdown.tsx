@@ -27,6 +27,7 @@ export const DataDomainDropdown: React.FC<Props> = () => {
     <Autocomplete
       disablePortal
       options={domains}
+      size="small"
       sx={{ width: 300 }}
       renderInput={(params) => <TextField {...params} label="Domain" />}
       value={selectedDomain}
