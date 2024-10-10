@@ -83,7 +83,7 @@ app.get("/business-model/:domain/:datamart", (req, res) => {
 });
 
 // Endpoint to save the business model to database
-app.post("/business-model", (req, res) => {
+app.post("/data-express-model", (req, res) => {
     console.log('Headers:', req.headers);
     console.log('Body:', req.body);
     const newData = req.body; // Get the JSON data from the request body
@@ -125,6 +125,37 @@ app.post("/business-model", (req, res) => {
             res.send('Data successfully added to file');
         });
     });
+});
+
+// Endpoint to save the business model to database
+app.get("/data-express-model/name-list", (req, res) => {
+    const rawData = fs.readFileSync(data_express_saved_model_file_path, "utf8");
+    const data = JSON.parse(rawData);
+    data_express_model_list = data["data_express_model"]
+
+    // Map over the jsonDataList to extract names
+    const namesList = data_express_model_list.map(item => item.name);
+    // Return the list of names as JSON
+    res.json(namesList);
+});
+
+// Endpoint to save the business model to database
+app.get("/data-express-model/:model_name", (req, res) => {
+    const model_name = req.params.model_name;
+    const rawData = fs.readFileSync(data_express_saved_model_file_path, "utf8");
+    const data = JSON.parse(rawData);
+    data_express_model_list = data["data_express_model"]
+    console.log(data_express_model_list)
+    if (data_express_model_list) {
+        const data_express_model_required = data_express_model_list.find(item => item.name === model_name);
+        res.json({
+            data_express_model: data_express_model_required,
+        });
+    } else {
+        res.status(404).json({
+        error: "Data Express Model not found",
+        });
+    }
 });
 // Start the server
 app.listen(port, () => {
