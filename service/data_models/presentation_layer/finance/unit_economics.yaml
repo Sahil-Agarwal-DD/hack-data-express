@@ -13,6 +13,18 @@ attributes:
   - name: lob
     mapping: line_of_business
     description: delivery ie Subscription, Pickup etc
+    enum_values:
+      - Subscription - CAV
+      - Storefront
+      - Pickup - CAV
+      - Marketplace: Subscription
+      - Marketplace: Pickup
+      - Marketplace: Classic
+      - Drive: Checkout
+      - Drive
+      - DoorDash for Business
+      - DashLink
+      - Classic - CAV
   - name: consumer
     mapping: @consumer
   - name: merchant
