@@ -7,6 +7,7 @@ export const addParentPathsAndGetLeafNodes = (
   let leafNodes: TreeNode[] = [];
   for (let i = 0, len = treeData.length; i < len; i++) {
     const node = treeData[i];
+    node.isExpanded = true;
     const { children, ...parentNode } = node;
     node.parentNodes = [...parentNodes];
     if (Array.isArray(node.children) && node.children.length > 0) {
@@ -26,13 +27,11 @@ export const addParentPathsAndGetLeafNodes = (
 };
 
 export const getFullPathOfNode = (v: TreeNode) => {
-  console.log("=====>", v);
   const returnValue = `${
     Array.isArray(v.parentNodes) && v.parentNodes.length > 0
       ? `${v.parentNodes.map((v) => v.name).join("/")}/`
       : ""
   }${v.name}`;
 
-  console.log("====>", returnValue);
   return returnValue;
 };

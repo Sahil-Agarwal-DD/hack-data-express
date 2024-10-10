@@ -1,15 +1,17 @@
 import { Autocomplete, TextField } from "@mui/material";
 import * as React from "react";
 import { useDataExpressStore } from "../../stores/useDataExpressStore";
+import { API_PATH } from "../../constants";
 
 type Props = {};
 
 export const DataDomainDropdown: React.FC<Props> = () => {
   const { domains, selectedDomain } = useDataExpressStore((s) => s.values);
-  const { setDomains, setSelectedDomain, setDataMarts, setSelectedDataMart } = useDataExpressStore();
+  const { setDomains, setSelectedDomain, setDataMarts, setSelectedDataMart } =
+    useDataExpressStore();
 
   React.useEffect(() => {
-    fetch("http://localhost:8000/data-domain-list")
+    fetch(`${API_PATH}/data-domain-list`)
       .then((v) => v.json())
       .then((v) => {
         setDomains(
@@ -30,8 +32,8 @@ export const DataDomainDropdown: React.FC<Props> = () => {
       value={selectedDomain}
       onChange={(event, value) => {
         setSelectedDomain(value);
-        setDataMarts([])
-        setSelectedDataMart(null)
+        setDataMarts([]);
+        setSelectedDataMart(null);
       }}
     />
   );

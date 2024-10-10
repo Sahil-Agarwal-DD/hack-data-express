@@ -1,6 +1,7 @@
 import { Autocomplete, TextField } from "@mui/material";
 import * as React from "react";
 import { useDataExpressStore } from "../../stores/useDataExpressStore";
+import { API_PATH } from "../../constants";
 
 type Props = {};
 
@@ -14,7 +15,7 @@ export const DataMartDropdown: React.FC<Props> = () => {
 
   React.useEffect(() => {
     if (selectedDomain?.label) {
-      fetch(`http://localhost:8000/datamart-list/${selectedDomain.label}`)
+      fetch(`${API_PATH}/datamart-list/${selectedDomain.label}`)
         .then((v) => v.json())
         .then((v) => {
           setDataMarts(

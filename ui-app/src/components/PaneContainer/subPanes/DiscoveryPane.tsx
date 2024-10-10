@@ -1,7 +1,6 @@
 import * as React from "react";
 
 import { TreeView } from "../../TreeView/TreeView";
-import { treeData } from "../../TreeView/sampleTreeView";
 import { useDataExpressStore } from "../../../stores/useDataExpressStore";
 import { addParentPathsAndGetLeafNodes } from "../../../utils";
 import {
@@ -13,6 +12,8 @@ import {
 import { Stack, Typography } from "@mui/material";
 import { CalculatedComponents } from "../../CalculatedComponents";
 import cloneDeep from "lodash/cloneDeep";
+import { API_PATH } from "../../../constants";
+import { orderBy } from "lodash";
 
 export const DiscoveryPane: React.FC = () => {
   const setSelectedColumns = useDataExpressStore(
@@ -21,19 +22,32 @@ export const DiscoveryPane: React.FC = () => {
   const selectedColumns = useDataExpressStore(
     (state) => state.values.selectedColumns
   );
-  const nodes = useDataExpressStore((state) => state.values.nodes || []);
   const setNodes = useDataExpressStore((state) => state.setNodes);
   const setLeafNodes = useDataExpressStore((state) => state.setLeafNodes);
 
-  React.useEffect(() => {
-    const { leafNodes, updatedTree } = addParentPathsAndGetLeafNodes(
-      cloneDeep(treeData)
-    );
-    console.log("====>", { leafNodes, updatedTree });
-    setNodes(updatedTree);
-    setLeafNodes(leafNodes);
-  }, []);
+  const { selectedDomain, selectedDataMart } = useDataExpressStore(
+    (state) => state.values
+  );
+  const nodes = useDataExpressStore((state) => state.values.nodes || []);
+  const treeNodes = React.useMemo(() => cloneDeep(nodes), [nodes]);
 
+  React.useEffect(() => {
+    if (selectedDomain && selectedDataMart) {
+      fetch(
+        `${API_PATH}/business-model/${selectedDomain.label}/${selectedDataMart.label}`
+      )
+        .then((v) => v.json())
+        .then((v) => {
+          const { leafNodes, updatedTree } = addParentPathsAndGetLeafNodes(
+            cloneDeep(v?.business_model?.fields || [])
+          );
+          setNodes(
+            orderBy(updatedTree, (v) => v?.children?.length || 0, "desc")
+          );
+          setLeafNodes(leafNodes);
+        });
+    }
+  }, [selectedDomain, selectedDataMart]);
   return (
     <div style={{ width: "100%" }}>
       <PaneStackChildren>
@@ -46,10 +60,12 @@ export const DiscoveryPane: React.FC = () => {
           </Stack>
         </PaneTitle>
         <PaneBody>
+          {nodes.length === 0 &&
+            "Select Domain (finance) and DataMarts to fetch the tree"}
           <TreeView
             selectedNodes={selectedColumns}
             highlightSelected
-            treeData={nodes}
+            treeData={treeNodes}
             onClick={(item) => {
               if (!item.children || item.children?.length === 0) {
                 setSelectedColumns(item);

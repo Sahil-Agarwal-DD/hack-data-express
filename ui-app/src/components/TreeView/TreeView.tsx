@@ -2,8 +2,12 @@ import * as React from "react";
 import { TreeNode } from "./type";
 import { TreeViewContainer } from "./TreeView.styles";
 
-import { IconButton, Stack, Typography } from "@mui/material";
-import { ChevronRight, ExpandMore } from "@mui/icons-material";
+import { IconButton, Stack } from "@mui/material";
+import {
+  ChevronRight,
+  ExpandMore,
+} from "@mui/icons-material";
+import { DbColumn } from "../DbColumn";
 
 type TreeNodeItemPropsType = {
   node: TreeNode;
@@ -48,7 +52,11 @@ const TreeNodeItem: React.FC<TreeNodeItemPropsType> = ({
           onClick(node);
         }}
       >
-        <Stack direction="row" spacing={1} sx={{ mb: 1 }}>
+        <Stack
+          direction="row"
+          spacing={1}
+          sx={{ mb: 1, justifyContent: "flex-start", alignItems: "center" }}
+        >
           {hasChildren && (
             <IconButton
               onClick={(e) => {
@@ -60,7 +68,7 @@ const TreeNodeItem: React.FC<TreeNodeItemPropsType> = ({
               {isOpen ? <ExpandMore /> : <ChevronRight />}
             </IconButton>
           )}
-          <Typography variant="body2">{node.name}</Typography>
+          <DbColumn node={node} />
         </Stack>
       </div>
       {/* If open, render children recursively */}
