@@ -6,12 +6,11 @@ import { API_PATH } from "../../constants";
 type Props = {};
 
 export const TemplatesDropdown: React.FC<Props> = () => {
-  const { QueryTemplate, selectedQueryTemplate, queryExecutionState: queryExecuting } = useDataExpressStore((s) => s.values);
-  const { setQueryTemplates, setSelectedQueryTemplate } =
+  const { domains, selectedDomain, QueryTemplate, selectedQueryTemplate, queryExecutionState: queryExecuting } = useDataExpressStore((s) => s.values);
+  const { setDomains, setSelectedDomain, setQueryTemplates, setSelectedQueryTemplate } =
     useDataExpressStore();
 
   React.useEffect(() => {
-    console.log(fetch(`${API_PATH}/query-templates-list`))
     fetch(`${API_PATH}/query-templates-list`)
       .then((v) => v.json())
       .then((v) => {
