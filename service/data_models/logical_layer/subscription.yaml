@@ -1,0 +1,69 @@
+  DataMart_Definition:
+    version: 1
+    description: "DataMart for Consumer Subscription"
+    datamart: Subscription
+    driver_entity: consumer_subscription_fact
+    attributes:
+      - name: dte
+      - name: consumer_id
+      - name: subscription_id
+      - name: user_id
+      - name: consumer_subscription_plan_id
+      - name: region_id
+      - name: submarket_id
+      - name: invoice_trial_conversion_date
+      - name: region_name
+      - name: final_trial_conversion_date
+      - name: experience
+      - name: trial_convert_date
+      - name: trial_cancel_date
+      - name: trial_start_date
+      - name: country_id
+      - name: country
+      - name: subscription_type
+      - name: is_last_day_of_month
+      - name: is_last_day_of_week
+      - name: monthly_fee
+      - name: unit_start_time
+      - name: unit_end_time
+      - name: original_unit_end_time
+      - name: start_time
+      - name: dynamic_subscription_status
+      - name: balance_category
+      - name: version
+      - name: trial_sign_ups
+      - name: ctp
+      - name: dtp
+      - name: new_sub
+      - name: paid_churn
+      - name: trial_churn
+      - name: trial_balance
+      - name: trial_ctp
+      - name: good_standing_trial_balance
+      - name: paid_balance
+      - name: total_balance
+      - name: good_standing_paid_balance
+      - name: free_balance
+      - name: annual_plan_balance
+      - name: monthly_plan_balance
+      - name: student_plan_balance
+      - name: paused
+      - name: paid_paused
+      - name: trial_paused
+      - name: pause_churned_subs
+      - name: unpause_subs
+      - name: pause_balance
+      - name: dtp_ohar_paused
+      - name: upgrade_paid_churn
+      - name: active_paid_churn
+      - name: passive_paid_churn
+      - name: active_paid_pause
+      - name: passive_paid_pause
+      - name: trial_cancel
+      - name: ohar_cancel
+      - name: invoice_conversion
+      - name: ohar_conversion
+      - name: country_id_subscribed_from
+      - name: country_name_subscribed_from
+      - name: consumer
+        source: "@consumer_subscription_fact__consumer_dim"

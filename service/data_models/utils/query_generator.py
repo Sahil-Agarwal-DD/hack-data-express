@@ -2,14 +2,119 @@ from data_model_parser import get_all_data_mart_definitions
 from data_model_parser import get_business_model_definitions
 import json
 
-class SelectiContext:
+user_context_sql_config={
+  "selectedColumns": {
+    "Active Date": {
+      "name": "Active Date",
+      "type": "date",
+      "description": "based on quoted delivery time, in Local Timezone",
+      "alias": "",
+      "is_calculated_field": False,
+      "calculated_field_statement": "",
+      "enum_values": [],
+      "children": [],
+      "isExpanded": False,
+      "enumValues": [],
+      "parentNodes": []
+    },
+    "financials/Gov": {
+      "name": "financials/Gov",
+      "type": "numeric",
+      "description": "Gross Order Value.Sum of cash inflow that DoorDash generates that comes from consumers (end users) i.e Subtotal + Tax + Tip + Cx Fees",
+      "alias": "",
+      "is_calculated_field": False,
+      "calculated_field_statement": "",
+      "enum_values": [],
+      "children": [],
+      "isExpanded": False,
+      "enumValues": [],
+      "parentNodes": [
+        {
+          "name": "financials",
+          "type": "parent",
+          "description": "",
+          "alias": "",
+          "is_calculated_field": False,
+          "calculated_field_statement": "",
+          "enum_values": [],
+          "isExpanded": False,
+          "enumValues": []
+        }
+      ]
+    },
+    "financials/Dasher Costs/Dasher Base Pay": {
+      "name": "financials/Dasher Costs/Dasher Base Pay",
+      "type": "numeric",
+      "description": "Base pay our Dashers receive for fulfilling an order",
+      "alias": "",
+      "is_calculated_field": False,
+      "calculated_field_statement": "",
+      "enum_values": [],
+      "children": [],
+      "isExpanded": False,
+      "enumValues": [],
+      "parentNodes": [
+        {
+          "name": "financials",
+          "type": "parent",
+          "description": "",
+          "alias": "",
+          "is_calculated_field": False,
+          "calculated_field_statement": "",
+          "enum_values": [],
+          "isExpanded": False,
+          "enumValues": []
+        },
+        {
+          "name": "Dasher Costs",
+          "type": "parent",
+          "description": "",
+          "alias": "",
+          "is_calculated_field": False,
+          "calculated_field_statement": "",
+          "enum_values": [],
+          "isExpanded": False,
+          "enumValues": []
+        }
+      ]
+    }
+  },
+  "query": {
+    "combinator": "and",
+    "rules": [
+      {
+        "id": "624fae13-a80a-4ff1-988c-d219c29b4d5e",
+        "field": "lob",
+        "operator": "=",
+        "valueSource": "value",
+        "value": "Subscription - CAV"
+      },
+      {
+        "id": "d058bf43-322a-45a0-a01d-d7300defb208",
+        "field": "Active Date",
+        "operator": ">=",
+        "valueSource": "value",
+        "value": "2024-10-01"
+      }
+    ],
+    "id": "3defe683-8c29-4a85-a926-6768bb8fd052"
+  },
+  "selectedDomain": {
+    "label": "finance"
+  },
+  "selectedDataMart": {
+    "label": "unit-economics"
+  }
+}
+
+class SelectContext:
     def __init__(self, filed, name, alias, calculated_field_statement=None):
         self.filed = filed
         self.name = name
         self.alias = alias
         self.calculated_field_statement = calculated_field_statement
     def __repr__(self):
-        return f"SelectiContext(filed={self.filed}, name={self.name}, alias={self.alias}, calculated_field_statement={self.calculated_field_statement})"
+        return f"SelectContext(filed={self.filed}, name={self.name}, alias={self.alias}, calculated_field_statement={self.calculated_field_statement})"
 
 
 class QueryFilterContext:
@@ -87,3 +192,4 @@ query = {
 # Generate the WHERE clause
 where_clause = generate_where_clause(query)
 print("WHERE " + where_clause)
+
