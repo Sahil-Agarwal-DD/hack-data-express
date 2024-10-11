@@ -24,7 +24,6 @@ const customRuleProcessor: RuleProcessor = (rule, options) => {
 
   const returnValue = defaultRuleProcessorSQL(rr, {
     ...options,
-    quoteFieldNamesWith: "`",
   });
 
   const thenValue = isNumber(rule.value?.thenValue)
@@ -56,7 +55,7 @@ export const ResultsPane: React.FC = () => {
           format: "sql",
           ruleProcessor: customRuleProcessor,
         })
-        // TODO: check how to remove "and" and brackets from generated case when statement
+          // TODO: check how to remove "and" and brackets from generated case when statement
           .replaceAll("and", "")
           .replace("(", "")
           .replace(")", "");

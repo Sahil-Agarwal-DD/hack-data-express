@@ -13,6 +13,7 @@ export const addParentPathsAndGetLeafNodes = (
     }
     const { children, ...parentNode } = node;
     node.parentNodes = [...parentNodes];
+    node.name = getFullPathOfNode(node);
     if (Array.isArray(node.children) && node.children.length > 0) {
       const { leafNodes: childLeafNodes, updatedTree: updatedChildren } =
         addParentPathsAndGetLeafNodes(node.children, [
@@ -38,7 +39,11 @@ export const getFullPathOfNode = (v: TreeNode) => {
     returnValue = `${parentNodes.map((v) => v.name).join("/")}/`;
   }
 
-  returnValue = `${returnValue}${v.name}`;
+  returnValue = `\`${returnValue}${v.name}\``;
+
+  if (v.name.startsWith("`")) {
+    returnValue = v.name;
+  }
 
   return returnValue;
 };
