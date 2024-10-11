@@ -1,7 +1,7 @@
 {
     "business_model": [
         {
-            "finance-unit-economics": {
+            "Finance-Unit-Economics": {
                 "fields": [
                     {
                         "name": "Delivery ID",
@@ -359,6 +359,224 @@
                                         "children": []
                                     }
                                 ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "Consumer-Subscription": {
+                "fields": [
+                    {
+                        "name": "Consumer Id",
+                        "type": "number",
+                        "description": "Consumer Unique Identifier",
+                        "alias": "",
+                        "is_calculated_field": false,
+                        "calculated_field_statement": "",
+                        "enum_values": [],
+                        "children": []
+                    },
+                    {
+                        "name": "Snapshot Date",
+                        "type": "dte",
+                        "description": "Snapshot Date",
+                        "alias": "",
+                        "is_calculated_field": false,
+                        "calculated_field_statement": "",
+                        "enum_values": [],
+                        "children": []
+                    },
+                    {
+                        "name": "Region Id",
+                        "type": "number",
+                        "description": "Region Identifier",
+                        "alias": "",
+                        "is_calculated_field": false,
+                        "calculated_field_statement": "",
+                        "enum_values": [],
+                        "children": []
+                    },
+                    {
+                        "name": "Submarket Id",
+                        "type": "number",
+                        "description": "Submarket Identifier",
+                        "alias": "",
+                        "is_calculated_field": false,
+                        "calculated_field_statement": "",
+                        "enum_values": [],
+                        "children": []
+                    },
+                    {
+                        "name": "Country Id",
+                        "type": "number",
+                        "description": "Country Identifier",
+                        "alias": "",
+                        "is_calculated_field": false,
+                        "calculated_field_statement": "",
+                        "enum_values": [],
+                        "children": []
+                    },
+                    {
+                        "name": "Snapshot Date",
+                        "type": "parent",
+                        "description": "",
+                        "alias": "",
+                        "is_calculated_field": false,
+                        "calculated_field_statement": "",
+                        "enum_values": [],
+                        "children": [
+                            {
+                                "name": "dt",
+                                "type": "date",
+                                "description": "based on Snapshot Date, in Local Timezone",
+                                "alias": "",
+                                "is_calculated_field": false,
+                                "calculated_field_statement": "",
+                                "enum_values": [],
+                                "children": []
+                            },
+                            {
+                                "name": "Week",
+                                "type": "number",
+                                "description": "Week number of the year based on Snapshot Date, in Local Timezone",
+                                "alias": "",
+                                "is_calculated_field": true,
+                                "calculated_field_statement": "WEEK([dte])",
+                                "enum_values": [],
+                                "children": []
+                            },
+                            {
+                                "name": "Month",
+                                "type": "number",
+                                "description": "Month number of the year based on Snapshot Date, in Local Timezone",
+                                "alias": "",
+                                "is_calculated_field": true,
+                                "calculated_field_statement": "MONTH([dte])",
+                                "enum_values": [],
+                                "children": []
+                            },
+                            {
+                                "name": "Quarter",
+                                "type": "number",
+                                "description": "Quarter number of the year based on Snapshot Date, in Local Timezone",
+                                "alias": "",
+                                "is_calculated_field": true,
+                                "calculated_field_statement": "QUARTER([dte])",
+                                "enum_values": [],
+                                "children": []
+                            },
+                            {
+                                "name": "Year",
+                                "type": "number",
+                                "description": "Year based on Snapshot Date, in Local Timezone",
+                                "alias": "",
+                                "is_calculated_field": true,
+                                "calculated_field_statement": "YEAR([dte])",
+                                "enum_values": [],
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "name": "DashPass",
+                        "type": "parent",
+                        "description": "",
+                        "alias": "",
+                        "is_calculated_field": false,
+                        "calculated_field_statement": "",
+                        "enum_values": [],
+                        "children": [
+                            {
+                                "name": "Trial Starts",
+                                "type": "numeric",
+                                "description": "Trial Starts",
+                                "alias": "",
+                                "is_calculated_field": false,
+                                "calculated_field_statement": "",
+                                "enum_values": [],
+                                "children": []
+                            },
+                            {
+                                "name": "CTP New Subs",
+                                "type": "numeric",
+                                "description": "Convert To Paid New Subscriptions",
+                                "alias": "",
+                                "is_calculated_field": false,
+                                "calculated_field_statement": "",
+                                "enum_values": [],
+                                "children": []
+                            },
+                            {
+                                "name": "DTP New Subs",
+                                "type": "numeric",
+                                "description": "Direct Trial Purchase New Subs",
+                                "alias": "",
+                                "is_calculated_field": false,
+                                "calculated_field_statement": "",
+                                "enum_values": [],
+                                "children": []
+                            },
+                            {
+                                "name": "New Subs",
+                                "type": "numeric",
+                                "description": "New Subscriptions",
+                                "alias": "",
+                                "is_calculated_field": false,
+                                "calculated_field_statement": "",
+                                "enum_values": [],
+                                "children": []
+                            },
+                            {
+                                "name": "Paid Churn",
+                                "type": "numeric",
+                                "description": "Paid Churn",
+                                "alias": "",
+                                "is_calculated_field": false,
+                                "calculated_field_statement": "",
+                                "enum_values": [],
+                                "children": []
+                            },
+                            {
+                                "name": "Trial Balance",
+                                "type": "numeric",
+                                "description": "Trial Balance",
+                                "alias": "",
+                                "is_calculated_field": false,
+                                "calculated_field_statement": "",
+                                "enum_values": [],
+                                "children": []
+                            },
+                            {
+                                "name": "Paid Balance",
+                                "type": "numeric",
+                                "description": "Paid Balance",
+                                "alias": "",
+                                "is_calculated_field": false,
+                                "calculated_field_statement": "",
+                                "enum_values": [],
+                                "children": []
+                            },
+                            {
+                                "name": "Good Standing Paid Balance",
+                                "type": "numeric",
+                                "description": "Good Standing Paid Balance",
+                                "alias": "",
+                                "is_calculated_field": false,
+                                "calculated_field_statement": "",
+                                "enum_values": [],
+                                "children": []
+                            },
+                            {
+                                "name": "Total Balance",
+                                "type": "numeric",
+                                "description": "Total Balance",
+                                "alias": "",
+                                "is_calculated_field": false,
+                                "calculated_field_statement": "",
+                                "enum_values": [],
+                                "children": []
                             }
                         ]
                     }

@@ -1,0 +1,190 @@
+entity_definition:
+  version: 1
+  description: "consumer subscription measures, Trial/Paid/Conversion etc."
+  entity: consumer_subscription_fact
+  snf_table_name: edw.consumer.fact_consumer_subscription_balance
+  dl_table_name: consumer.dl_fact_consumer_subscription_metadata
+  fields:
+    - name: dte
+      type: date
+      description: subscription snapshot day UTC
+    - name: consumer_id
+      type: number
+      description: consumer unique identifier
+    - name: subscription_id
+      type: number
+      description: subscription unique identifier
+    - name: user_id
+      type: number
+      description: user unique identifier
+    - name: consumer_subscription_plan_id
+      type: number
+      description: consumer_subscription_plan_id
+    - name: region_id
+      type: number
+      description: region id
+    - name: submarket_id
+      type: number
+      description: submarket_id
+    - name: invoice_trial_conversion_date
+      type: date
+      description: invoice_trial_conversion_date
+    - name: region_name
+      type: string
+      description: region_name
+    - name: final_trial_conversion_date
+      type: date
+      description: final_trial_conversion_date
+    - name: experience
+      type: string
+      description: experience
+    - name: trial_convert_date
+      type: date
+      description: trial_convert_date
+    - name: trial_cancel_date
+      type: date
+      description: trial_cancel_date
+    - name: trial_start_date
+      type: date
+      description: trial_start_date
+    - name: country_id
+      type: number
+      description: country_id
+    - name: country
+      type: string
+      description: country
+    - name: subscription_type
+      type: string
+      description: subscription_type
+    - name: is_last_day_of_month
+      type: boolean
+      description: is_last_day_of_month
+    - name: is_last_day_of_week
+      type: boolean
+      description: is_last_day_of_week
+    - name: monthly_fee
+      type: numeric
+      description: monthly_fee
+    - name: unit_start_time
+      type: date
+      description: unit_start_time
+    - name: unit_end_time
+      type: date
+      description: unit_end_time
+    - name: original_unit_end_time
+      type: date
+      description: original_unit_end_time
+    - name: start_time
+      type: date
+      description: start_time
+    - name: dynamic_subscription_status
+      type: string
+      description: dynamic_subscription_status
+    - name: balance_category
+      type: string
+      description: balance_category
+    - name: version
+      type: string
+      description: version - actual/forecast
+    - name: trial_sign_ups
+      type: number
+      description: trial_sign_ups
+    - name: ctp
+      type: number
+      description: ctp
+    - name: dtp
+      type: number
+      description: dtp
+    - name: new_sub
+      type: number
+      description: new_sub
+    - name: paid_churn
+      type: number
+      description: paid_churn
+    - name: trial_churn
+      type: number
+      description: trial_churn
+    - name: trial_balance
+      type: number
+      description: trial_balance
+    - name: trial_ctp
+      type: number
+      description: trial_ctp
+    - name: good_standing_trial_balance
+      type: number
+      description: good_standing_trial_balance
+    - name: paid_balance
+      type: number
+      description: paid_balance
+    - name: total_balance
+      type: number
+      description: total_balance
+    - name: good_standing_paid_balance
+      type: number
+      description: good_standing_paid_balance
+    - name: free_balance
+      type: number
+      description: free_balance
+    - name: annual_plan_balance
+      type: number
+      description: annual_plan_balance
+    - name: monthly_plan_balance
+      type: number
+      description: monthly_plan_balance
+    - name: student_plan_balance
+      type: number
+      description: student_plan_balance
+    - name: paused
+      type: number
+      description: paused
+    - name: paid_paused
+      type: number
+      description: paid paused
+    - name: trial_paused
+      type: number
+      description: trial paused
+    - name: pause_churned_subs
+      type: number
+      description: pause_churned_subs
+    - name: unpause_subs
+      type: number
+      description: unpause_subs
+    - name: pause_balance
+      type: number
+      description: pause balance
+    - name: dtp_ohar_paused
+      type: number
+      description: dtp ohar paused
+    - name: upgrade_paid_churn
+      type: number
+      description: upgrade paid churn
+    - name: active_paid_churn
+      type: number
+      description: active paid churn
+    - name: passive_paid_churn
+      type: number
+      description: passive paid churn
+    - name: active_paid_pause
+      type: number
+      description: active paid pause
+    - name: passive_paid_pause
+      type: number
+      description: passive paid pause
+    - name: trial_cancel
+      type: number
+      description: trial cancel
+    - name: ohar_cancel
+      type: number
+      description: ohar cancel
+    - name: invoice_conversion
+      type: number
+      description: invoice conversion
+    - name: ohar_conversion
+      type: number
+      description: ohar conversion
+    - name: country_id_subscribed_from
+      type: number
+      description: country id subscribed from
+    - name: country_name_subscribed_from
+      type: string
+      description: country_name_subscribed_from

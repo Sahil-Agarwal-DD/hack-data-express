@@ -1,7 +1,9 @@
 {
   "domain_list": [
-    "consumer",
-    "merchant",
-    "finance"
+    "Consumer",
+    "Merchant",
+    "Finance",
+    "Dasher",
+    "Accounting"
   ]
 }

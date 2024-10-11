@@ -6,10 +6,10 @@ entity_definition:
   dl_table_name: edw_finance.dimension_deliveries
   fields:
     - name: delivery_id
-      type: integer
+      type: number
       is_primary_key: true
     - name: creator_id
-      type: integer
+      type: number
     - name: active_date
       type: date
     - name: created_at

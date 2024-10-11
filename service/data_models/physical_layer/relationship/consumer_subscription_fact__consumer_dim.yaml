@@ -1,0 +1,8 @@
+join_definition:
+  from_entity: consumer_subscription_fact
+  to_entity: consumer_dim
+  cardinality_type: OneToMany
+  join_key:
+     from_entity_key: consumer_subscription_fact.creator_id
+     to_entity_key: consumer_dim.consumer_id
+  join_type: LEFT  # Type of join

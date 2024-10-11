@@ -1,0 +1,85 @@
+business_model:
+  version: 1
+  description: "DataMart for Consumer Subscription"
+  datamart: Subscription
+  domain: Consumer
+  attributes:
+    - name: Consumer Id
+      mapping: consumer_id
+      description: Consumer Unique Identifier
+      type: number
+    - name: Snapshot Date
+      mapping: dte
+      description: Snapshot Date
+      type: date
+    - name: Region Id
+      mapping: region_id
+      description: Region Identifier
+      type: number
+    - name: Submarket Id
+      mapping: submarket_id
+      description: Submarket Identifier
+      type: number
+    - name: Country Id
+      mapping: country_id
+      description: Country Identifier
+      type: number
+  hierarchical_entity:
+    Snapshot Date:
+      - name: dt
+        mapping: dte
+        description: based on Snapshot Date, in Local Timezone
+        type: date
+      - name: Week
+        expr: WEEK([dte])
+        description: Week number of the year based on Snapshot Date, in Local Timezone
+        type: number
+      - name: Month
+        expr: MONTH([dte])
+        description: Month number of the year based on Snapshot Date, in Local Timezone
+        type: number
+      - name: Quarter
+        expr: QUARTER([dte])
+        description: Quarter number of the year based on Snapshot Date, in Local Timezone
+        type: number
+      - name: Year
+        expr: YEAR([dte])
+        description: Year based on Snapshot Date, in Local Timezone
+        type: number
+    DashPass:
+      - name: Trial Starts
+        mapping: trial_sign_ups
+        description: Trial Starts
+        type: number
+      - name: CTP New Subs
+        mapping: ctp
+        description: Convert To Paid New Subscriptions
+        type: number
+      - name: DTP New Subs
+        mapping: dtp
+        description: Direct Trial Purchase New Subs
+        type: number
+      - name: New Subs
+        mapping: new_sub
+        description: New Subscriptions
+        type: number
+      - name: Paid Churn
+        mapping: paid_churn
+        description: Paid Churn
+        type: number
+      - name: Trial Balance
+        mapping: trial_balance
+        description: Trial Balance
+        type: number
+      - name: Paid Balance
+        mapping: paid_balance
+        description: Paid Balance
+        type: number
+      - name: Good Standing Paid Balance
+        mapping: good_standing_paid_balance
+        description: Good Standing Paid Balance
+        type: number
+      - name: Total Balance
+        mapping: total_balance
+        description: Total Balance
+        type: number

@@ -1,8 +1,8 @@
 business_model:
   version: 1
   description: "DataMart for finance unit economics"
-  datamart: unit-economics
-  domain: finance
+  datamart: Unit-Economics
+  domain: Finance
   attributes:
     - name: Delivery ID
       mapping: delivery_id
@@ -83,38 +83,38 @@ business_model:
       - name: Gov
         mapping: gov
         description: Gross Order Value.Sum of cash inflow that DoorDash generates that comes from consumers (end users) i.e Subtotal + Tax + Tip + Cx Fees
-        type: numeric
+        type: number
       - Dasher Costs:
          - name: Dasher Base Pay
            mapping: dasher_base_pay
            description: Base pay our Dashers receive for fulfilling an order
-           type: numeric
+           type: number
          - name: Dasher Incentive Pay
            mapping: dasher_incentive_pay
            description: Bonus pay DoorDash pays Dashers to incentive/mobilize Dashers to get on the road as fast as possible
-           type: numeric
+           type: number
          - name: Dasher Referrals
            mapping: dasher_referrals
            description: Incentive that DoorDash pays to new Dashers who have been referred on to the platform (i.e. the person who got referred)
-           type: numeric
+           type: number
          - name: Fast Pay Revenue
            mapping: fast_pay_revenue
            description: Revenue that DoorDash collects from Dashers for using instant deposit (i.e. withdrawing money from account instantly)
-           type: numeric
+           type: number
          - name: Dasher Costs
            mapping: dasher_costs
            description: Contra revenue items associated with Dasher costs
-           type: numeric
+           type: number
       - R & C:
         - name: Total Refunds
           mapping: total_refunds
           description: Cash refunds that DoorDash provides to consumers
-          type: numeric
+          type: number
         - name: Support Credits
           mapping: support_credits
           description: Credit redemptions in a given period
-          type: numeric
+          type: number
         - name: Credit Issuance Expense
           mapping: credit_issuance_expense
           description: Change in Credit Issuance balance on balance sheet, not the actual cost of credits given out in a period
-          type: numeric
+          type: number
