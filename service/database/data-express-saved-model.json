@@ -579,6 +579,120 @@
       },
       "createdAt": "2024-10-11T06:13:46.000Z",
       "createdBy": "Henry.Menichetti@doordash.com"
+    },
+    {
+      "name": "test config",
+      "value": {
+        "selectedColumns": {
+          "lob": {
+            "name": "lob",
+            "type": "string",
+            "description": "delivery ie Subscription, Pickup etc",
+            "alias": "",
+            "is_calculated_field": false,
+            "calculated_field_statement": "",
+            "enum_values": [
+              "Subscription - CAV",
+              "Storefront",
+              "Pickup - CAV",
+              "Marketplace: Subscription",
+              "Marketplace: Pickup",
+              "Marketplace: Classic",
+              "Drive: Checkout",
+              "Drive",
+              "DoorDash for Business",
+              "DashLink",
+              "Classic - CAV"
+            ],
+            "children": [],
+            "isExpanded": false,
+            "enumValues": [
+              "Subscription - CAV",
+              "Storefront",
+              "Pickup - CAV",
+              "Marketplace: Subscription",
+              "Marketplace: Pickup",
+              "Marketplace: Classic",
+              "Drive: Checkout",
+              "Drive",
+              "DoorDash for Business",
+              "DashLink",
+              "Classic - CAV"
+            ],
+            "parentNodes": [],
+            "parentPath": "lob"
+          },
+          "Active Date": {
+            "name": "Active Date",
+            "type": "date",
+            "description": "based on quoted delivery time, in Local Timezone",
+            "alias": "",
+            "is_calculated_field": false,
+            "calculated_field_statement": "",
+            "enum_values": [],
+            "children": [],
+            "isExpanded": false,
+            "enumValues": [],
+            "parentNodes": [],
+            "parentPath": "Active Date",
+            "period": "Prior1D"
+          },
+          "Financials/Gov": {
+            "name": "Gov",
+            "type": "numeric",
+            "description": "Gross Order Value.Sum of cash inflow that DoorDash generates that comes from consumers (end users) i.e Subtotal + Tax + Tip + Cx Fees",
+            "alias": "",
+            "is_calculated_field": false,
+            "calculated_field_statement": "",
+            "enum_values": [],
+            "children": [],
+            "isExpanded": false,
+            "enumValues": [],
+            "parentNodes": [
+              {
+                "name": "Financials",
+                "type": "parent",
+                "description": "",
+                "alias": "",
+                "is_calculated_field": false,
+                "calculated_field_statement": "",
+                "enum_values": [],
+                "isExpanded": false,
+                "enumValues": []
+              }
+            ],
+            "parentPath": "Financials/Gov"
+          }
+        },
+        "calculatedComponents": {},
+        "query": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "fd797603-9637-48e9-ba8e-db2bd1509b08",
+              "field": "Active Date",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "2024-10-01"
+            },
+            {
+              "id": "1da6689d-87f1-4cb2-8e97-e82b2780f6f9",
+              "field": "lob",
+              "operator": "in",
+              "valueSource": "value",
+              "value": "Subscription - CAV,Storefront"
+            }
+          ]
+        },
+        "selectedDomain": {
+          "label": "Finance"
+        },
+        "selectedDataMart": {
+          "label": "Unit-Economics"
+        }
+      },
+      "createdAt": "2024-10-11T12:51:34.226Z",
+      "createdBy": "Matilda.Cocchi@doordash.com"
     }
   ]
 }
