@@ -1,0 +1,120 @@
+business_model:
+  version: 1
+  description: "DataMart for finance unit economics"
+  datamart: unit-economics
+  domain: finance
+  attributes:
+    - name: Delivery ID
+      mapping: delivery_id
+      description: Delivery Unique Identifier
+      type: number
+    - name: Active Date
+      mapping: active_date
+      description: based on quoted delivery time, in Local Timezone
+      type: date
+    - name: Created At
+      mapping: created_at
+      description: When the delivery was created by the customer (UTC)
+      type: date
+    - name: lob
+      type: string
+      mapping: line_of_business
+      description: delivery ie Subscription, Pickup etc
+      enum_values:
+        - Subscription - CAV
+        - Storefront
+        - Pickup - CAV
+        - "Marketplace: Subscription"
+        - "Marketplace: Pickup"
+        - "Marketplace: Classic"
+        - "Drive: Checkout"
+        - Drive
+        - DoorDash for Business
+        - DashLink
+        - Classic - CAV
+    - name: consumer
+      mapping: "@consumer"
+    - name: merchant
+      mapping: "@merchant"
+  hierarchical_entity:
+    Active Date:
+      - name: dt
+        mapping: active_date
+        description: based on quoted delivery time, in Local Timezone
+        type: date
+      - name: Week
+        expr: WEEK([active_date])
+        description: Week number of the year based on quoted delivery time, in Local Timezone
+        type: number
+      - name: Month
+        expr: MONTH([active_date])
+        description: Month number of the year based on quoted delivery time, in Local Timezone
+        type: number
+      - name: Quarter
+        expr: QUARTER([active_date])
+        description: Quarter number of the year based on quoted delivery time, in Local Timezone
+        type: number
+      - name: Year
+        expr: YEAR([active_date])
+        description: Year based on quoted delivery time, in Local Timezone
+        type: number
+    Created At:
+      - name: dt
+        expr: DATE([created_at])
+        description: Date the delivery was created by the customer (UTC)
+        type: date
+      - name: Week
+        expr: WEEK([created_at])
+        description: Week number of the year based on when the delivery was created by the customer (UTC)
+        type: number
+      - name: Month
+        expr: MONTH([created_at])
+        description: Month number of the year based on when the delivery was created by the customer (UTC)
+        type: number
+      - name: Quarter
+        expr: QUARTER([created_at])
+        description: Quarter number of the year based on when the delivery was created by the customer (UTC)
+        type: number
+      - name: Year
+        expr: YEAR([created_at])
+        description: Year based on when the delivery was created by the customer (UTC)
+        type: number
+    financials:
+      - name: Gov
+        mapping: gov
+        description: Gross Order Value.Sum of cash inflow that DoorDash generates that comes from consumers (end users) i.e Subtotal + Tax + Tip + Cx Fees
+        type: numeric
+      - Dasher Costs:
+         - name: Dasher Base Pay
+           mapping: dasher_base_pay
+           description: Base pay our Dashers receive for fulfilling an order
+           type: numeric
+         - name: Dasher Incentive Pay
+           mapping: dasher_incentive_pay
+           description: Bonus pay DoorDash pays Dashers to incentive/mobilize Dashers to get on the road as fast as possible
+           type: numeric
+         - name: Dasher Referrals
+           mapping: dasher_referrals
+           description: Incentive that DoorDash pays to new Dashers who have been referred on to the platform (i.e. the person who got referred)
+           type: numeric
+         - name: Fast Pay Revenue
+           mapping: fast_pay_revenue
+           description: Revenue that DoorDash collects from Dashers for using instant deposit (i.e. withdrawing money from account instantly)
+           type: numeric
+         - name: Dasher Costs
+           mapping: dasher_costs
+           description: Contra revenue items associated with Dasher costs
+           type: numeric
+      - R & C:
+        - name: Total Refunds
+          mapping: total_refunds
+          description: Cash refunds that DoorDash provides to consumers
+          type: numeric
+        - name: Support Credits
+          mapping: support_credits
+          description: Credit redemptions in a given period
+          type: numeric
+        - name: Credit Issuance Expense
+          mapping: credit_issuance_expense
+          description: Change in Credit Issuance balance on balance sheet, not the actual cost of credits given out in a period
+          type: numeric

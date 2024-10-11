@@ -374,6 +374,95 @@
       },
       "createdAt": "2024-10-10T18:24:15.052Z",
       "createdBy": "Mary.Margheri@doordash.com"
+    },
+    {
+      "name": "narendra_basic",
+      "value": {
+        "selectedColumns": {
+          "Dasher Base Pay": {
+            "name": "Dasher Base Pay",
+            "type": "number",
+            "description": "The base pay amount for a Dasher.",
+            "alias": "",
+            "is_calculated_field": false,
+            "calculated_field_statement": "",
+            "isExpanded": true,
+            "parentNodes": [
+              {
+                "name": "Dasher Cost",
+                "type": "parent",
+                "description": "",
+                "alias": "",
+                "is_calculated_field": false,
+                "calculated_field_statement": "",
+                "isExpanded": true
+              }
+            ]
+          },
+          "Dasher Referrals": {
+            "name": "Dasher Referrals",
+            "type": "number",
+            "description": "The referral earnings for a Dasher.",
+            "alias": "",
+            "is_calculated_field": false,
+            "calculated_field_statement": "",
+            "isExpanded": true,
+            "parentNodes": [
+              {
+                "name": "Dasher Cost",
+                "type": "parent",
+                "description": "",
+                "alias": "",
+                "is_calculated_field": false,
+                "calculated_field_statement": "",
+                "isExpanded": true
+              }
+            ]
+          },
+          "Fast Pay Revenue": {
+            "name": "Fast Pay Revenue",
+            "type": "number",
+            "description": "The revenue generated from Fast Pay transactions.",
+            "alias": "",
+            "is_calculated_field": false,
+            "calculated_field_statement": "",
+            "isExpanded": true,
+            "parentNodes": [
+              {
+                "name": "Dasher Cost",
+                "type": "parent",
+                "description": "",
+                "alias": "",
+                "is_calculated_field": false,
+                "calculated_field_statement": "",
+                "isExpanded": true
+              }
+            ]
+          }
+        },
+        "calculatedComponents": {},
+        "query": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "fa230fb9-3d10-4d72-b029-fe8e1d94447c",
+              "field": "Gross Fees",
+              "operator": "<",
+              "valueSource": "value",
+              "value": "100"
+            }
+          ],
+          "id": "e97f29fa-71dc-4e10-bcac-996deaf27ec4"
+        },
+        "selectedDomain": {
+          "label": "finance"
+        },
+        "selectedDataMart": {
+          "label": "unit-economics"
+        }
+      },
+      "createdAt": "2024-10-10T19:32:58.367Z",
+      "createdBy": "Amy.Bosman@doordash.com"
     }
   ]
 }

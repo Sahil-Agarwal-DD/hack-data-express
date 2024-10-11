@@ -7,7 +7,7 @@ export const addParentPathsAndGetLeafNodes = (
   let leafNodes: TreeNode[] = [];
   for (let i = 0, len = treeData.length; i < len; i++) {
     const node = treeData[i];
-    node.isExpanded = true;
+    node.isExpanded = false;
     if ((node as any).enum_values) {
       node.enumValues = (node as any).enum_values;
     }

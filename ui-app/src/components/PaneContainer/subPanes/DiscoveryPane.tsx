@@ -41,9 +41,8 @@ export const DiscoveryPane: React.FC = () => {
           const { leafNodes, updatedTree } = addParentPathsAndGetLeafNodes(
             cloneDeep(v?.business_model?.fields || [])
           );
-          setNodes(
-            orderBy(updatedTree, (v) => v?.children?.length || 0, "desc")
-          );
+          // orderBy(updatedTree, (v) => v?.children?.length || 0, "desc")
+          setNodes(updatedTree);
           setLeafNodes(leafNodes);
         });
     }
