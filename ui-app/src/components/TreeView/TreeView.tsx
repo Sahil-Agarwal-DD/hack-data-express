@@ -43,39 +43,39 @@ const TreeNodeItem: React.FC<TreeNodeItemPropsType> = ({
   return (
     <TreeViewContainer className="ml-4">
       <Tooltip title={node.description} arrow>
-      <div
-        className={`node-item ${shouldHighlight ? "highlight" : ""}`}
-        onClick={(e) => {
-          e.stopPropagation();
-          onClick(node);
-        }}
-      >
-        <Stack
-          direction="row"
-          spacing={1}
-          sx={{ mb: 1, justifyContent: "flex-start", alignItems: "center" }}
+        <div
+          className={`node-item ${shouldHighlight ? "highlight" : ""}`}
+          onClick={(e) => {
+            e.stopPropagation();
+            onClick(node);
+          }}
         >
-          {hasChildren && (
-            <IconButton
-              onClick={(e) => {
-                e.stopPropagation();
-                toggleOpen();
-              }}
-              data-testid="icon"
-            >
-              {isOpen ? <ExpandMore /> : <ChevronRight />}
-            </IconButton>
-          )}
-          <DbColumn node={node} />
-        </Stack>
-      </div>
+          <Stack
+            direction="row"
+            spacing={1}
+            sx={{ mb: 1, justifyContent: "flex-start", alignItems: "center" }}
+          >
+            {hasChildren && (
+              <IconButton
+                onClick={(e) => {
+                  e.stopPropagation();
+                  toggleOpen();
+                }}
+                data-testid="icon"
+              >
+                {isOpen ? <ExpandMore /> : <ChevronRight />}
+              </IconButton>
+            )}
+            <DbColumn node={node} />
+          </Stack>
+        </div>
       </Tooltip>
       {/* If open, render children recursively */}
       {hasChildren && isOpen && (
         <div className="pl-4">
-          {(node?.children || []).map((childNode) => (
+          {(node?.children || []).map((childNode, i) => (
             <TreeNodeItem
-              key={childNode.name}
+              key={`${childNode.name}-${i}`}
               node={childNode}
               onClick={onClick}
               selectedNodes={selectedNodes}
@@ -96,11 +96,11 @@ export const TreeView: React.FC<TreeViewPropsType> = ({
 }) => {
   return (
     <div>
-      {treeData.map((node) => (
+      {treeData.map((node, i) => (
         <TreeNodeItem
           {...otherProps}
           selectedNodes={selectedNodes}
-          key={node.name}
+          key={`${node.name}-${i}`}
           node={node}
         />
       ))}
