@@ -2,3 +2,5 @@
 node_modules
 build
 development.yaml
+.env
+service/.env

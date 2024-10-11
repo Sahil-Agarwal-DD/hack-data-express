@@ -1,8 +1,15 @@
+require("@dotenvx/dotenvx").config();
+
+console.log("====> SNOWFLAKE_ACCOUNT" + process.env.SNOWFLAKE_ACCOUNT);
+
 const fs = require("fs");
 const express = require("express");
 const path = require("path");
 const cors = require("cors");
 const Chance = require("chance");
+const snowflake = require("snowflake-sdk");
+
+// let isSNFReady = false;
 
 const chance = Chance();
 
@@ -82,11 +89,11 @@ app.get("/business-model/:domain/:datamart", (req, res) => {
   const json_key = domain + "-" + datamart;
   const data = JSON.parse(rawData);
 
-  required_business_model = {}
-  data["business_model"].forEach(item => {
-      if (json_key in item) {
-          required_business_model = item[json_key]
-      }
+  required_business_model = {};
+  data["business_model"].forEach((item) => {
+    if (json_key in item) {
+      required_business_model = item[json_key];
+    }
   });
 
   if (data["business_model"]) {
@@ -165,6 +172,87 @@ app.get("/data-express-model/name-list", (req, res) => {
   res.json(namesList);
 });
 
+app.get("/data-express-model/execute-query", (req, res) => {
+  console.log("====>", req.query.id);
+  console.log("====> SNOWFLAKE_USERNAME", process.env.SNOWFLAKE_USERNAME);
+  console.log("====>", process.env.SNOWFLAKE_PASSWORD);
+  console.log("====>", req.query.id);
+
+  // Create a Snowflake connection
+  const snowflakeConnection = snowflake.createConnection({
+    account: process.env.SNOWFLAKE_ACCOUNT,
+    username: process.env.SNOWFLAKE_USERNAME,
+    password: process.env.SNOWFLAKE_PASSWORD,
+    warehouse: process.env.SNOWFLAKE_WAREHOUSE,
+    database: process.env.SNOWFLAKE_DATABASE,
+    schema: process.env.SNOWFLAKE_SCHEMA,
+    role: process.env.SNOWFLAKE_ROLE,
+  });
+
+  let sqlFileName = "";
+
+  switch (req.query.id) {
+    case "demo_financials_report_example_1":
+      sqlFileName = "./sqls/select-example-1.sql";
+      break;
+    case "demo_financial_dasher_example_2":
+      sqlFileName = "./sqls/select-example-2.sql";
+      break;
+    case "demo_dasher_cost_example_3":
+      sqlFileName = "./sqls/select-example-3.sql";
+      break;
+    default:
+      sqlFileName = "";
+  }
+
+  if (sqlFileName === "") {
+    return res.status(400).json({
+      success: false,
+    });
+  }
+
+  let sqlText = fs.readFileSync(sqlFileName).toString();
+
+  // const query_json = req.body; // Get the JSON data from the request body
+  // build the query
+  // query = get_query(query_json);
+
+  // Connect to Snowflake
+  snowflakeConnection.connect((err, conn) => {
+    if (err) {
+      console.error("Unable to connect to Snowflake:", err.message);
+    } else {
+      console.log("Successfully connected to Snowflake.");
+
+      // Execute the query
+      snowflakeConnection.execute({
+        sqlText: sqlText,
+        complete: (err, stmt, rows) => {
+          if (err) {
+            console.error("Failed to execute query:", err.message);
+          } else {
+            console.log("Query executed successfully.");
+            console.log("Rows:", rows);
+
+            res.json({
+              resultset: rows,
+            });
+          }
+
+          // Close the connection
+          snowflakeConnection.destroy((err) => {
+            if (err) {
+              console.error("Error closing connection:", err.message);
+            } else {
+              console.log("Connection closed.");
+            }
+          });
+        },
+      });
+    }
+  });
+});
+
 // Endpoint to save the business model to database
 app.get("/data-express-model/:model_name", (req, res) => {
   const model_name = req.params.model_name;
@@ -187,41 +275,6 @@ app.get("/data-express-model/:model_name", (req, res) => {
 });
 
 // Endpoint to execute query
-
-app.get("/data-express-model/execute-query", (req, res) => {
-  const query_json = req.body; // Get the JSON data from the request body
-  // build the query
-  // query = get_query(query_json);
-  // call snowflake connect and pass the query to execute
-  // conn = snow.connect()
-  // cur = conn.cursor()
-//  try:
-//          # Execute a query
-//          cur.execute("SELECT * FROM your_table_name")
-//
-//          # Fetch all results from the executed query
-//          results = cur.fetchall()
-//
-//          # Convert results to a list of dictionaries
-//          columns = [desc[0] for desc in cur.description]
-//          data = [dict(zip(columns, row)) for row in results]
-//
-//          # Print the results as a JSON string
-//          print(json.dumps(data))
-//
-//      finally:
-//          # Close the cursor and connection
-//          cur.close()
-//          conn.close()
-// get columns data from the cur description
-//    columns = [desc[0] for desc in cur.description]
-//    // parse the results to a list of dictionaries
-//    data = [dict(zip(columns, row)) for row in results]
-
-    res.json({
-      resultset: json.dumps(data),
-    });
-});
 
 // Start the server
 app.listen(port, () => {

@@ -4,9 +4,9 @@
   "description": "Hackathon Project Data Express",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "dotenvx run -- node index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon app.js"
+    "dev": "dotenvx run -- nodemon app.js"
   },
   "repository": {
     "type": "git",
@@ -19,10 +19,12 @@
   },
   "homepage": "https://github.com/Sahil-Agarwal-DD/hack-data-express#readme",
   "dependencies": {
+    "@dotenvx/dotenvx": "^1.18.1",
     "chance": "^1.1.12",
     "cors": "^2.8.5",
     "express": "^4.21.1",
-    "fs": "^0.0.1-security"
+    "fs": "^0.0.1-security",
+    "snowflake-sdk": "^1.14.0"
   },
   "devDependencies": {
     "nodemon": "^3.1.7"
