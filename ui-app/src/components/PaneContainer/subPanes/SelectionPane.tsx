@@ -27,7 +27,14 @@ const SelectedContainer: React.FC<{
         spacing={1}
         sx={{ mb: 1 }}
       >
-        <Typography variant="body2">{getFullPathOfNode(v)}</Typography>
+        <Stack direction="row" spacing={0.5}>
+          <Typography variant="body2">{getFullPathOfNode(v)}</Typography>
+          {v.alias && (
+            <Typography variant="body2" color="secondary">
+              as {v.alias}
+            </Typography>
+          )}
+        </Stack>
         <SelectionPaneActions node={v} />
       </Stack>
     </SelectionItemContainer>

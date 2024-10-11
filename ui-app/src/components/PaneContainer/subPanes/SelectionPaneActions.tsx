@@ -1,11 +1,13 @@
 import { Stack, IconButton } from "@mui/material";
 import * as React from "react";
 import DeleteIcon from "@mui/icons-material/Delete";
-import FunctionsIcon from "@mui/icons-material/Functions";
-import AccessTimeIcon from "@mui/icons-material/AccessTime";
+
 import { useDataExpressStore } from "../../../stores/useDataExpressStore";
 import { TreeNode } from "../../TreeView/type";
 import { DxTooltip } from "../../CommonComponents";
+import AggregateFunctions from "./AggregateFunctions";
+import { TimeWindowFunctions } from "./TimeWindowFunctions";
+import { AliasPopover } from "./AliasPopover";
 
 type SelectionPaneActionsProps = {
   node: TreeNode;
@@ -14,36 +16,13 @@ type SelectionPaneActionsProps = {
 const SelectionPaneActions: React.FC<SelectionPaneActionsProps> = ({
   node,
 }) => {
-  const {
-    setSelectedColumns,
-    setShowAggFunctionModal,
-    setShowTimeWindowFunctionModal,
-  } = useDataExpressStore();
+  const { setSelectedColumns } = useDataExpressStore();
 
   return (
     <Stack direction={"row"}>
-      <DxTooltip title="Aggregate Functions">
-        <IconButton
-          size="small"
-          aria-label="function"
-          onClick={() => {
-            setShowAggFunctionModal(true);
-          }}
-        >
-          <FunctionsIcon />
-        </IconButton>
-      </DxTooltip>
-      <DxTooltip title="Time Window Functions">
-        <IconButton
-          size="small"
-          aria-label="time-window-functions"
-          onClick={() => {
-            setShowTimeWindowFunctionModal(true);
-          }}
-        >
-          <AccessTimeIcon />
-        </IconButton>
-      </DxTooltip>
+      <AggregateFunctions node={node} />
+      <TimeWindowFunctions node={node} />
+      <AliasPopover node={node} />
       <DxTooltip title="Remove">
         <IconButton
           size="small"
@@ -52,7 +31,7 @@ const SelectionPaneActions: React.FC<SelectionPaneActionsProps> = ({
             setSelectedColumns(node);
           }}
         >
-          <DeleteIcon />
+          <DeleteIcon fontSize="small" />
         </IconButton>
       </DxTooltip>
     </Stack>

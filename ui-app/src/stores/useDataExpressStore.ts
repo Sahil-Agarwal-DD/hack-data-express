@@ -27,12 +27,10 @@ type useDataExpressStoreTypeValues = {
   selectedQueryTabIndex: number;
   QueryTemplate: QueryTemplate[];
   selectedQueryTemplate?: QueryTemplate | null;
-  showAggFunctionModal: boolean;
-  showTimeWindowFunctionModal: boolean;
 };
 type useDataExpressStoreType = {
   values: useDataExpressStoreTypeValues;
-  setSelectedColumns: (value: TreeNode) => void;
+  setSelectedColumns: (value: TreeNode, shouldUpdate?: boolean) => void;
   setQuery: (value: RuleGroupTypeAny) => void;
   setDomains: (value: Domain[]) => void;
   setSelectedDomain: (value: Domain | null) => void;
@@ -53,8 +51,6 @@ type useDataExpressStoreType = {
   setSelectedQueryTabIndex: (val: number) => void;
   setQueryTemplates: (value: QueryTemplate[]) => void;
   setSelectedQueryTemplate: (value: QueryTemplate | null) => void;
-  setShowAggFunctionModal: (val: boolean) => void;
-  setShowTimeWindowFunctionModal: (val: boolean) => void;
 };
 
 const initialValues: useDataExpressStoreTypeValues = {
@@ -84,8 +80,6 @@ const initialValues: useDataExpressStoreTypeValues = {
   selectedQueryTabIndex: 0,
   QueryTemplate: [],
   selectedQueryTemplate: undefined,
-  showAggFunctionModal: false,
-  showTimeWindowFunctionModal: false,
 };
 
 export const useDataExpressStore = create<useDataExpressStoreType>()(
@@ -106,16 +100,6 @@ export const useDataExpressStore = create<useDataExpressStoreType>()(
         setShowSql(val: boolean) {
           set((state) => {
             state.values.showSql = val;
-          });
-        },
-        setShowAggFunctionModal(val: boolean) {
-          set((state) => {
-            state.values.showAggFunctionModal = val;
-          });
-        },
-        setShowTimeWindowFunctionModal(val: boolean) {
-          set((state) => {
-            state.values.showTimeWindowFunctionModal = val;
           });
         },
         setQueryExecuting(val: QueryExecutionState) {
@@ -142,9 +126,12 @@ export const useDataExpressStore = create<useDataExpressStoreType>()(
             };
           });
         },
-        setSelectedColumns(value: TreeNode) {
+        setSelectedColumns(value: TreeNode, shouldUpdate = false) {
           set((state) => {
-            if (state.values.selectedColumns[value.parentPath]) {
+            if (
+              !shouldUpdate &&
+              state.values.selectedColumns[value.parentPath]
+            ) {
               // remove if already exists
               state.values.selectedColumns = {
                 ...omit(state.values.selectedColumns, value.parentPath),
