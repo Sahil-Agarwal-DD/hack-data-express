@@ -40,6 +40,7 @@ app.use(
 // Define a route
 
 const data_domain_list_file_path = "./database/data-domain-list.json";
+const query_template_list_file_path = "./database/query-templates-list.json";
 const datamart_list_file_path = "./database/datamart-list.json";
 const business_model = "./database/business-model.json";
 const data_express_saved_model_file_path =
@@ -47,6 +48,11 @@ const data_express_saved_model_file_path =
 
 app.get("/data-domain-list", (req, res) => {
   const rawData = fs.readFileSync(data_domain_list_file_path, "utf8");
+  return res.json(JSON.parse(rawData));
+});
+
+app.get("/query-templates-list", (req, res) => {
+  const rawData = fs.readFileSync(query_template_list_file_path, "utf8");
   return res.json(JSON.parse(rawData));
 });
 
@@ -207,7 +213,7 @@ app.get("/data-express-model/execute-query", (req, res) => {
     res.json({
       resultset: json.dumps(data),
     });
-}
+});
 
 // Start the server
 app.listen(port, () => {

@@ -1,0 +1,7 @@
+{
+  "query_templates_list": [
+    "consumer-data-mart-query-template",
+    "merchant-data-mart-query-template",
+    "finance-data-mart-query-template"
+  ]
+}

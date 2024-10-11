@@ -2,6 +2,7 @@ import { Divider, Stack, Typography } from "@mui/material";
 import * as React from "react";
 import { DataDomainDropdown } from "../DataDomainDropdown";
 import { DataMartDropdown } from "../DataMartDropdown";
+import { TemplatesDropdown } from "../TemplatesDropdown";
 import { LoadSaved } from "../LoadSaved/LoadSaved";
 import { ElectricBolt } from "@mui/icons-material";
 
@@ -38,6 +39,7 @@ export const TopBarControl: React.FC<TopBarControlProps> = () => {
           <DataDomainDropdown />
           <DataMartDropdown />
         </Stack>
+        <TemplatesDropdown />
         <LoadSaved />
       </Stack>
       <Divider />
