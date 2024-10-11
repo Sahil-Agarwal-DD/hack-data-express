@@ -99,10 +99,7 @@
             "alias": "",
             "is_calculated_field": false,
             "calculated_field_statement": "",
-            "enum_values": [
-              "pending",
-              "completed"
-            ],
+            "enum_values": ["pending", "completed"],
             "isExpanded": true,
             "parentNodes": [
               {
@@ -196,10 +193,7 @@
             "alias": "",
             "is_calculated_field": false,
             "calculated_field_statement": "",
-            "enum_values": [
-              "pending",
-              "completed"
-            ],
+            "enum_values": ["pending", "completed"],
             "isExpanded": true,
             "parentNodes": [
               {
@@ -695,7 +689,7 @@
       "createdBy": "Matilda.Cocchi@doordash.com"
     },
     {
-      "name": "demo financials report - example 1",
+      "name": "demo_financials_report_example_1",
       "value": {
         "selectedColumns": {
           "Active Date": {
@@ -847,7 +841,7 @@
       "createdBy": "Derek.Marzi@doordash.com"
     },
     {
-      "name": "demo financial dasher - example 2",
+      "name": "demo_financial_dasher_example_2",
       "value": {
         "selectedColumns": {
           "Active Date": {
@@ -1030,7 +1024,7 @@
       "createdBy": "Paul.Mazzuoli@doordash.com"
     },
     {
-      "name": "demo dasher cost - example 3",
+      "name": "demo_dasher_cost_example_3",
       "value": {
         "selectedColumns": {
           "Active Date": {
