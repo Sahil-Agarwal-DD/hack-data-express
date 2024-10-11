@@ -80,10 +80,24 @@ business_model:
         description: Year based on when the delivery was created by the customer (UTC)
         type: number
     Financials:
+      - name: subtotal
+        mapping: subtotal
+        description: Raw (menu) cost of order/goods that consumer sees (pre-tax, tip, fees) Marketplace + Drive + Storefront
+        type: number
       - name: Gov
         mapping: gov
         description: Gross Order Value.Sum of cash inflow that DoorDash generates that comes from consumers (end users) i.e Subtotal + Tax + Tip + Cx Fees
         type: number
+      - Total Other Revenue:
+         - name: Total Other Revenue
+           mapping: other_revenue
+           description: Summation of revenues from Legacy and gift cards
+           type: number
+      - Gross Fees:
+         - name: Gross Fees
+           mapping: gross_fees
+           description: Cx Fees + Mx Fees + Other Revenue
+           type: number
       - Dasher Costs:
          - name: Dasher Base Pay
            mapping: dasher_base_pay
@@ -101,6 +115,7 @@ business_model:
            mapping: fast_pay_revenue
            description: Revenue that DoorDash collects from Dashers for using instant deposit (i.e. withdrawing money from account instantly)
            type: number
+      - Total Dasher Costs:
          - name: Dasher Costs
            mapping: dasher_costs
            description: Contra revenue items associated with Dasher costs
@@ -118,3 +133,51 @@ business_model:
           mapping: credit_issuance_expense
           description: Change in Credit Issuance balance on balance sheet, not the actual cost of credits given out in a period
           type: number
+      - Total R & C:
+          - name: Total Refunds
+            mapping: refunds_credits
+            description: Sum of Issued credits and refunds
+            type: number
+      - Discounts:
+        - name: Bundles Pricing Discount
+          mapping: bundles_pricing_discount
+          description: Discount that DoorDash provides for bundled orders - no extra delivery fee on the additional/bundled order
+        - name: Consumer Referrals
+          mapping: consumer_referrals
+          description: Incentive that DoorDash pays to new consumers who have been referred on to the platform (i.e. the person who got referred)
+        - name: Drive Maas Advertising
+          mapping: drive_maas_advertising
+          description: Ad spend that DoorDash spends to promote Drive merchants through various advertising channels.MaaS = Marketing as a Service
+        - name: FMX
+          mapping: fmx
+          description: First Month $X.Promotion that DoorDash offers new consumers in their first month - free or discounted delivery fees on subsequent orders after 1st order
+        - name: First Delivery Discount
+          mapping: first_delivery_discount
+          description: First Delivery Free (or any variation such as FD1 - First Delivery $1) Promotion that DoorDash offers new consumers on their first delivery - free or discounted delivery fees (FDF)
+        - name: Operational Error
+          mapping: operational_error
+          description: Marqueta undercharge expense that DD ultimately pays for. This is in the case of red card usage where the in-app menu price is cheaper than the actual swiped amount in store. The delta is covered by DD instead of passed back to the consumer.Additionally, there are also situations where our app menu prices are overstated and we charge the customer more. Thus, we end up refunding the difference to the customer. This is an offset instead of a true cost to the P&L because gross fees will have the benefit of the overcharge.
+        - name: Other Promotions
+          mapping: other_promotions
+          description: Other consumer promotions that do not fall into lines above
+        - name: Payments To Customers
+          mapping: payments_to_customers
+          description: Miscellaneous payments that DoorDash makes to merchants, such as sales guarantees, royalties, contractual discounts, etc.
+        - name: Promotions New Customers
+          mapping: promotions_new_customers
+          description: Promotions/discounts for new consumes (that do not involve delivery fees)
+        - name: Shipping Costs
+          mapping: shipping_costs
+          description: shipping_costs
+      - Total Discounts:
+          - name: Total Discounts
+            mapping: discounts
+            description: Contra revenue items associated with discounts and promotions
+      - RC&P:
+          - name: RC&P
+            mapping: refund_credits_and_promotions
+            description: refund_credits_and_promotions
+      - Net Revenue:
+          - name: Net Revenue
+            mapping: net_revenue
+            description: Gross Fees - Dasher Costs - R&C - Discounts - Chase

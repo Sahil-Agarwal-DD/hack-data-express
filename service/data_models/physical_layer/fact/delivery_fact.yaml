@@ -36,3 +36,35 @@ entity_definition:
       type: numeric
     - name: line_of_business
       type: string
+    - name: subtotal
+      type: numeric
+    - name: other_revenue
+      type: numeric
+    - name: gross_fees
+      type: numeric
+    - name: bundles_pricing_discount
+      type: numeric
+    - name: refunds_credits
+      type: numeric
+    - name: consumer_referrals
+      type: numeric
+    - name: drive_maas_advertising
+      type: numeric
+    - name: fmx
+      type: numeric
+    - name: operational_error
+      type: numeric
+    - name: other_promotions
+      type: numeric
+    - name: payments_to_customers
+      type: numeric
+    - name: promotions_new_customers
+      type: numeirc
+    - name: shipping_costs
+      type: numeric
+    - name: discounts
+      type: numeric
+    - name: refund_credits_and_promotions
+      type: numeric
+    - name: net_revenue
+      type: numeric

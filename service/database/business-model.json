@@ -249,14 +249,66 @@
                         "enum_values": [],
                         "children": [
                             {
+                                "name": "subtotal",
+                                "type": "number",
+                                "description": "Raw (menu) cost of order/goods that consumer sees (pre-tax, tip, fees) Marketplace + Drive + Storefront",
+                                "alias": "",
+                                "is_calculated_field": false,
+                                "calculated_field_statement": "",
+                                "enum_values": [],
+                                "children": []
+                            },
+                            {
                                 "name": "Gov",
-                                "type": "numeric",
+                                "type": "number",
                                 "description": "Gross Order Value.Sum of cash inflow that DoorDash generates that comes from consumers (end users) i.e Subtotal + Tax + Tip + Cx Fees",
                                 "alias": "",
                                 "is_calculated_field": false,
                                 "calculated_field_statement": "",
                                 "enum_values": [],
                                 "children": []
+                            },
+                            {
+                                "name": "Total Other Revenue",
+                                "type": "parent",
+                                "description": "",
+                                "alias": "",
+                                "is_calculated_field": false,
+                                "calculated_field_statement": "",
+                                "enum_values": [],
+                                "children": [
+                                    {
+                                        "name": "Total Other Revenue",
+                                        "type": "number",
+                                        "description": "Summation of revenues from Legacy and gift cards",
+                                        "alias": "",
+                                        "is_calculated_field": false,
+                                        "calculated_field_statement": "",
+                                        "enum_values": [],
+                                        "children": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Gross Fees",
+                                "type": "parent",
+                                "description": "",
+                                "alias": "",
+                                "is_calculated_field": false,
+                                "calculated_field_statement": "",
+                                "enum_values": [],
+                                "children": [
+                                    {
+                                        "name": "Gross Fees",
+                                        "type": "number",
+                                        "description": "Cx Fees + Mx Fees + Other Revenue",
+                                        "alias": "",
+                                        "is_calculated_field": false,
+                                        "calculated_field_statement": "",
+                                        "enum_values": [],
+                                        "children": []
+                                    }
+                                ]
                             },
                             {
                                 "name": "Dasher Costs",
@@ -269,7 +321,7 @@
                                 "children": [
                                     {
                                         "name": "Dasher Base Pay",
-                                        "type": "numeric",
+                                        "type": "number",
                                         "description": "Base pay our Dashers receive for fulfilling an order",
                                         "alias": "",
                                         "is_calculated_field": false,
@@ -279,7 +331,7 @@
                                     },
                                     {
                                         "name": "Dasher Incentive Pay",
-                                        "type": "numeric",
+                                        "type": "number",
                                         "description": "Bonus pay DoorDash pays Dashers to incentive/mobilize Dashers to get on the road as fast as possible",
                                         "alias": "",
                                         "is_calculated_field": false,
@@ -289,7 +341,7 @@
                                     },
                                     {
                                         "name": "Dasher Referrals",
-                                        "type": "numeric",
+                                        "type": "number",
                                         "description": "Incentive that DoorDash pays to new Dashers who have been referred on to the platform (i.e. the person who got referred)",
                                         "alias": "",
                                         "is_calculated_field": false,
@@ -299,17 +351,28 @@
                                     },
                                     {
                                         "name": "Fast Pay Revenue",
-                                        "type": "numeric",
+                                        "type": "number",
                                         "description": "Revenue that DoorDash collects from Dashers for using instant deposit (i.e. withdrawing money from account instantly)",
                                         "alias": "",
                                         "is_calculated_field": false,
                                         "calculated_field_statement": "",
                                         "enum_values": [],
                                         "children": []
-                                    },
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Total Dasher Costs",
+                                "type": "parent",
+                                "description": "",
+                                "alias": "",
+                                "is_calculated_field": false,
+                                "calculated_field_statement": "",
+                                "enum_values": [],
+                                "children": [
                                     {
                                         "name": "Dasher Costs",
-                                        "type": "numeric",
+                                        "type": "number",
                                         "description": "Contra revenue items associated with Dasher costs",
                                         "alias": "",
                                         "is_calculated_field": false,
@@ -330,7 +393,7 @@
                                 "children": [
                                     {
                                         "name": "Total Refunds",
-                                        "type": "numeric",
+                                        "type": "number",
                                         "description": "Cash refunds that DoorDash provides to consumers",
                                         "alias": "",
                                         "is_calculated_field": false,
@@ -340,7 +403,7 @@
                                     },
                                     {
                                         "name": "Support Credits",
-                                        "type": "numeric",
+                                        "type": "number",
                                         "description": "Credit redemptions in a given period",
                                         "alias": "",
                                         "is_calculated_field": false,
@@ -350,8 +413,203 @@
                                     },
                                     {
                                         "name": "Credit Issuance Expense",
-                                        "type": "numeric",
+                                        "type": "number",
                                         "description": "Change in Credit Issuance balance on balance sheet, not the actual cost of credits given out in a period",
+                                        "alias": "",
+                                        "is_calculated_field": false,
+                                        "calculated_field_statement": "",
+                                        "enum_values": [],
+                                        "children": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Total R & C",
+                                "type": "parent",
+                                "description": "",
+                                "alias": "",
+                                "is_calculated_field": false,
+                                "calculated_field_statement": "",
+                                "enum_values": [],
+                                "children": [
+                                    {
+                                        "name": "Total Refunds",
+                                        "type": "number",
+                                        "description": "Sum of Issued credits and refunds",
+                                        "alias": "",
+                                        "is_calculated_field": false,
+                                        "calculated_field_statement": "",
+                                        "enum_values": [],
+                                        "children": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Discounts",
+                                "type": "parent",
+                                "description": "",
+                                "alias": "",
+                                "is_calculated_field": false,
+                                "calculated_field_statement": "",
+                                "enum_values": [],
+                                "children": [
+                                    {
+                                        "name": "Bundles Pricing Discount",
+                                        "type": null,
+                                        "description": "Discount that DoorDash provides for bundled orders - no extra delivery fee on the additional/bundled order",
+                                        "alias": "",
+                                        "is_calculated_field": false,
+                                        "calculated_field_statement": "",
+                                        "enum_values": [],
+                                        "children": []
+                                    },
+                                    {
+                                        "name": "Consumer Referrals",
+                                        "type": null,
+                                        "description": "Incentive that DoorDash pays to new consumers who have been referred on to the platform (i.e. the person who got referred)",
+                                        "alias": "",
+                                        "is_calculated_field": false,
+                                        "calculated_field_statement": "",
+                                        "enum_values": [],
+                                        "children": []
+                                    },
+                                    {
+                                        "name": "Drive Maas Advertising",
+                                        "type": null,
+                                        "description": "Ad spend that DoorDash spends to promote Drive merchants through various advertising channels.MaaS = Marketing as a Service",
+                                        "alias": "",
+                                        "is_calculated_field": false,
+                                        "calculated_field_statement": "",
+                                        "enum_values": [],
+                                        "children": []
+                                    },
+                                    {
+                                        "name": "FMX",
+                                        "type": null,
+                                        "description": "First Month $X.Promotion that DoorDash offers new consumers in their first month - free or discounted delivery fees on subsequent orders after 1st order",
+                                        "alias": "",
+                                        "is_calculated_field": false,
+                                        "calculated_field_statement": "",
+                                        "enum_values": [],
+                                        "children": []
+                                    },
+                                    {
+                                        "name": "First Delivery Discount",
+                                        "type": null,
+                                        "description": "First Delivery Free (or any variation such as FD1 - First Delivery $1) Promotion that DoorDash offers new consumers on their first delivery - free or discounted delivery fees (FDF)",
+                                        "alias": "",
+                                        "is_calculated_field": false,
+                                        "calculated_field_statement": "",
+                                        "enum_values": [],
+                                        "children": []
+                                    },
+                                    {
+                                        "name": "Operational Error",
+                                        "type": null,
+                                        "description": "Marqueta undercharge expense that DD ultimately pays for. This is in the case of red card usage where the in-app menu price is cheaper than the actual swiped amount in store. The delta is covered by DD instead of passed back to the consumer.Additionally, there are also situations where our app menu prices are overstated and we charge the customer more. Thus, we end up refunding the difference to the customer. This is an offset instead of a true cost to the P&L because gross fees will have the benefit of the overcharge.",
+                                        "alias": "",
+                                        "is_calculated_field": false,
+                                        "calculated_field_statement": "",
+                                        "enum_values": [],
+                                        "children": []
+                                    },
+                                    {
+                                        "name": "Other Promotions",
+                                        "type": null,
+                                        "description": "Other consumer promotions that do not fall into lines above",
+                                        "alias": "",
+                                        "is_calculated_field": false,
+                                        "calculated_field_statement": "",
+                                        "enum_values": [],
+                                        "children": []
+                                    },
+                                    {
+                                        "name": "Payments To Customers",
+                                        "type": null,
+                                        "description": "Miscellaneous payments that DoorDash makes to merchants, such as sales guarantees, royalties, contractual discounts, etc.",
+                                        "alias": "",
+                                        "is_calculated_field": false,
+                                        "calculated_field_statement": "",
+                                        "enum_values": [],
+                                        "children": []
+                                    },
+                                    {
+                                        "name": "Promotions New Customers",
+                                        "type": null,
+                                        "description": "Promotions/discounts for new consumes (that do not involve delivery fees)",
+                                        "alias": "",
+                                        "is_calculated_field": false,
+                                        "calculated_field_statement": "",
+                                        "enum_values": [],
+                                        "children": []
+                                    },
+                                    {
+                                        "name": "Shipping Costs",
+                                        "type": null,
+                                        "description": "shipping_costs",
+                                        "alias": "",
+                                        "is_calculated_field": false,
+                                        "calculated_field_statement": "",
+                                        "enum_values": [],
+                                        "children": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Total Discounts",
+                                "type": "parent",
+                                "description": "",
+                                "alias": "",
+                                "is_calculated_field": false,
+                                "calculated_field_statement": "",
+                                "enum_values": [],
+                                "children": [
+                                    {
+                                        "name": "Total Discounts",
+                                        "type": null,
+                                        "description": "Contra revenue items associated with discounts and promotions",
+                                        "alias": "",
+                                        "is_calculated_field": false,
+                                        "calculated_field_statement": "",
+                                        "enum_values": [],
+                                        "children": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "RC&P",
+                                "type": "parent",
+                                "description": "",
+                                "alias": "",
+                                "is_calculated_field": false,
+                                "calculated_field_statement": "",
+                                "enum_values": [],
+                                "children": [
+                                    {
+                                        "name": "RC&P",
+                                        "type": null,
+                                        "description": "refund_credits_and_promotions",
+                                        "alias": "",
+                                        "is_calculated_field": false,
+                                        "calculated_field_statement": "",
+                                        "enum_values": [],
+                                        "children": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Net Revenue",
+                                "type": "parent",
+                                "description": "",
+                                "alias": "",
+                                "is_calculated_field": false,
+                                "calculated_field_statement": "",
+                                "enum_values": [],
+                                "children": [
+                                    {
+                                        "name": "Net Revenue",
+                                        "type": null,
+                                        "description": "Gross Fees - Dasher Costs - R&C - Discounts - Chase",
                                         "alias": "",
                                         "is_calculated_field": false,
                                         "calculated_field_statement": "",
@@ -380,7 +638,7 @@
                     },
                     {
                         "name": "Snapshot Date",
-                        "type": "dte",
+                        "type": "date",
                         "description": "Snapshot Date",
                         "alias": "",
                         "is_calculated_field": false,
@@ -490,7 +748,7 @@
                         "children": [
                             {
                                 "name": "Trial Starts",
-                                "type": "numeric",
+                                "type": "number",
                                 "description": "Trial Starts",
                                 "alias": "",
                                 "is_calculated_field": false,
@@ -500,7 +758,7 @@
                             },
                             {
                                 "name": "CTP New Subs",
-                                "type": "numeric",
+                                "type": "number",
                                 "description": "Convert To Paid New Subscriptions",
                                 "alias": "",
                                 "is_calculated_field": false,
@@ -510,7 +768,7 @@
                             },
                             {
                                 "name": "DTP New Subs",
-                                "type": "numeric",
+                                "type": "number",
                                 "description": "Direct Trial Purchase New Subs",
                                 "alias": "",
                                 "is_calculated_field": false,
@@ -520,7 +778,7 @@
                             },
                             {
                                 "name": "New Subs",
-                                "type": "numeric",
+                                "type": "number",
                                 "description": "New Subscriptions",
                                 "alias": "",
                                 "is_calculated_field": false,
@@ -530,7 +788,7 @@
                             },
                             {
                                 "name": "Paid Churn",
-                                "type": "numeric",
+                                "type": "number",
                                 "description": "Paid Churn",
                                 "alias": "",
                                 "is_calculated_field": false,
@@ -540,7 +798,7 @@
                             },
                             {
                                 "name": "Trial Balance",
-                                "type": "numeric",
+                                "type": "number",
                                 "description": "Trial Balance",
                                 "alias": "",
                                 "is_calculated_field": false,
@@ -550,7 +808,7 @@
                             },
                             {
                                 "name": "Paid Balance",
-                                "type": "numeric",
+                                "type": "number",
                                 "description": "Paid Balance",
                                 "alias": "",
                                 "is_calculated_field": false,
@@ -560,7 +818,7 @@
                             },
                             {
                                 "name": "Good Standing Paid Balance",
-                                "type": "numeric",
+                                "type": "number",
                                 "description": "Good Standing Paid Balance",
                                 "alias": "",
                                 "is_calculated_field": false,
@@ -570,7 +828,7 @@
                             },
                             {
                                 "name": "Total Balance",
-                                "type": "numeric",
+                                "type": "number",
                                 "description": "Total Balance",
                                 "alias": "",
                                 "is_calculated_field": false,

@@ -17,6 +17,22 @@ DataMart_Definition:
     - name: dasher_costs
     - name: dasher_referrals
     - name: dasher_incentive_pay
+    - name: subtotal
+    - name: other_revenue
+    - name: gross_fees
+    - name: bundles_pricing_discount
+    - name: refunds_credits
+    - name: consumer_referrals
+    - name: drive_maas_advertising
+    - name: fmx
+    - name: operational_error
+    - name: other_promotions
+    - name: payments_to_customers
+    - name: promotions_new_customers
+    - name: shipping_costs
+    - name: discounts
+    - name: refund_credits_and_promotions
+    - name: net_revenue
     - name: consumer
       source: "@delivery_fact__consumer_dim"
     - name: merchant
