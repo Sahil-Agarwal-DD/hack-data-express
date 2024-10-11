@@ -13,11 +13,11 @@ import { useDataExpressStore } from "../../../stores/useDataExpressStore";
 import { getFullPathOfNode } from "../../../utils";
 import { TreeNode } from "../../TreeView/type";
 import { CalculatedColumn } from "../../../types";
+import SelectionPaneActions from "./SelectionPaneActions";
 
 const SelectedContainer: React.FC<{
   v: TreeNode;
 }> = ({ v }) => {
-  const { setSelectedColumns } = useDataExpressStore();
   return (
     <SelectionItemContainer key={getFullPathOfNode(v)}>
       <Stack
@@ -28,15 +28,7 @@ const SelectedContainer: React.FC<{
         sx={{ mb: 1 }}
       >
         <Typography variant="body2">{getFullPathOfNode(v)}</Typography>
-
-        <IconButton
-          aria-label="delete"
-          onClick={() => {
-            setSelectedColumns(v);
-          }}
-        >
-          <CloseIcon />
-        </IconButton>
+        <SelectionPaneActions node={v} />
       </Stack>
     </SelectionItemContainer>
   );

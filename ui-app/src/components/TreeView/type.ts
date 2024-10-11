@@ -1,6 +1,8 @@
 export type TreeNode = {
   name: string;
   parentNodes?: TreeNode[];
+  aggfun?: string;
+  period?: string;
   parentPath: string;
   alias?: string;
   type?: string;

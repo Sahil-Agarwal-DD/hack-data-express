@@ -27,6 +27,8 @@ type useDataExpressStoreTypeValues = {
   selectedQueryTabIndex: number;
   QueryTemplate: QueryTemplate[];
   selectedQueryTemplate?: QueryTemplate | null;
+  showAggFunctionModal: boolean;
+  showTimeWindowFunctionModal: boolean;
 };
 type useDataExpressStoreType = {
   values: useDataExpressStoreTypeValues;
@@ -51,6 +53,8 @@ type useDataExpressStoreType = {
   setSelectedQueryTabIndex: (val: number) => void;
   setQueryTemplates: (value: QueryTemplate[]) => void;
   setSelectedQueryTemplate: (value: QueryTemplate | null) => void;
+  setShowAggFunctionModal: (val: boolean) => void;
+  setShowTimeWindowFunctionModal: (val: boolean) => void;
 };
 
 const initialValues: useDataExpressStoreTypeValues = {
@@ -79,9 +83,10 @@ const initialValues: useDataExpressStoreTypeValues = {
   queryResultsTabs: 0,
   selectedQueryTabIndex: 0,
   QueryTemplate: [],
-  selectedQueryTemplate:  undefined,
+  selectedQueryTemplate: undefined,
+  showAggFunctionModal: false,
+  showTimeWindowFunctionModal: false,
 };
-
 
 export const useDataExpressStore = create<useDataExpressStoreType>()(
   devtools(
@@ -101,6 +106,16 @@ export const useDataExpressStore = create<useDataExpressStoreType>()(
         setShowSql(val: boolean) {
           set((state) => {
             state.values.showSql = val;
+          });
+        },
+        setShowAggFunctionModal(val: boolean) {
+          set((state) => {
+            state.values.showAggFunctionModal = val;
+          });
+        },
+        setShowTimeWindowFunctionModal(val: boolean) {
+          set((state) => {
+            state.values.showTimeWindowFunctionModal = val;
           });
         },
         setQueryExecuting(val: QueryExecutionState) {
@@ -168,12 +183,12 @@ export const useDataExpressStore = create<useDataExpressStoreType>()(
             state.values.selectedDataMart = value;
           });
         },
-          setQueryTemplates(value: QueryTemplate[]) {
+        setQueryTemplates(value: QueryTemplate[]) {
           set((state) => {
             state.values.QueryTemplate = value;
           });
         },
-          setSelectedQueryTemplate(value: QueryTemplate | null) {
+        setSelectedQueryTemplate(value: QueryTemplate | null) {
           set((state) => {
             state.values.selectedQueryTemplate = value;
           });
