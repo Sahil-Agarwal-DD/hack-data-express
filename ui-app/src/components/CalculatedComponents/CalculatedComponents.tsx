@@ -108,7 +108,7 @@ export const CalculatedComponents: React.FC<CalculatedComponentsProps> = () => {
   }, [caseStatement]);
   return (
     <>
-      <Button onClick={handleOpen}>Calculated Component</Button>
+      <Button onClick={handleOpen}>+ Custom Field</Button>
       <Modal
         open={open}
         // onClose={handleClose}
@@ -118,7 +118,7 @@ export const CalculatedComponents: React.FC<CalculatedComponentsProps> = () => {
         <Box sx={style}>
           <Stack spacing={1}>
             <Typography id="modal-modal-title" variant="h6" component="h2">
-              Calculated Components (Case When)
+              Custom Fields
             </Typography>
             <TextField
               id="outlined-basic"
