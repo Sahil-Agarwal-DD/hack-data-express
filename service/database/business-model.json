@@ -1,119 +1,327 @@
 {
-  "business_model": [
-    {
-      "finance-unit-economics": {
-        "fields": [
-          {
-            "name": "Total Other Revenue",
-            "type": "number",
-            "description": "Total Other Revenue",
-            "alias": "",
-            "is_calculated_field": false,
-            "calculated_field_statement": ""
-          },
-          {
-            "name": "Dasher Cost",
-            "type": "parent",
-            "description": "",
-            "alias": "",
-            "is_calculated_field": false,
-            "calculated_field_statement": "",
-            "children": [
-              {
-                "name": "Status",
-                "type": "string",
-                "description": "Status of payment",
-                "alias": "",
-                "is_calculated_field": false,
-                "calculated_field_statement": "",
-                "enum_values": ["pending", "completed"]
-              },
-              {
-                "name": "Dasher Base Pay",
-                "type": "number",
-                "description": "The base pay amount for a Dasher.",
-                "alias": "",
-                "is_calculated_field": false,
-                "calculated_field_statement": ""
-              },
-              {
-                "name": "Dasher Incentive Pay",
-                "type": "number",
-                "description": "The incentive pay amount for a Dasher.",
-                "alias": "",
-                "is_calculated_field": false,
-                "calculated_field_statement": ""
-              },
-              {
-                "name": "Dasher Referrals",
-                "type": "number",
-                "description": "The referral earnings for a Dasher.",
-                "alias": "",
-                "is_calculated_field": false,
-                "calculated_field_statement": ""
-              },
-              {
-                "name": "Fast Pay Revenue",
-                "type": "number",
-                "description": "The revenue generated from Fast Pay transactions.",
-                "alias": "",
-                "is_calculated_field": false,
-                "calculated_field_statement": ""
-              }
-            ]
-          },
-          {
-            "name": "Gross Fees",
-            "type": "number",
-            "description": "Gross Fees",
-            "alias": "",
-            "is_calculated_field": false,
-            "calculated_field_statement": ""
-          },
-          {
-            "name": "Total Dasher Costs",
-            "type": "number",
-            "description": "Total Dasher Costs",
-            "alias": "",
-            "is_calculated_field": false,
-            "calculated_field_statement": ""
-          },
-          {
-            "name": "R&C",
-            "type": "parent",
-            "description": "",
-            "alias": "",
-            "is_calculated_field": false,
-            "calculated_field_statement": "",
-            "children": [
-              {
-                "name": "Credit Issuance Expense",
-                "type": "number",
-                "description": "The expense incurred from issuing credits.",
-                "alias": "",
-                "is_calculated_field": false,
-                "calculated_field_statement": ""
-              },
-              {
-                "name": "Support Credits",
-                "type": "number",
-                "description": "The amount of credits provided for support purposes.",
-                "alias": "",
-                "is_calculated_field": false,
-                "calculated_field_statement": ""
-              },
-              {
-                "name": "Total Refunds",
-                "type": "number",
-                "description": "The total amount refunded to customers.",
-                "alias": "",
-                "is_calculated_field": false,
-                "calculated_field_statement": ""
-              }
-            ]
-          }
-        ]
-      }
-    }
-  ]
+    "business_model": [
+        {
+            "finance-unit-economics": {
+                "fields": [
+                    {
+                        "name": "Delivery ID",
+                        "type": "number",
+                        "description": "Delivery Unique Identifier",
+                        "alias": "",
+                        "is_calculated_field": false,
+                        "calculated_field_statement": "",
+                        "enum_values": [],
+                        "children": []
+                    },
+                    {
+                        "name": "Active Date",
+                        "type": "date",
+                        "description": "based on quoted delivery time, in Local Timezone",
+                        "alias": "",
+                        "is_calculated_field": false,
+                        "calculated_field_statement": "",
+                        "enum_values": [],
+                        "children": []
+                    },
+                    {
+                        "name": "Created At",
+                        "type": "date",
+                        "description": "When the delivery was created by the customer (UTC)",
+                        "alias": "",
+                        "is_calculated_field": false,
+                        "calculated_field_statement": "",
+                        "enum_values": [],
+                        "children": []
+                    },
+                    {
+                        "name": "lob",
+                        "type": "string",
+                        "description": "delivery ie Subscription, Pickup etc",
+                        "alias": "",
+                        "is_calculated_field": false,
+                        "calculated_field_statement": "",
+                        "enum_values": [
+                            "Subscription - CAV",
+                            "Storefront",
+                            "Pickup - CAV",
+                            "Marketplace: Subscription",
+                            "Marketplace: Pickup",
+                            "Marketplace: Classic",
+                            "Drive: Checkout",
+                            "Drive",
+                            "DoorDash for Business",
+                            "DashLink",
+                            "Classic - CAV"
+                        ],
+                        "children": []
+                    },
+                    {
+                        "name": "consumer",
+                        "type": null,
+                        "description": null,
+                        "alias": "",
+                        "is_calculated_field": false,
+                        "calculated_field_statement": "",
+                        "enum_values": [],
+                        "children": []
+                    },
+                    {
+                        "name": "merchant",
+                        "type": null,
+                        "description": null,
+                        "alias": "",
+                        "is_calculated_field": false,
+                        "calculated_field_statement": "",
+                        "enum_values": [],
+                        "children": []
+                    },
+                    {
+                        "name": "active date",
+                        "type": "parent",
+                        "description": "",
+                        "alias": "",
+                        "is_calculated_field": false,
+                        "calculated_field_statement": "",
+                        "enum_values": [],
+                        "children": [
+                            {
+                                "name": "dt",
+                                "type": "date",
+                                "description": "based on quoted delivery time, in Local Timezone",
+                                "alias": "",
+                                "is_calculated_field": false,
+                                "calculated_field_statement": "",
+                                "enum_values": [],
+                                "children": []
+                            },
+                            {
+                                "name": "Week",
+                                "type": "number",
+                                "description": "Week number of the year based on quoted delivery time, in Local Timezone",
+                                "alias": "",
+                                "is_calculated_field": true,
+                                "calculated_field_statement": "WEEK([active_date])",
+                                "enum_values": [],
+                                "children": []
+                            },
+                            {
+                                "name": "Month",
+                                "type": "number",
+                                "description": "Month number of the year based on quoted delivery time, in Local Timezone",
+                                "alias": "",
+                                "is_calculated_field": true,
+                                "calculated_field_statement": "MONTH([active_date])",
+                                "enum_values": [],
+                                "children": []
+                            },
+                            {
+                                "name": "Quarter",
+                                "type": "number",
+                                "description": "Quarter number of the year based on quoted delivery time, in Local Timezone",
+                                "alias": "",
+                                "is_calculated_field": true,
+                                "calculated_field_statement": "QUARTER([active_date])",
+                                "enum_values": [],
+                                "children": []
+                            },
+                            {
+                                "name": "Year",
+                                "type": "number",
+                                "description": "Year based on quoted delivery time, in Local Timezone",
+                                "alias": "",
+                                "is_calculated_field": true,
+                                "calculated_field_statement": "YEAR([active_date])",
+                                "enum_values": [],
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "name": "created_at",
+                        "type": "parent",
+                        "description": "",
+                        "alias": "",
+                        "is_calculated_field": false,
+                        "calculated_field_statement": "",
+                        "enum_values": [],
+                        "children": [
+                            {
+                                "name": "dt",
+                                "type": "date",
+                                "description": "Date the delivery was created by the customer (UTC)",
+                                "alias": "",
+                                "is_calculated_field": true,
+                                "calculated_field_statement": "DATE([created_at])",
+                                "enum_values": [],
+                                "children": []
+                            },
+                            {
+                                "name": "Week",
+                                "type": "number",
+                                "description": "Week number of the year based on when the delivery was created by the customer (UTC)",
+                                "alias": "",
+                                "is_calculated_field": true,
+                                "calculated_field_statement": "WEEK([created_at])",
+                                "enum_values": [],
+                                "children": []
+                            },
+                            {
+                                "name": "Month",
+                                "type": "number",
+                                "description": "Month number of the year based on when the delivery was created by the customer (UTC)",
+                                "alias": "",
+                                "is_calculated_field": true,
+                                "calculated_field_statement": "MONTH([created_at])",
+                                "enum_values": [],
+                                "children": []
+                            },
+                            {
+                                "name": "Quarter",
+                                "type": "number",
+                                "description": "Quarter number of the year based on when the delivery was created by the customer (UTC)",
+                                "alias": "",
+                                "is_calculated_field": true,
+                                "calculated_field_statement": "QUARTER([created_at])",
+                                "enum_values": [],
+                                "children": []
+                            },
+                            {
+                                "name": "Year",
+                                "type": "number",
+                                "description": "Year based on when the delivery was created by the customer (UTC)",
+                                "alias": "",
+                                "is_calculated_field": true,
+                                "calculated_field_statement": "YEAR([created_at])",
+                                "enum_values": [],
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "name": "financials",
+                        "type": "parent",
+                        "description": "",
+                        "alias": "",
+                        "is_calculated_field": false,
+                        "calculated_field_statement": "",
+                        "enum_values": [],
+                        "children": [
+                            {
+                                "name": "Gov",
+                                "type": "numeric",
+                                "description": "Gross Order Value.Sum of cash inflow that DoorDash generates that comes from consumers (end users) i.e Subtotal + Tax + Tip + Cx Fees",
+                                "alias": "",
+                                "is_calculated_field": false,
+                                "calculated_field_statement": "",
+                                "enum_values": [],
+                                "children": []
+                            },
+                            {
+                                "name": "Dasher Costs",
+                                "type": "parent",
+                                "description": "",
+                                "alias": "",
+                                "is_calculated_field": false,
+                                "calculated_field_statement": "",
+                                "enum_values": [],
+                                "children": [
+                                    {
+                                        "name": "Dasher Base Pay",
+                                        "type": "numeric",
+                                        "description": "Base pay our Dashers receive for fulfilling an order",
+                                        "alias": "",
+                                        "is_calculated_field": false,
+                                        "calculated_field_statement": "",
+                                        "enum_values": [],
+                                        "children": []
+                                    },
+                                    {
+                                        "name": "Dasher Incentive Pay",
+                                        "type": "numeric",
+                                        "description": "Bonus pay DoorDash pays Dashers to incentive/mobilize Dashers to get on the road as fast as possible",
+                                        "alias": "",
+                                        "is_calculated_field": false,
+                                        "calculated_field_statement": "",
+                                        "enum_values": [],
+                                        "children": []
+                                    },
+                                    {
+                                        "name": "Dasher Referrals",
+                                        "type": "numeric",
+                                        "description": "Incentive that DoorDash pays to new Dashers who have been referred on to the platform (i.e. the person who got referred)",
+                                        "alias": "",
+                                        "is_calculated_field": false,
+                                        "calculated_field_statement": "",
+                                        "enum_values": [],
+                                        "children": []
+                                    },
+                                    {
+                                        "name": "Fast Pay Revenue",
+                                        "type": "numeric",
+                                        "description": "Revenue that DoorDash collects from Dashers for using instant deposit (i.e. withdrawing money from account instantly)",
+                                        "alias": "",
+                                        "is_calculated_field": false,
+                                        "calculated_field_statement": "",
+                                        "enum_values": [],
+                                        "children": []
+                                    },
+                                    {
+                                        "name": "Dasher Costs",
+                                        "type": "numeric",
+                                        "description": "Contra revenue items associated with Dasher costs",
+                                        "alias": "",
+                                        "is_calculated_field": false,
+                                        "calculated_field_statement": "",
+                                        "enum_values": [],
+                                        "children": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "R & C",
+                                "type": "parent",
+                                "description": "",
+                                "alias": "",
+                                "is_calculated_field": false,
+                                "calculated_field_statement": "",
+                                "enum_values": [],
+                                "children": [
+                                    {
+                                        "name": "Total Refunds",
+                                        "type": "numeric",
+                                        "description": "Cash refunds that DoorDash provides to consumers",
+                                        "alias": "",
+                                        "is_calculated_field": false,
+                                        "calculated_field_statement": "",
+                                        "enum_values": [],
+                                        "children": []
+                                    },
+                                    {
+                                        "name": "Support Credits",
+                                        "type": "numeric",
+                                        "description": "Credit redemptions in a given period",
+                                        "alias": "",
+                                        "is_calculated_field": false,
+                                        "calculated_field_statement": "",
+                                        "enum_values": [],
+                                        "children": []
+                                    },
+                                    {
+                                        "name": "Credit Issuance Expense",
+                                        "type": "numeric",
+                                        "description": "Change in Credit Issuance balance on balance sheet, not the actual cost of credits given out in a period",
+                                        "alias": "",
+                                        "is_calculated_field": false,
+                                        "calculated_field_statement": "",
+                                        "enum_values": [],
+                                        "children": []
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+    ]
 }
