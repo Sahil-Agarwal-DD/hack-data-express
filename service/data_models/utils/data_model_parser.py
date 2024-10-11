@@ -240,9 +240,8 @@ def get_all_join_definitions():
     return join_definitions
 
 
-
 def __get_business_model_definitions(
-    relative_file_path: Text, section: Text, cls: Optional[Callable[..., Any]]
+    relative_file_path: Text, section: Text, cls: Optional[Callable[..., Any]], logical_datamodels=None
 ) -> List[Any]:
     file_path = relative_file_path
     with open(file_path, "r") as f:
@@ -259,10 +258,24 @@ def __get_business_model_definitions(
     if cls:
         data_model_config = cls(**yaml_data[section])
         attributes=[]
-        for attr in data_model_config.attributes:
-            attributes.append(Attribute(**attr))
-        data_model_config.attributes = attributes
         hierachical_entities = []
+        datamart_obj = logical_datamodels.get(data_model_config.datamart)
+        for attr in data_model_config.attributes:
+            if attr.get("mapping").startswith("@"):
+                map_entity_obj_name=attr.get("mapping").replace("@", "")
+                for datamart_attr in datamart_obj.attributes:
+                    if datamart_attr.name == map_entity_obj_name:
+                        if type(datamart_attr.source) == FactJoinEntity:
+                            hierachical_entities.append(HierarchicalEntity(datamart_attr.name, [Attribute(
+                                      name=physical_attr.name,
+                                      mapping=datamart_attr,
+                                      type=physical_attr.type,
+                                      description=physical_attr.description
+                                   ) for physical_attr in datamart_attr.source.child_entity.fields])
+                                                        )
+            else:
+                attributes.append(Attribute(**attr))
+        data_model_config.attributes = attributes
         if not data_model_config.hierarchical_entity:
             return data_model_config
         for parent, child_list in data_model_config.hierarchical_entity.items():
@@ -283,14 +296,14 @@ def __get_business_model_definitions(
 
 
 
-def get_business_model_definitions(model_name: Text) -> List[BusinessModelDefinition]:
+def get_business_model_definitions(model_name: Text, logical_datamodels=None) -> List[BusinessModelDefinition]:
     """
     :param relative_file_path:
     :return: Parses the Yaml and Returns list of  ColumnDefinition objects.
     """
     schema_file_path = "%s/%s" % (business_models_directory, model_name)
     return __get_business_model_definitions(
-        schema_file_path, "business_model", BusinessModelDefinition
+        schema_file_path, "business_model", BusinessModelDefinition, logical_datamodels
     )
 
 def _convert_attr_to_ui_model(attr):
@@ -342,21 +355,6 @@ def transform_config_to_ui_model(business_model_def: BusinessModelDefinition) ->
                 }
     }
 
-
-
-
-def get_business_models(allowed_list):
-    """
-    :return: Returns the list of Business Models
-    """
-    business_models = []
-    for file in os.listdir(business_models_directory):
-        if file.endswith(".yaml"):
-            if file in allowed_list:
-                model_obj = get_business_model_definitions(file)
-                transformed_ui_model = transform_config_to_ui_model(model_obj)
-                business_models.append(transformed_ui_model)
-    return {"business_model": business_models}
 
 
 def __get_data_mart_definitions(relative_file_path: Text, section: Text, cls: Optional[Callable[..., Any]]
@@ -429,6 +427,21 @@ def get_all_data_mart_definitions():
     return datamart_definitions
 
 
+def get_business_models(allowed_list):
+    """
+    :return: Returns the list of Business Models
+    """
+    business_models = []
+    all_logical_models = get_all_data_mart_definitions()
+    for file in os.listdir(business_models_directory):
+        if file.endswith(".yaml"):
+            if file in allowed_list:
+                model_obj = get_business_model_definitions(file, all_logical_models)
+                transformed_ui_model = transform_config_to_ui_model(model_obj)
+                business_models.append(transformed_ui_model)
+    return {"business_model": business_models}
+
+
 def save_all_models_to_file_for_ui(data, filename):
     with open(filename, 'w') as json_file:
         json.dump(data, json_file, indent=4)
@@ -440,9 +453,19 @@ def parse_and_save(allowed_list):
 
 ALLOWED_LIST = ["unit_economics.yaml"]
 # Build Business DataModels and Save to file
-#parse_and_save(ALLOWED_LIST)
+parse_and_save(ALLOWED_LIST)
+
+
+"""
 all_logical_models = get_all_data_mart_definitions()
-business_model_obj = get_business_model_definitions("unit_economics.yaml")
+business_model_obj = get_business_model_definitions("unit_economics.yaml", all_logical_models)
+print(business_model_obj)
+for attr in business_model_obj.attributes:
+    print(attr)
+for attr in business_model_obj.hierarchical_entity:
+    print(attr)
+    
+
 datamart_obj = all_logical_models.get(business_model_obj.datamart)
 for attr in business_model_obj.attributes:
     if attr.mapping.startswith("@"):
@@ -462,6 +485,7 @@ for attr in business_model_obj.attributes:
     #print(attr)
 
 #print(all_logical_models.get(business_model_obj.datamart).attributes)
+"""
 
 """
 all_logical_models = get_all_data_mart_definitions()

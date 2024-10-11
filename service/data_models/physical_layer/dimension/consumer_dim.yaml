@@ -6,7 +6,7 @@ entity_definition:
   dl_table_name: edw_consumer.dimension_consumer
   fields:
     - name: consumer_id
-      type: integer
+      type: number
       is_primary_key: true
     - name: consumer_email
       type: string
