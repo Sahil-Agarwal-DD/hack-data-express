@@ -58,7 +58,7 @@ export const useGetFields = () => {
       }
 
       if (!hasEnumValues && (v.type === "string" || v.type === "text")) {
-        (returnValue as any).inputType = "number";
+        (returnValue as any).inputType = "text";
         (returnValue as any).operators = defaultOperators.filter((op) =>
           [
             "contains",

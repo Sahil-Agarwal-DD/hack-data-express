@@ -40,6 +40,7 @@ export const FetchSaved: React.FC<SaveModalProps> = () => {
     setBlockUI,
     setSelectedDataMart,
     setSelectedDomain,
+    setLoadedSavedConfigName,
     values: { queryExecutionState: queryExecuting },
   } = useDataExpressStore();
 
@@ -126,6 +127,7 @@ export const FetchSaved: React.FC<SaveModalProps> = () => {
         console.log("====> loaded values", v);
         reset();
         loadAsync(v.data_express_model.value);
+        setLoadedSavedConfigName(name);
       })
       .catch(() => {
         reset();

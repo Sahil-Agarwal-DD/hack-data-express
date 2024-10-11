@@ -1,6 +1,7 @@
 import * as React from "react";
 import { useDataExpressStore } from "../../stores/useDataExpressStore";
 import { QueryExecutionPayload } from "../../types";
+import { exeQuery } from "../../apis";
 
 interface QueryExecuteTraclerProps {
   queryExecutionPayload: QueryExecutionPayload;
@@ -9,6 +10,7 @@ interface QueryExecuteTraclerProps {
 export const QueryExecuteTracker: React.FC<QueryExecuteTraclerProps> = ({
   queryExecutionPayload,
 }) => {
+  const isCallExecuting = React.useRef(false);
   const { setQueryExecutionPayload } = useDataExpressStore();
 
   const isLoading = React.useMemo(
@@ -19,8 +21,9 @@ export const QueryExecuteTracker: React.FC<QueryExecuteTraclerProps> = ({
   );
 
   React.useEffect(() => {
+    let timer: string | number | NodeJS.Timer | undefined;
     console.log("====> loading");
-    const timer = setInterval(() => {
+    timer = setInterval(() => {
       if (isLoading) {
         setQueryExecutionPayload({
           ...queryExecutionPayload,
@@ -38,6 +41,7 @@ export const QueryExecuteTracker: React.FC<QueryExecuteTraclerProps> = ({
 
   React.useEffect(() => {
     if (
+      !queryExecutionPayload.loadedSavedConfigName &&
       queryExecutionPayload.seconds === 5 &&
       queryExecutionPayload.status !== "success"
     ) {
@@ -47,6 +51,37 @@ export const QueryExecuteTracker: React.FC<QueryExecuteTraclerProps> = ({
         status: "success",
         seconds: 0,
       });
+    }
+  }, [queryExecutionPayload]);
+
+  React.useEffect(() => {
+    if (
+      queryExecutionPayload.loadedSavedConfigName &&
+      !isCallExecuting.current
+    ) {
+      isCallExecuting.current = true;
+      exeQuery(queryExecutionPayload.loadedSavedConfigName)
+        .then((v) => {
+          setQueryExecutionPayload({
+            ...queryExecutionPayload,
+            status: "success",
+            seconds: 0,
+            result: v,
+          });
+        })
+        .catch(() => {
+          setQueryExecutionPayload({
+            ...queryExecutionPayload,
+            status: "error",
+            seconds: 0,
+            result: undefined,
+          });
+        })
+        .finally(() => {
+          setTimeout(() => {
+            isCallExecuting.current = true;
+          });
+        });
     }
   }, [queryExecutionPayload]);
 

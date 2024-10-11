@@ -1,6 +1,448 @@
 {
   "data_express_model": [
     {
+      "name": "demo_financial_dasher_example_2",
+      "value": {
+        "selectedColumns": {
+          "Active Date": {
+            "name": "Active Date",
+            "type": "date",
+            "description": "based on quoted delivery time, in Local Timezone",
+            "alias": "",
+            "is_calculated_field": false,
+            "calculated_field_statement": "",
+            "enum_values": [],
+            "children": [],
+            "isExpanded": false,
+            "enumValues": [],
+            "parentNodes": [],
+            "parentPath": "Active Date"
+          },
+          "lob": {
+            "name": "lob",
+            "type": "string",
+            "description": "delivery ie Subscription, Pickup etc",
+            "alias": "",
+            "is_calculated_field": false,
+            "calculated_field_statement": "",
+            "enum_values": [
+              "Subscription - CAV",
+              "Storefront",
+              "Pickup - CAV",
+              "Marketplace: Subscription",
+              "Marketplace: Pickup",
+              "Marketplace: Classic",
+              "Drive: Checkout",
+              "Drive",
+              "DoorDash for Business",
+              "DashLink",
+              "Classic - CAV"
+            ],
+            "children": [],
+            "isExpanded": false,
+            "enumValues": [
+              "Subscription - CAV",
+              "Storefront",
+              "Pickup - CAV",
+              "Marketplace: Subscription",
+              "Marketplace: Pickup",
+              "Marketplace: Classic",
+              "Drive: Checkout",
+              "Drive",
+              "DoorDash for Business",
+              "DashLink",
+              "Classic - CAV"
+            ],
+            "parentNodes": [],
+            "parentPath": "lob"
+          },
+          "Financials/Gov": {
+            "name": "Gov",
+            "type": "number",
+            "description": "Gross Order Value.Sum of cash inflow that DoorDash generates that comes from consumers (end users) i.e Subtotal + Tax + Tip + Cx Fees",
+            "alias": "gov",
+            "is_calculated_field": false,
+            "calculated_field_statement": "",
+            "enum_values": [],
+            "children": [],
+            "isExpanded": false,
+            "enumValues": [],
+            "parentNodes": [
+              {
+                "name": "Financials",
+                "type": "parent",
+                "description": "",
+                "alias": "",
+                "is_calculated_field": false,
+                "calculated_field_statement": "",
+                "enum_values": [],
+                "isExpanded": false,
+                "enumValues": []
+              }
+            ],
+            "parentPath": "Financials/Gov",
+            "aggfun": "SUM"
+          },
+          "Financials/Dasher Costs/Dasher Base Pay": {
+            "name": "Dasher Base Pay",
+            "type": "number",
+            "description": "Base pay our Dashers receive for fulfilling an order",
+            "alias": "dasher_pay",
+            "is_calculated_field": false,
+            "calculated_field_statement": "",
+            "enum_values": [],
+            "children": [],
+            "isExpanded": false,
+            "enumValues": [],
+            "parentNodes": [
+              {
+                "name": "Financials",
+                "type": "parent",
+                "description": "",
+                "alias": "",
+                "is_calculated_field": false,
+                "calculated_field_statement": "",
+                "enum_values": [],
+                "isExpanded": false,
+                "enumValues": []
+              },
+              {
+                "name": "Dasher Costs",
+                "type": "parent",
+                "description": "",
+                "alias": "",
+                "is_calculated_field": false,
+                "calculated_field_statement": "",
+                "enum_values": [],
+                "isExpanded": false,
+                "enumValues": []
+              }
+            ],
+            "parentPath": "Financials/Dasher Costs/Dasher Base Pay",
+            "aggfun": "SUM"
+          }
+        },
+        "calculatedComponents": {
+          "lob_custom": {
+            "label": "lob_custom",
+            "value": {
+              "rules": [
+                {
+                  "id": "89aca4ed-751d-4d24-a309-8762716566c8",
+                  "field": "lob",
+                  "operator": "=",
+                  "valueSource": "value",
+                  "value": {
+                    "mainValue": "Marketplace: Subscription",
+                    "thenValue": "subscription"
+                  }
+                },
+                "and",
+                {
+                  "id": "82f1d1b6-7847-4231-a2bd-384a9fa6ca36",
+                  "field": "lob",
+                  "operator": "=",
+                  "valueSource": "value",
+                  "value": {
+                    "mainValue": "Marketplace: Pickup",
+                    "thenValue": "pickup"
+                  }
+                }
+              ],
+              "id": "ea02b970-9a46-4376-84d1-e034bdd47a6b"
+            }
+          }
+        },
+        "query": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "82ce0947-3a51-4ffd-8a64-afef3b15ee97",
+              "field": "Active Date",
+              "operator": ">=",
+              "valueSource": "value",
+              "value": "2024-10-01"
+            },
+            {
+              "id": "86005e8e-d5c4-4c91-a500-49f4e7437a88",
+              "field": "lob",
+              "operator": "in",
+              "valueSource": "value",
+              "value": "Marketplace: Subscription,Marketplace: Pickup"
+            }
+          ],
+          "id": "259e6820-7f19-441a-a681-1a85c077931d"
+        },
+        "selectedDomain": {
+          "label": "Finance"
+        },
+        "selectedDataMart": {
+          "label": "Unit-Economics"
+        }
+      },
+      "createdAt": "2024-10-11T19:13:07.356Z",
+      "createdBy": "Paul.Mazzuoli@doordash.com"
+    },
+    {
+      "name": "demo_dasher_cost_example_3",
+      "value": {
+        "selectedColumns": {
+          "Active Date": {
+            "name": "Active Date",
+            "type": "date",
+            "description": "based on quoted delivery time, in Local Timezone",
+            "alias": "",
+            "is_calculated_field": false,
+            "calculated_field_statement": "",
+            "enum_values": [],
+            "children": [],
+            "isExpanded": false,
+            "enumValues": [],
+            "parentNodes": [],
+            "parentPath": "Active Date"
+          },
+          "Financials/Gov": {
+            "name": "Gov",
+            "type": "number",
+            "description": "Gross Order Value.Sum of cash inflow that DoorDash generates that comes from consumers (end users) i.e Subtotal + Tax + Tip + Cx Fees",
+            "alias": "",
+            "is_calculated_field": false,
+            "calculated_field_statement": "",
+            "enum_values": [],
+            "children": [],
+            "isExpanded": false,
+            "enumValues": [],
+            "parentNodes": [
+              {
+                "name": "Financials",
+                "type": "parent",
+                "description": "",
+                "alias": "",
+                "is_calculated_field": false,
+                "calculated_field_statement": "",
+                "enum_values": [],
+                "isExpanded": false,
+                "enumValues": []
+              }
+            ],
+            "parentPath": "Financials/Gov",
+            "aggfun": "SUM"
+          },
+          "Financials/Dasher Costs/Dasher Base Pay": {
+            "name": "Dasher Base Pay",
+            "type": "number",
+            "description": "Base pay our Dashers receive for fulfilling an order",
+            "alias": "",
+            "is_calculated_field": false,
+            "calculated_field_statement": "",
+            "enum_values": [],
+            "children": [],
+            "isExpanded": false,
+            "enumValues": [],
+            "parentNodes": [
+              {
+                "name": "Financials",
+                "type": "parent",
+                "description": "",
+                "alias": "",
+                "is_calculated_field": false,
+                "calculated_field_statement": "",
+                "enum_values": [],
+                "isExpanded": false,
+                "enumValues": []
+              },
+              {
+                "name": "Dasher Costs",
+                "type": "parent",
+                "description": "",
+                "alias": "",
+                "is_calculated_field": false,
+                "calculated_field_statement": "",
+                "enum_values": [],
+                "isExpanded": false,
+                "enumValues": []
+              }
+            ],
+            "parentPath": "Financials/Dasher Costs/Dasher Base Pay",
+            "aggfun": "SUM"
+          }
+        },
+        "calculatedComponents": {},
+        "query": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "00bd1e3b-c906-43a7-a921-5d173bf2f560",
+              "field": "Active Date",
+              "operator": ">=",
+              "valueSource": "value",
+              "value": "2024-10-01"
+            }
+          ]
+        },
+        "selectedDomain": {
+          "label": "Finance"
+        },
+        "selectedDataMart": {
+          "label": "Unit-Economics"
+        }
+      },
+      "createdAt": "2024-10-11T19:32:04.078Z",
+      "createdBy": "Ruth.Adams@doordash.com"
+    },
+    {
+      "name": "demo_financials_report_example_1",
+      "value": {
+        "selectedColumns": {
+          "Active Date": {
+            "name": "Active Date",
+            "type": "date",
+            "description": "based on quoted delivery time, in Local Timezone",
+            "alias": "",
+            "is_calculated_field": false,
+            "calculated_field_statement": "",
+            "enum_values": [],
+            "children": [],
+            "isExpanded": false,
+            "enumValues": [],
+            "parentNodes": [],
+            "parentPath": "Active Date"
+          },
+          "lob": {
+            "name": "lob",
+            "type": "string",
+            "description": "delivery ie Subscription, Pickup etc",
+            "alias": "",
+            "is_calculated_field": false,
+            "calculated_field_statement": "",
+            "enum_values": [
+              "Subscription - CAV",
+              "Storefront",
+              "Pickup - CAV",
+              "Marketplace: Subscription",
+              "Marketplace: Pickup",
+              "Marketplace: Classic",
+              "Drive: Checkout",
+              "Drive",
+              "DoorDash for Business",
+              "DashLink",
+              "Classic - CAV"
+            ],
+            "children": [],
+            "isExpanded": false,
+            "enumValues": [
+              "Subscription - CAV",
+              "Storefront",
+              "Pickup - CAV",
+              "Marketplace: Subscription",
+              "Marketplace: Pickup",
+              "Marketplace: Classic",
+              "Drive: Checkout",
+              "Drive",
+              "DoorDash for Business",
+              "DashLink",
+              "Classic - CAV"
+            ],
+            "parentNodes": [],
+            "parentPath": "lob"
+          },
+          "Financials/Gov": {
+            "name": "Gov",
+            "type": "number",
+            "description": "Gross Order Value.Sum of cash inflow that DoorDash generates that comes from consumers (end users) i.e Subtotal + Tax + Tip + Cx Fees",
+            "alias": "gov",
+            "is_calculated_field": false,
+            "calculated_field_statement": "",
+            "enum_values": [],
+            "children": [],
+            "isExpanded": false,
+            "enumValues": [],
+            "parentNodes": [
+              {
+                "name": "Financials",
+                "type": "parent",
+                "description": "",
+                "alias": "",
+                "is_calculated_field": false,
+                "calculated_field_statement": "",
+                "enum_values": [],
+                "isExpanded": false,
+                "enumValues": []
+              }
+            ],
+            "parentPath": "Financials/Gov",
+            "aggfun": "SUM"
+          },
+          "Financials/Dasher Costs/Dasher Base Pay": {
+            "name": "Dasher Base Pay",
+            "type": "number",
+            "description": "Base pay our Dashers receive for fulfilling an order",
+            "alias": "dasher_pay",
+            "is_calculated_field": false,
+            "calculated_field_statement": "",
+            "enum_values": [],
+            "children": [],
+            "isExpanded": false,
+            "enumValues": [],
+            "parentNodes": [
+              {
+                "name": "Financials",
+                "type": "parent",
+                "description": "",
+                "alias": "",
+                "is_calculated_field": false,
+                "calculated_field_statement": "",
+                "enum_values": [],
+                "isExpanded": false,
+                "enumValues": []
+              },
+              {
+                "name": "Dasher Costs",
+                "type": "parent",
+                "description": "",
+                "alias": "",
+                "is_calculated_field": false,
+                "calculated_field_statement": "",
+                "enum_values": [],
+                "isExpanded": false,
+                "enumValues": []
+              }
+            ],
+            "parentPath": "Financials/Dasher Costs/Dasher Base Pay",
+            "aggfun": "SUM"
+          }
+        },
+        "calculatedComponents": {},
+        "query": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "82ce0947-3a51-4ffd-8a64-afef3b15ee97",
+              "field": "Active Date",
+              "operator": ">=",
+              "valueSource": "value",
+              "value": "2024-10-01"
+            },
+            {
+              "id": "86005e8e-d5c4-4c91-a500-49f4e7437a88",
+              "field": "lob",
+              "operator": "in",
+              "valueSource": "value",
+              "value": "Marketplace: Subscription,Marketplace: Pickup"
+            }
+          ]
+        },
+        "selectedDomain": {
+          "label": "Finance"
+        },
+        "selectedDataMart": {
+          "label": "Unit-Economics"
+        }
+      },
+      "createdAt": "2024-10-11T20:44:28.618Z",
+      "createdBy": "Estelle.Peacock@doordash.com"
+    },
+    {
       "name": "Dasher Values",
       "is_template": true,
       "value": {
@@ -99,10 +541,7 @@
             "alias": "",
             "is_calculated_field": false,
             "calculated_field_statement": "",
-            "enum_values": [
-              "pending",
-              "completed"
-            ],
+            "enum_values": ["pending", "completed"],
             "isExpanded": true,
             "parentNodes": [
               {
@@ -196,10 +635,7 @@
             "alias": "",
             "is_calculated_field": false,
             "calculated_field_statement": "",
-            "enum_values": [
-              "pending",
-              "completed"
-            ],
+            "enum_values": ["pending", "completed"],
             "isExpanded": true,
             "parentNodes": [
               {

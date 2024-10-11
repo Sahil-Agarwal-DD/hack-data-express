@@ -14,6 +14,7 @@ export const Actions: React.FC<ActionsProps> = () => {
       showSql,
       queryExecutionState: queryExecuting,
       queryExecutionPayloads,
+      loadedSavedConfigName,
     },
   } = useDataExpressStore();
 
@@ -46,6 +47,7 @@ export const Actions: React.FC<ActionsProps> = () => {
             id: uuidv4(),
             status: "loading",
             seconds: 0,
+            loadedSavedConfigName,
           });
           setSelectedQueryTabIndex(Object.keys(queryExecutionPayloads).length);
           setShowSql(false);

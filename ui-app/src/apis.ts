@@ -27,3 +27,17 @@ export const fetchTemplates = () => {
       return v;
     });
 };
+
+/**
+ *
+ * @param name - this property should be remove later once demo is over
+ * @returns
+ */
+export const exeQuery = (name: string) => {
+  // const store = useDataExpressStore.getState();
+  return fetch(`${API_PATH}/data-express-model/execute-query?id=${name}`)
+    .then((v) => v.json())
+    .then((v) => {
+      return v;
+    });
+};
