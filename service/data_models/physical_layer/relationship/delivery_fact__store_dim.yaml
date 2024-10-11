@@ -1,0 +1,8 @@
+join_definition:
+  from_entity: delivery_fact
+  to_entity: store_dim
+  cardinality_type: OneToMany
+  join_key:
+    from_entity_key: delivery_fact.store_id
+    to_entity_key: store_dim.store_id
+  join_type: LEFT  # Type of join
