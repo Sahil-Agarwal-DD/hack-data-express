@@ -3,8 +3,6 @@ business_model:
   description: "DataMart for finance unit economics"
   datamart: unit-economics
   domain: finance
-  aggregate_mapping:
-    master_day: "proddb.public.firefly_measure_financials_agg_day"
   attributes:
     - name: Delivery ID
       mapping: delivery_id

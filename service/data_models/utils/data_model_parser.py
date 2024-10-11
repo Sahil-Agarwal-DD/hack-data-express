@@ -455,7 +455,6 @@ ALLOWED_LIST = ["unit_economics.yaml"]
 # Build Business DataModels and Save to file
 parse_and_save(ALLOWED_LIST)
 
-
 """
 all_logical_models = get_all_data_mart_definitions()
 business_model_obj = get_business_model_definitions("unit_economics.yaml", all_logical_models)
