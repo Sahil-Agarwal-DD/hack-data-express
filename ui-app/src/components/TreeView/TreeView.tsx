@@ -5,6 +5,7 @@ import { TreeViewContainer } from "./TreeView.styles";
 import { IconButton, Stack, Tooltip } from "@mui/material";
 import { ChevronRight, ExpandMore } from "@mui/icons-material";
 import { DbColumn } from "../DbColumn";
+import { DxTooltip } from "../CommonComponents";
 
 type TreeNodeItemPropsType = {
   node: TreeNode;
@@ -42,7 +43,7 @@ const TreeNodeItem: React.FC<TreeNodeItemPropsType> = ({
 
   return (
     <TreeViewContainer className="ml-4">
-      <Tooltip title={node.description} arrow>
+      <DxTooltip title={node.description} arrow>
         <div
           className={`node-item ${shouldHighlight ? "highlight" : ""}`}
           onClick={(e) => {
@@ -69,7 +70,7 @@ const TreeNodeItem: React.FC<TreeNodeItemPropsType> = ({
             <DbColumn node={node} />
           </Stack>
         </div>
-      </Tooltip>
+      </DxTooltip>
       {/* If open, render children recursively */}
       {hasChildren && isOpen && (
         <div className="pl-4">
