@@ -30,11 +30,15 @@ export const addParentPathsAndGetLeafNodes = (
 };
 
 export const getFullPathOfNode = (v: TreeNode) => {
-  const returnValue = `${
-    Array.isArray(v.parentNodes) && v.parentNodes.length > 0
-      ? `${v.parentNodes.map((v) => v.name).join("/")}/`
-      : ""
-  }${v.name}`;
+  let returnValue = "";
+  const parentNodes = v?.parentNodes || [];
+  const hasParentNodes = Array.isArray(parentNodes) && parentNodes.length > 0;
+
+  if (hasParentNodes) {
+    returnValue = `${parentNodes.map((v) => v.name).join("/")}/`;
+  }
+
+  returnValue = `${returnValue}${v.name}`;
 
   return returnValue;
 };
