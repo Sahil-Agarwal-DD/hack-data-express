@@ -72,26 +72,27 @@ class DataMartAttribute:
 
 
 class DataMartDefinition:
-    def __init__(self, version, description, driver_entity, attributes):
+    def __init__(self, version, description, datamart, driver_entity, attributes):
         self.version = version
         self.description = description
+        self.datamart = datamart
         self.driver_entity = driver_entity
         self.attributes = attributes
     def __repr__(self):
         return (f"DataMartDefinition(version={self.version!r}, description={self.description!r}, "
-                f"driver_entity={self.driver_entity!r}, attributes={self.attributes!r})")
+                f"datamart={self.datamart!r}, driver_entity={self.driver_entity!r}, "
+                f"attributes={self.attributes!r})")
 
 
 class FactJoinEntity:
-    def __init__(self, source, join_definition, child_entity):
+    def __init__(self, source, join_definition, child_entity, child_attribute=None):
         self.source = source
         self.join_definition = join_definition
         self.child_entity = child_entity
+        self.child_attribute = child_attribute
     def __repr__(self):
         return (f"FactJoinEntity(source={self.source!r}, join_definition={self.join_definition!r}, "
-                f"child_entity={self.child_entity!r})")
-
-
+                f"child_entity={self.child_entity!r}, child_attribute={self.child_attribute!r})")
 
 
 
@@ -239,9 +240,8 @@ def get_all_join_definitions():
     return join_definitions
 
 
-
 def __get_business_model_definitions(
-    relative_file_path: Text, section: Text, cls: Optional[Callable[..., Any]]
+    relative_file_path: Text, section: Text, cls: Optional[Callable[..., Any]], logical_datamodels=None
 ) -> List[Any]:
     file_path = relative_file_path
     with open(file_path, "r") as f:
@@ -258,10 +258,24 @@ def __get_business_model_definitions(
     if cls:
         data_model_config = cls(**yaml_data[section])
         attributes=[]
-        for attr in data_model_config.attributes:
-            attributes.append(Attribute(**attr))
-        data_model_config.attributes = attributes
         hierachical_entities = []
+        datamart_obj = logical_datamodels.get(data_model_config.datamart)
+        for attr in data_model_config.attributes:
+            if attr.get("mapping").startswith("@"):
+                map_entity_obj_name=attr.get("mapping").replace("@", "")
+                for datamart_attr in datamart_obj.attributes:
+                    if datamart_attr.name == map_entity_obj_name:
+                        if type(datamart_attr.source) == FactJoinEntity:
+                            hierachical_entities.append(HierarchicalEntity(datamart_attr.name, [Attribute(
+                                      name=physical_attr.name,
+                                      mapping=datamart_attr,
+                                      type=physical_attr.type,
+                                      description=physical_attr.description
+                                   ) for physical_attr in datamart_attr.source.child_entity.fields])
+                                                        )
+            else:
+                attributes.append(Attribute(**attr))
+        data_model_config.attributes = attributes
         if not data_model_config.hierarchical_entity:
             return data_model_config
         for parent, child_list in data_model_config.hierarchical_entity.items():
@@ -282,14 +296,14 @@ def __get_business_model_definitions(
 
 
 
-def get_business_model_definitions(model_name: Text) -> List[BusinessModelDefinition]:
+def get_business_model_definitions(model_name: Text, logical_datamodels=None) -> List[BusinessModelDefinition]:
     """
     :param relative_file_path:
     :return: Parses the Yaml and Returns list of  ColumnDefinition objects.
     """
     schema_file_path = "%s/%s" % (business_models_directory, model_name)
     return __get_business_model_definitions(
-        schema_file_path, "business_model", BusinessModelDefinition
+        schema_file_path, "business_model", BusinessModelDefinition, logical_datamodels
     )
 
 def _convert_attr_to_ui_model(attr):
@@ -343,21 +357,6 @@ def transform_config_to_ui_model(business_model_def: BusinessModelDefinition) ->
 
 
 
-
-def get_business_models(allowed_list):
-    """
-    :return: Returns the list of Business Models
-    """
-    business_models = []
-    for file in os.listdir(business_models_directory):
-        if file.endswith(".yaml"):
-            if file in allowed_list:
-                model_obj = get_business_model_definitions(file)
-                transformed_ui_model = transform_config_to_ui_model(model_obj)
-                business_models.append(transformed_ui_model)
-    return {"business_model": business_models}
-
-
 def __get_data_mart_definitions(relative_file_path: Text, section: Text, cls: Optional[Callable[..., Any]]
         ,join_definitions: Any, entity_definitions: Any
                                 ) -> List[Any]:
@@ -385,10 +384,20 @@ def __get_data_mart_definitions(relative_file_path: Text, section: Text, cls: Op
                 if attr_def.source.startswith("@"):
                     if not "." in attr_def.source:
                         joindef = join_definitions[attr_def.source.replace("@", "")]
-                        chidl_entitydef=entity_definitions[joindef.to_entity]
+                        child_entitydef=entity_definitions[joindef.to_entity]
                         attr_def.source = FactJoinEntity(source=attr_def.source,
                                                 join_definition=joindef,
-                                                child_entity=chidl_entitydef)
+                                                child_entity=child_entitydef)
+                    else:
+                        joindef = join_definitions[attr_def.source.replace("@", "")]
+                        child_entitydef=entity_definitions[joindef.to_entity]
+                        child_col=attr_def.source.split(".")[-1]
+                        attr_def.source = FactJoinEntity(source=attr_def.source,
+                                                join_definition=joindef,
+                                                child_entity=child_entitydef,
+                                                child_attribute=child_col)
+            else:
+                attr_def.source = entity_definitions[data_model_config.driver_entity]
         data_model_config.attributes = attributes
         return data_model_config
     return yaml_data[section]
@@ -406,6 +415,32 @@ def get_data_mart_definitions(datamart_file_name: Text) -> List[DataMartDefiniti
         file_path, "DataMart_Definition", DataMartDefinition, join_definitions, entity_definitions
     )
 
+def get_all_data_mart_definitions():
+    """
+    :return: Returns the list of logical data Models
+    """
+    datamart_definitions = defaultdict()
+    for file in os.listdir(logical_models_directory):
+        if file.endswith(".yaml"):
+            data_mart_obj = get_data_mart_definitions(file)
+            datamart_definitions[data_mart_obj.datamart]=data_mart_obj
+    return datamart_definitions
+
+
+def get_business_models(allowed_list):
+    """
+    :return: Returns the list of Business Models
+    """
+    business_models = []
+    all_logical_models = get_all_data_mart_definitions()
+    for file in os.listdir(business_models_directory):
+        if file.endswith(".yaml"):
+            if file in allowed_list:
+                model_obj = get_business_model_definitions(file, all_logical_models)
+                transformed_ui_model = transform_config_to_ui_model(model_obj)
+                business_models.append(transformed_ui_model)
+    return {"business_model": business_models}
+
 
 def save_all_models_to_file_for_ui(data, filename):
     with open(filename, 'w') as json_file:
@@ -421,6 +456,45 @@ ALLOWED_LIST = ["unit_economics.yaml"]
 parse_and_save(ALLOWED_LIST)
 
 
+"""
+all_logical_models = get_all_data_mart_definitions()
+business_model_obj = get_business_model_definitions("unit_economics.yaml", all_logical_models)
+print(business_model_obj)
+for attr in business_model_obj.attributes:
+    print(attr)
+for attr in business_model_obj.hierarchical_entity:
+    print(attr)
+    
+
+datamart_obj = all_logical_models.get(business_model_obj.datamart)
+for attr in business_model_obj.attributes:
+    if attr.mapping.startswith("@"):
+        map_entity_obj_name=attr.mapping.replace("@", "")
+        for datamart_attr in datamart_obj.attributes:
+            if datamart_attr.name == map_entity_obj_name:
+                if type(datamart_attr.source) == FactJoinEntity:
+                    print([Attribute(
+                              name=physical_attr.name,
+                              mapping=datamart_attr,
+                              type=physical_attr.type,
+                              description=physical_attr.description
+                           ) for physical_attr in datamart_attr.source.child_entity.fields])
+
+                #print(datmart_attr)
+        #print(all_logical_models.get(business_model_obj.datamart).attributes)
+    #print(attr)
+
+#print(all_logical_models.get(business_model_obj.datamart).attributes)
+"""
+
+"""
+all_logical_models = get_all_data_mart_definitions()
+for datamart, datamart_obj in all_logical_models.items():
+    print(datamart)
+    print(datamart_obj.driver_entity)
+    for attr in datamart_obj.attributes:
+        print(attr)
+"""
 
 """
 #DataMarts

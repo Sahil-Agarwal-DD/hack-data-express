@@ -139,7 +139,7 @@ def connect(
     connector = Connector(conn, profile, job_id)
     return connector
 
-def test_execute(sqls):
+def execute_snowflake_sql(sqls):
     # Connector is not reused here. Wrap in with to make sure connection is closed.
     with connect() as conn:
         with conn.cursor() as cur:
@@ -169,5 +169,5 @@ def extract_table_name_by_snf_explain(sql):
             return table_names
 
 #if __name__ == "__main__":
-#    test_execute(["SELECT STORE_ID, BUSINESS_ID, BUSINESS_NAME FROM EDW.FINANCE.DIMENSION_DELIVERIES LIMIT 10"])
+#    execute_snowflake_sql(["SELECT STORE_ID, BUSINESS_ID, BUSINESS_NAME FROM EDW.FINANCE.DIMENSION_DELIVERIES LIMIT 10"])
     # extract_table_name_by_snf_explain("select a.TIMESTAMP from  iguazu.consumer.m_card_view as a cross join iguazu.driver.cng_tracking_client_event_dasher where a.TIMESTAMP>'2024-10-09 01:00:00';")
