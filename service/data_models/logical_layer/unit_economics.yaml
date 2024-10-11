@@ -33,6 +33,33 @@ DataMart_Definition:
     - name: discounts
     - name: refund_credits_and_promotions
     - name: net_revenue
+    - name: auto_insurance_expense
+    - name: cancellations
+    - name: cost_of_gift_cards
+    - name: cost_of_lease_and_equipment
+    - name: courier_pay
+    - name: dasher_pay_on_cancellations
+    - name: dasher_pay_on_redeliveries
+    - name: drive_maas_management_fees
+    - name: fast_pay_fees
+    - name: inventory_costs
+    - name: middleware_provider_fee
+    - name: order_fullfillment_labor
+    - name: order_placement
+    - name: payment_processing_fees
+    - name: redeliveries
+    - name: release_of_mx_unpaid_liability
+    - name: royalties
+    - name: umbrella_insurance
+    - name: cost_of_sales
+    - name: support
+    - name: variable_profit
+    - name: des_facilities
+    - name: dasher_onboarding
+    - name: dasher_ppe
+    - name: dasher_subsidies
+    - name: internet_servers
+    - name: merchant_menu_cost
     - name: consumer
       source: "@delivery_fact__consumer_dim"
     - name: merchant

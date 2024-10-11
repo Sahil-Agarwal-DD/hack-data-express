@@ -68,3 +68,57 @@ entity_definition:
       type: numeric
     - name: net_revenue
       type: numeric
+    - name: auto_insurance_expense
+      type: numeric
+    - name: cancellations
+      type: numeric
+    - name: cost_of_gift_cards
+      type: numeric
+    - name: cost_of_lease_and_equipment
+      type: numeric
+    - name: courier_pay
+      type: numeric
+    - name: dasher_pay_on_cancellations
+      type: numeric
+    - name: dasher_pay_on_redeliveries
+      type: numeric
+    - name: drive_maas_management_fees
+      type: numeric
+    - name: fast_pay_fees
+      type: numeric
+    - name: inventory_costs
+      type: numeric
+    - name: middleware_provider_fee
+      type: numeric
+    - name: order_fullfillment_labor
+      type: numeric
+    - name: order_placement
+      type: numeric
+    - name: payment_processing_fees
+      type: numeric
+    - name: redeliveries
+      type: numeric
+    - name: release_of_mx_unpaid_liability
+      type: numeric
+    - name: royalties
+      type: numeric
+    - name: umbrella_insurance
+      type: numeric
+    - name: cost_of_sales
+      type: numeric
+    - name: support
+      type: numeric
+    - name: variable_profit
+      type: numeric
+    - name: des_facilities
+      type: numeric
+    - name: dasher_onboarding
+      type: numeric
+    - name: dasher_ppe
+      type: numeric
+    - name: dasher_subsidies
+      type: numeric
+    - name: internet_servers
+      type: numeric
+    - name: merchant_menu_cost
+      type: numeric

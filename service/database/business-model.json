@@ -617,6 +617,331 @@
                                         "children": []
                                     }
                                 ]
+                            },
+                            {
+                                "name": "Cost Of Sales",
+                                "type": "parent",
+                                "description": "",
+                                "alias": "",
+                                "is_calculated_field": false,
+                                "calculated_field_statement": "",
+                                "enum_values": [],
+                                "children": [
+                                    {
+                                        "name": "Auto Insurance Expense",
+                                        "type": null,
+                                        "description": "Auto insurance premium that DoorDash pays to 3rd parties to insure Dashers while they are active;Also includes auto loss reserve expense",
+                                        "alias": "",
+                                        "is_calculated_field": false,
+                                        "calculated_field_statement": "",
+                                        "enum_values": [],
+                                        "children": []
+                                    },
+                                    {
+                                        "name": "Cancellations",
+                                        "type": null,
+                                        "description": "Cost that DoorDash pays to the merchant for a canceled order",
+                                        "alias": "",
+                                        "is_calculated_field": false,
+                                        "calculated_field_statement": "",
+                                        "enum_values": [],
+                                        "children": []
+                                    },
+                                    {
+                                        "name": "Cost Of Gift Cards",
+                                        "type": null,
+                                        "description": "Cost that DoorDash pays to third party vendor as a fee for servicing our gift cards",
+                                        "alias": "",
+                                        "is_calculated_field": false,
+                                        "calculated_field_statement": "",
+                                        "enum_values": [],
+                                        "children": []
+                                    },
+                                    {
+                                        "name": "Cost Of Lease And Equipment",
+                                        "type": null,
+                                        "description": "Lease expense for DashMart facilities and ghost kitchens",
+                                        "alias": "",
+                                        "is_calculated_field": false,
+                                        "calculated_field_statement": "",
+                                        "enum_values": [],
+                                        "children": []
+                                    },
+                                    {
+                                        "name": "Courier Pay",
+                                        "type": null,
+                                        "description": "Wages that DoorDash pays to W2 couriers as part of DashForce (for 15 minute deliveries)",
+                                        "alias": "",
+                                        "is_calculated_field": false,
+                                        "calculated_field_statement": "",
+                                        "enum_values": [],
+                                        "children": []
+                                    },
+                                    {
+                                        "name": "Dasher Pay On Cancellations",
+                                        "type": null,
+                                        "description": "Pay that Dashers receive on canceled orders. Note that this cost is separate from the Dasher Base and Dasher Other lines in the Dasher Costs bucket, which only apply to completed/fulfilled orders.",
+                                        "alias": "",
+                                        "is_calculated_field": false,
+                                        "calculated_field_statement": "",
+                                        "enum_values": [],
+                                        "children": []
+                                    },
+                                    {
+                                        "name": "Dasher Pay On Redeliveries",
+                                        "type": null,
+                                        "description": "Pay that Dashers receieve on redelivered orders. Note that this cost is separate from the Dasher Base and Dasher Other lines in the Dasher Costs bucket, which only apply to the original order.",
+                                        "alias": "",
+                                        "is_calculated_field": false,
+                                        "calculated_field_statement": "",
+                                        "enum_values": [],
+                                        "children": []
+                                    },
+                                    {
+                                        "name": "Drive Maas Management Fees",
+                                        "type": null,
+                                        "description": "Management fee that DoorDash pays for Drive MaaS Advertising",
+                                        "alias": "",
+                                        "is_calculated_field": false,
+                                        "calculated_field_statement": "",
+                                        "enum_values": [],
+                                        "children": []
+                                    },
+                                    {
+                                        "name": "Fast Pay Fees",
+                                        "type": null,
+                                        "description": "Payment processing fees that DoorDash pays in order to offer Dashers the Fast Pay service (instant deposit)",
+                                        "alias": "",
+                                        "is_calculated_field": false,
+                                        "calculated_field_statement": "",
+                                        "enum_values": [],
+                                        "children": []
+                                    },
+                                    {
+                                        "name": "Inventory Costs",
+                                        "type": null,
+                                        "description": "Cost of inventory that is sold through DashMart",
+                                        "alias": "",
+                                        "is_calculated_field": false,
+                                        "calculated_field_statement": "",
+                                        "enum_values": [],
+                                        "children": []
+                                    },
+                                    {
+                                        "name": "Middleware Provider Fee",
+                                        "type": null,
+                                        "description": "Integration fees that DoorDash pays to middleware providers",
+                                        "alias": "",
+                                        "is_calculated_field": false,
+                                        "calculated_field_statement": "",
+                                        "enum_values": [],
+                                        "children": []
+                                    },
+                                    {
+                                        "name": "Order Fullfillment Labor",
+                                        "type": null,
+                                        "description": "Labor costs for the labor force that DoorDash employs for DashMart and ghost kitchens.",
+                                        "alias": "",
+                                        "is_calculated_field": false,
+                                        "calculated_field_statement": "",
+                                        "enum_values": [],
+                                        "children": []
+                                    },
+                                    {
+                                        "name": "Order Placement",
+                                        "type": null,
+                                        "description": "Cost that DoorDash pays to agents/vendors/automated services that place orders to non-partner merchants",
+                                        "alias": "",
+                                        "is_calculated_field": false,
+                                        "calculated_field_statement": "",
+                                        "enum_values": [],
+                                        "children": []
+                                    },
+                                    {
+                                        "name": "Payment Processing Fees",
+                                        "type": null,
+                                        "description": "Payment processing fees that DoorDash pays",
+                                        "alias": "",
+                                        "is_calculated_field": false,
+                                        "calculated_field_statement": "",
+                                        "enum_values": [],
+                                        "children": []
+                                    },
+                                    {
+                                        "name": "Redeliveries",
+                                        "type": null,
+                                        "description": "Cost (subtotal + tax) of redelivering an order to consumer",
+                                        "alias": "",
+                                        "is_calculated_field": false,
+                                        "calculated_field_statement": "",
+                                        "enum_values": [],
+                                        "children": []
+                                    },
+                                    {
+                                        "name": "Release Of  Mx Unpaid Liability",
+                                        "type": null,
+                                        "description": "Release of cash balance (liability) on balance sheet that is set aside to pay merchants that claim to be unpaid",
+                                        "alias": "",
+                                        "is_calculated_field": false,
+                                        "calculated_field_statement": "",
+                                        "enum_values": [],
+                                        "children": []
+                                    },
+                                    {
+                                        "name": "Royalties",
+                                        "type": null,
+                                        "description": "Royalty revenue that DoorDash receives from Marqeta (Red Card provider) as a revenue share for running transaction volume through their platform (% of GOV)",
+                                        "alias": "",
+                                        "is_calculated_field": false,
+                                        "calculated_field_statement": "",
+                                        "enum_values": [],
+                                        "children": []
+                                    },
+                                    {
+                                        "name": "Umbrella Insurance",
+                                        "type": null,
+                                        "description": "Insurance premium that DoorDash pays for umbrella insurance - additional insurance that provides protection beyond existing limits and coverages of other policies",
+                                        "alias": "",
+                                        "is_calculated_field": false,
+                                        "calculated_field_statement": "",
+                                        "enum_values": [],
+                                        "children": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Total Cost Of Sales",
+                                "type": "parent",
+                                "description": "",
+                                "alias": "",
+                                "is_calculated_field": false,
+                                "calculated_field_statement": "",
+                                "enum_values": [],
+                                "children": [
+                                    {
+                                        "name": "Total Cost of Sales",
+                                        "type": null,
+                                        "description": "COGS",
+                                        "alias": "",
+                                        "is_calculated_field": false,
+                                        "calculated_field_statement": "",
+                                        "enum_values": [],
+                                        "children": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Support",
+                                "type": "parent",
+                                "description": "",
+                                "alias": "",
+                                "is_calculated_field": false,
+                                "calculated_field_statement": "",
+                                "enum_values": [],
+                                "children": [
+                                    {
+                                        "name": "Support",
+                                        "type": null,
+                                        "description": "Cost of support agents and technology costs (e.g. Salesforce)",
+                                        "alias": "",
+                                        "is_calculated_field": false,
+                                        "calculated_field_statement": "",
+                                        "enum_values": [],
+                                        "children": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Variable Profit",
+                                "type": "parent",
+                                "description": "",
+                                "alias": "",
+                                "is_calculated_field": false,
+                                "calculated_field_statement": "",
+                                "enum_values": [],
+                                "children": [
+                                    {
+                                        "name": "Variable Profit",
+                                        "type": null,
+                                        "description": "Revenue - Cost of Sales - Redeliveries - Support",
+                                        "alias": "",
+                                        "is_calculated_field": false,
+                                        "calculated_field_statement": "",
+                                        "enum_values": [],
+                                        "children": []
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Ops & Support/Variable Opex",
+                                "type": "parent",
+                                "description": "",
+                                "alias": "",
+                                "is_calculated_field": false,
+                                "calculated_field_statement": "",
+                                "enum_values": [],
+                                "children": [
+                                    {
+                                        "name": "DES Facilities",
+                                        "type": null,
+                                        "description": "Legacy",
+                                        "alias": "",
+                                        "is_calculated_field": false,
+                                        "calculated_field_statement": "",
+                                        "enum_values": [],
+                                        "children": []
+                                    },
+                                    {
+                                        "name": "Dasher Onboarding",
+                                        "type": null,
+                                        "description": "Costs for services associated with onboarding new Dashers (primarily background checks)",
+                                        "alias": "",
+                                        "is_calculated_field": false,
+                                        "calculated_field_statement": "",
+                                        "enum_values": [],
+                                        "children": []
+                                    },
+                                    {
+                                        "name": "Dasher PPE",
+                                        "type": null,
+                                        "description": "Costs of personal protective equipment (PPE) that DoorDash provides Dashers as a response to COVID (e.g. masks, wipes, sanitizer, gloves, etc.)",
+                                        "alias": "",
+                                        "is_calculated_field": false,
+                                        "calculated_field_statement": "",
+                                        "enum_values": [],
+                                        "children": []
+                                    },
+                                    {
+                                        "name": "Dasher Subsidies",
+                                        "type": null,
+                                        "description": "Subsidies that DoorDash pays Dashers (i.e. sick pay)",
+                                        "alias": "",
+                                        "is_calculated_field": false,
+                                        "calculated_field_statement": "",
+                                        "enum_values": [],
+                                        "children": []
+                                    },
+                                    {
+                                        "name": "Internet Servers",
+                                        "type": null,
+                                        "description": "Platform costs for hosting the website/app (e.g. AWS)",
+                                        "alias": "",
+                                        "is_calculated_field": false,
+                                        "calculated_field_statement": "",
+                                        "enum_values": [],
+                                        "children": []
+                                    },
+                                    {
+                                        "name": "Merchant Menu Cost",
+                                        "type": null,
+                                        "description": "Cost of getting/updating a merchants menu onto our app/platform",
+                                        "alias": "",
+                                        "is_calculated_field": false,
+                                        "calculated_field_statement": "",
+                                        "enum_values": [],
+                                        "children": []
+                                    }
+                                ]
                             }
                         ]
                     }
