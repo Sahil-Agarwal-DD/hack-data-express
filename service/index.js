@@ -81,11 +81,19 @@ app.get("/business-model/:domain/:datamart", (req, res) => {
   const rawData = fs.readFileSync(business_model, "utf8");
   const json_key = domain + "-" + datamart;
   const data = JSON.parse(rawData);
+
+  required_business_model = {}
+  data["business_model"].forEach(item => {
+      if (json_key in item) {
+          required_business_model = item[json_key]
+      }
+  });
+
   if (data["business_model"]) {
     res.json({
       domain: domain,
       datamart: datamart,
-      business_model: data["business_model"][0][json_key],
+      business_model: required_business_model,
     });
   } else {
     res.status(404).json({

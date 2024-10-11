@@ -2,6 +2,7 @@
   "data_express_model": [
     {
       "name": "Dasher Values",
+      "is_template": true,
       "value": {
         "selectedColumns": {
           "Dasher Base Pay": {
@@ -68,6 +69,7 @@
     },
     {
       "name": "Dasher with enum",
+      "is_template": true,
       "value": {
         "selectedColumns": {
           "Dasher Base Pay": {
@@ -291,6 +293,7 @@
     },
     {
       "name": "new case drop",
+      "is_template": true,
       "value": {
         "selectedColumns": {
           "Dasher Base Pay": {
