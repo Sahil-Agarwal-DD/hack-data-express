@@ -57,6 +57,28 @@ class BusinessModelDefinition:
                 f"datamart={self.datamart!r}, domain={self.domain!r}, "
                 f"attributes={self.attributes!r}, hierarchical_entity={self.hierarchical_entity!r})")
 
+class DataMartAttribute:
+    def __init__(self, name, type=None, description=None, source=None):
+        self.name = name
+        self.type = type
+        self.description = description
+        self.source = source
+    def __repr__(self):
+        return (f"DataMartAttribute(name={self.name!r}, type={self.type!r}, "
+                f"description={self.description!r}, source={self.source!r}, "
+                )
+
+
+class DataMartDefinition:
+    def __init__(self, version, description, driver_entity, attributes):
+        self.version = version
+        self.description = description
+        self.driver_entity = driver_entity
+        self.attributes = attributes
+    def __repr__(self):
+        return (f"DataMartDefinition(version={self.version!r}, description={self.description!r}, "
+                f"driver_entity={self.driver_entity!r}, attributes={self.attributes!r})")
+
 
 def __get_business_model_definitions(
     relative_file_path: Text, section: Text, cls: Optional[Callable[..., Any]]
