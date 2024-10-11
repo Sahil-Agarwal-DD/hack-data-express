@@ -23,7 +23,7 @@ export const FilterPane: React.FC = () => {
     <PaneStackChildren>
       <PaneTitle>
         <Stack>
-          <span>Filter Pane</span>
+          <b>Filter Pane</b>
         </Stack>
       </PaneTitle>
       <PaneBody>

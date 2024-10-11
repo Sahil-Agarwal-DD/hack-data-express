@@ -13,7 +13,6 @@ import { Stack, Typography } from "@mui/material";
 import { CalculatedComponents } from "../../CalculatedComponents";
 import cloneDeep from "lodash/cloneDeep";
 import { API_PATH } from "../../../constants";
-import { orderBy } from "lodash";
 
 export const DiscoveryPane: React.FC = () => {
   const setSelectedColumns = useDataExpressStore(
@@ -52,7 +51,9 @@ export const DiscoveryPane: React.FC = () => {
       <PaneStackChildren>
         <PaneTitle>
           <Stack>
-            <Typography variant="body1">Discovery Pane</Typography>
+            <Typography variant="body1">
+              <b>Discovery Pane</b>
+            </Typography>
             <Typography variant="caption">
               Click on the Item to move/remove to and from selection pane
             </Typography>

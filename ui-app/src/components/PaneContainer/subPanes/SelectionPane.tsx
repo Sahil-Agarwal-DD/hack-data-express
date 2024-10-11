@@ -98,7 +98,7 @@ export const SelectionPane: React.FC = () => {
   return (
     <PaneStackChildren>
       <PaneTitle>
-        <span>Selection Pane</span>
+        <b>Selection Pane</b>
       </PaneTitle>
       <PaneBody>
         <Stack direction="column" spacing={1} sx={{ mb: 1 }}>

@@ -14,7 +14,7 @@ export const PaneStackChildren = styled.div`
 export const PaneTitle = styled.div`
   display: flex;
   align-items: center;
-  background-color: #ccc;
+  background-color: #eee;
   height: 60px;
   padding: 10px;
   width: 100%;
