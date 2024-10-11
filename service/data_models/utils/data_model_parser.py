@@ -398,6 +398,8 @@ def __get_data_mart_definitions(relative_file_path: Text, section: Text, cls: Op
                                                 join_definition=joindef,
                                                 child_entity=child_entitydef,
                                                 child_attribute=child_col)
+            else:
+                attr_def.source = entity_definitions[data_model_config.driver_entity]
         data_model_config.attributes = attributes
         return data_model_config
     return yaml_data[section]
@@ -439,17 +441,36 @@ def parse_and_save(allowed_list):
 ALLOWED_LIST = ["unit_economics.yaml"]
 # Build Business DataModels and Save to file
 #parse_and_save(ALLOWED_LIST)
+all_logical_models = get_all_data_mart_definitions()
+business_model_obj = get_business_model_definitions("unit_economics.yaml")
+datamart_obj = all_logical_models.get(business_model_obj.datamart)
+for attr in business_model_obj.attributes:
+    if attr.mapping.startswith("@"):
+        map_entity_obj_name=attr.mapping.replace("@", "")
+        for datamart_attr in datamart_obj.attributes:
+            if datamart_attr.name == map_entity_obj_name:
+                if type(datamart_attr.source) == FactJoinEntity:
+                    print([Attribute(
+                              name=physical_attr.name,
+                              mapping=datamart_attr,
+                              type=physical_attr.type,
+                              description=physical_attr.description
+                           ) for physical_attr in datamart_attr.source.child_entity.fields])
 
-#data = get_data_mart_definitions("unit_economics.yaml")
-#for attr in data.attributes:
-#    print(attr)
+                #print(datmart_attr)
+        #print(all_logical_models.get(business_model_obj.datamart).attributes)
+    #print(attr)
 
+#print(all_logical_models.get(business_model_obj.datamart).attributes)
+
+"""
 all_logical_models = get_all_data_mart_definitions()
 for datamart, datamart_obj in all_logical_models.items():
     print(datamart)
     print(datamart_obj.driver_entity)
     for attr in datamart_obj.attributes:
         print(attr)
+"""
 
 """
 #DataMarts
