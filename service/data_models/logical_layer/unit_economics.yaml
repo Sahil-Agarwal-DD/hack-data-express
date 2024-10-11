@@ -1,0 +1,29 @@
+DataMart_Definition:
+  version: 1
+  description: "DataMart for finance unit economics"
+  driver_entity: delivery_fact
+  attributes:
+    - name: delivery_id
+    - name: active_date
+    - name: created_at
+    - name: line_of_business
+    - name: gov
+    - name: total_refunds
+    - name: support_credits
+    - name: credit_issuance_expense
+    - name: fast_pay_revenue
+    - name: dasher_base_pay
+    - name: dasher_costs
+    - name: dasher_referrals
+    - name: dasher_incentive_pay
+    - name: consumer
+      source: "@delivery_fact__consumer_dim"
+    - name: merchant
+      source: "@delivery_fact__store_dim"
+
+
+
+
+
+
+
