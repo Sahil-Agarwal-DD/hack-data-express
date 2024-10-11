@@ -171,6 +171,44 @@ app.get("/data-express-model/:model_name", (req, res) => {
     });
   }
 });
+
+// Endpoint to execute query
+
+app.get("/data-express-model/execute-query", (req, res) => {
+  const query_json = req.body; // Get the JSON data from the request body
+  // build the query
+  // query = get_query(query_json);
+  // call snowflake connect and pass the query to execute
+  // conn = snow.connect()
+  // cur = conn.cursor()
+//  try:
+//          # Execute a query
+//          cur.execute("SELECT * FROM your_table_name")
+//
+//          # Fetch all results from the executed query
+//          results = cur.fetchall()
+//
+//          # Convert results to a list of dictionaries
+//          columns = [desc[0] for desc in cur.description]
+//          data = [dict(zip(columns, row)) for row in results]
+//
+//          # Print the results as a JSON string
+//          print(json.dumps(data))
+//
+//      finally:
+//          # Close the cursor and connection
+//          cur.close()
+//          conn.close()
+// get columns data from the cur description
+//    columns = [desc[0] for desc in cur.description]
+//    // parse the results to a list of dictionaries
+//    data = [dict(zip(columns, row)) for row in results]
+
+    res.json({
+      resultset: json.dumps(data),
+    });
+}
+
 // Start the server
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
