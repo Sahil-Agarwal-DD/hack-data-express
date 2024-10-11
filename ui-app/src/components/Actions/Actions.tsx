@@ -1,16 +1,20 @@
 import { Button, Stack } from "@mui/material";
 import * as React from "react";
 import { useDataExpressStore } from "../../stores/useDataExpressStore";
+import { v4 as uuidv4 } from "uuid";
 
 interface ActionsProps {}
 
 export const Actions: React.FC<ActionsProps> = () => {
   const {
     setShowSql,
-    setQueryExecuting,
-    setQueryResultsTabs,
+    setQueryExecutionPayload,
     setSelectedQueryTabIndex,
-    values: { showSql, queryExecutionState: queryExecuting, queryResultsTabs },
+    values: {
+      showSql,
+      queryExecutionState: queryExecuting,
+      queryExecutionPayloads,
+    },
   } = useDataExpressStore();
 
   return (
@@ -38,15 +42,16 @@ export const Actions: React.FC<ActionsProps> = () => {
       <Button
         variant="outlined"
         onClick={() => {
-          setQueryExecuting(
-            queryExecuting === "loading" ? "stopped" : "loading"
-          );
-          setQueryResultsTabs(queryResultsTabs + 1);
-          setSelectedQueryTabIndex(queryResultsTabs);
+          setQueryExecutionPayload({
+            id: uuidv4(),
+            status: "loading",
+            seconds: 0,
+          });
+          setSelectedQueryTabIndex(Object.keys(queryExecutionPayloads).length);
           setShowSql(false);
         }}
       >
-        {queryExecuting === "loading" ? "Stop" : "Execute"}
+        Execute
       </Button>
     </Stack>
   );

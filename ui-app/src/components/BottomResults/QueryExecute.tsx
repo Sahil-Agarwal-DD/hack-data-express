@@ -1,8 +1,17 @@
 import * as React from "react";
 import { useDataExpressStore } from "../../stores/useDataExpressStore";
-import { Stack, CircularProgress, Box, Tab, Tabs } from "@mui/material";
-import { QueryResults } from "./QueryResults";
-
+import {
+  Box,
+  Divider,
+  IconButton,
+  Stack,
+  Tab,
+  Tabs,
+  Typography,
+} from "@mui/material";
+import { QueryExecuteContainer } from "./QueryExecuteContainer";
+import { QueryExecuteTracker } from "./QueryExecuteTracker";
+import CloseIcon from "@mui/icons-material/Close";
 interface TabPanelProps {
   children?: React.ReactNode;
   index: number;
@@ -34,93 +43,69 @@ interface QueryExecuteProps {}
 
 export const QueryExecute: React.FC<QueryExecuteProps> = () => {
   const {
-    values: {
-      queryExecutionState: queryExecuting,
-      queryResultsTabs,
-      selectedQueryTabIndex: tabIndex,
-    },
-    setQueryExecuting,
+    values: { queryExecutionPayloads, selectedQueryTabIndex: tabIndex },
     setSelectedQueryTabIndex: setTabIndex,
+    removeQueryExecutionPayload,
   } = useDataExpressStore();
 
-  const totalTabs = React.useMemo(
-    () => Array.from({ length: queryResultsTabs }, (_, index) => index),
-    [queryResultsTabs]
-  );
-  const [seconds, setSeconds] = React.useState(0);
-
-  React.useEffect(() => {
-    let timer: string | number | NodeJS.Timer | undefined;
-
-    timer = setInterval(() => {
-      if (queryExecuting !== "loading") {
-        clearTimeout(timer);
-        setSeconds(0);
-      } else {
-        setSeconds((v) => v + 1);
-      }
-    }, 1000);
-
-    return () => {
-      clearInterval(timer);
-    };
-  }, [queryExecuting]);
-
-  React.useEffect(() => {
-    if (seconds === 5) {
-      setSeconds(0);
-      setQueryExecuting("success");
-    }
-  }, [seconds]);
+  const queryExecPayloads = React.useMemo(() => {
+    return Object.values(queryExecutionPayloads || {});
+  }, [queryExecutionPayloads]);
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setTabIndex(newValue);
   };
 
+  if (queryExecPayloads.length === 0) {
+    return null;
+  }
+
   return (
-    <Box sx={{ width: "100%" }}>
-      <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-        <Tabs
-          value={tabIndex}
-          onChange={handleChange}
-          aria-label="basic tabs example"
-        >
-          {totalTabs.map((v, i) => (
-            <Tab label={`Query ${v + 1}`} {...a11yProps(i)} />
-          ))}
-        </Tabs>
+    <>
+      <Divider />
+      <Box sx={{ width: "100%" }}>
+        <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+          <Tabs
+            value={tabIndex}
+            onChange={handleChange}
+            aria-label="basic tabs example"
+          >
+            {queryExecPayloads.map((v, i) => (
+              <Tab
+                key={v.id}
+                label={
+                  <Stack
+                    direction={"row"}
+                    sx={{
+                      alignItems: "center",
+                    }}
+                  >
+                    <Typography variant="body2">{`Query ${i + 1}`}</Typography>
+                    <IconButton
+                      aria-label="delete"
+                      size="small"
+                      onClick={() => {
+                        removeQueryExecutionPayload(v.id);
+                      }}
+                    >
+                      <CloseIcon fontSize="small" />
+                    </IconButton>
+                  </Stack>
+                }
+                {...a11yProps(i)}
+              />
+            ))}
+          </Tabs>
+        </Box>
+        {queryExecPayloads.map((v, i) => (
+          <CustomTabPanel key={v.id} value={tabIndex} index={i}>
+            <QueryExecuteContainer queryExecutionPayload={v} />
+          </CustomTabPanel>
+        ))}
+        {queryExecPayloads.map((v) => (
+          <QueryExecuteTracker key={v.id} queryExecutionPayload={v} />
+        ))}
       </Box>
-      {totalTabs.map((v, i) => (
-        <CustomTabPanel value={tabIndex} index={i}>
-          {queryExecuting === "loading" && (
-            <Stack
-              style={{
-                height: "30vh",
-                width: "100%",
-                border: "1px solid #ccc",
-              }}
-              justifyContent={"center"}
-              alignItems={"center"}
-            >
-              <CircularProgress />
-              {seconds}
-            </Stack>
-          )}
-          {queryExecuting === "success" && (
-            <Stack
-              style={{
-                width: "100%",
-                border: "1px solid #ccc",
-                overflow: "auto",
-              }}
-              justifyContent={"center"}
-              alignItems={"center"}
-            >
-              <QueryResults />
-            </Stack>
-          )}
-        </CustomTabPanel>
-      ))}
-    </Box>
+    </>
   );
 };

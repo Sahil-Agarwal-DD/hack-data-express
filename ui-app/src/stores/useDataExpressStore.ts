@@ -3,7 +3,13 @@ import { RuleGroupTypeAny } from "react-querybuilder";
 import { create } from "zustand";
 import { createJSONStorage, devtools, persist } from "zustand/middleware";
 import { immer } from "zustand/middleware/immer";
-import { CalculatedColumn, DataMart, Domain, QueryTemplate } from "../types";
+import {
+  CalculatedColumn,
+  DataMart,
+  Domain,
+  QueryExecutionPayload,
+  QueryTemplate,
+} from "../types";
 import { TreeNode } from "../components/TreeView/type";
 import { cloneDeep } from "lodash";
 
@@ -27,6 +33,7 @@ type useDataExpressStoreTypeValues = {
   selectedQueryTabIndex: number;
   QueryTemplate: QueryTemplate[];
   selectedQueryTemplate?: QueryTemplate | null;
+  queryExecutionPayloads: Record<string, QueryExecutionPayload>;
 };
 type useDataExpressStoreType = {
   values: useDataExpressStoreTypeValues;
@@ -51,6 +58,8 @@ type useDataExpressStoreType = {
   setSelectedQueryTabIndex: (val: number) => void;
   setQueryTemplates: (value: QueryTemplate[]) => void;
   setSelectedQueryTemplate: (value: QueryTemplate | null) => void;
+  setQueryExecutionPayload: (value: QueryExecutionPayload) => void;
+  removeQueryExecutionPayload: (id: string) => void;
 };
 
 const initialValues: useDataExpressStoreTypeValues = {
@@ -80,6 +89,7 @@ const initialValues: useDataExpressStoreTypeValues = {
   selectedQueryTabIndex: 0,
   QueryTemplate: [],
   selectedQueryTemplate: null,
+  queryExecutionPayloads: {},
 };
 
 export const useDataExpressStore = create<useDataExpressStoreType>()(
@@ -100,6 +110,24 @@ export const useDataExpressStore = create<useDataExpressStoreType>()(
         setShowSql(val: boolean) {
           set((state) => {
             state.values.showSql = val;
+          });
+        },
+        setQueryExecutionPayload(value: QueryExecutionPayload) {
+          set((state) => {
+            state.values.queryExecutionPayloads[value.id] = value;
+          });
+        },
+        removeQueryExecutionPayload(id: string) {
+          set((state) => {
+            state.values.queryExecutionPayloads = {
+              ...omit(state.values.queryExecutionPayloads, id),
+            };
+
+            const totalTabs = Object.keys(
+              state.values.queryExecutionPayloads
+            ).length;
+            state.values.selectedQueryTabIndex =
+              totalTabs > 0 ? totalTabs - 1 : 0;
           });
         },
         setQueryExecuting(val: QueryExecutionState) {
