@@ -1,6 +1,7 @@
 DataMart_Definition:
   version: 1
   description: "DataMart for finance unit economics"
+  datamart: unit-economics
   driver_entity: delivery_fact
   attributes:
     - name: delivery_id
