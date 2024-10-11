@@ -3,6 +3,8 @@ business_model:
   description: "DataMart for finance unit economics"
   datamart: unit-economics
   domain: finance
+  aggregate_mapping:
+    master_day: "proddb.public.firefly_measure_financials_agg_day"
   attributes:
     - name: Delivery ID
       mapping: delivery_id
@@ -79,7 +81,7 @@ business_model:
         expr: YEAR([created_at])
         description: Year based on when the delivery was created by the customer (UTC)
         type: number
-    financials:
+    Financials:
       - name: Gov
         mapping: gov
         description: Gross Order Value.Sum of cash inflow that DoorDash generates that comes from consumers (end users) i.e Subtotal + Tax + Tip + Cx Fees
