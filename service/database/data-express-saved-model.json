@@ -463,6 +463,119 @@
       },
       "createdAt": "2024-10-10T19:32:58.367Z",
       "createdBy": "Amy.Bosman@doordash.com"
+    },
+    {
+      "name": "for demo",
+      "value": {
+        "selectedColumns": {
+          "Active Date": {
+            "name": "Active Date",
+            "type": "date",
+            "description": "based on quoted delivery time, in Local Timezone",
+            "alias": "",
+            "is_calculated_field": false,
+            "calculated_field_statement": "",
+            "enum_values": [],
+            "children": [],
+            "isExpanded": false,
+            "enumValues": [],
+            "parentNodes": [],
+            "parentPath": "Active Date"
+          },
+          "financials/Gov": {
+            "name": "Gov",
+            "type": "numeric",
+            "description": "Gross Order Value.Sum of cash inflow that DoorDash generates that comes from consumers (end users) i.e Subtotal + Tax + Tip + Cx Fees",
+            "alias": "",
+            "is_calculated_field": false,
+            "calculated_field_statement": "",
+            "enum_values": [],
+            "children": [],
+            "isExpanded": false,
+            "enumValues": [],
+            "parentNodes": [
+              {
+                "name": "financials",
+                "type": "parent",
+                "description": "",
+                "alias": "",
+                "is_calculated_field": false,
+                "calculated_field_statement": "",
+                "enum_values": [],
+                "isExpanded": false,
+                "enumValues": []
+              }
+            ],
+            "parentPath": "financials/Gov"
+          },
+          "financials/Dasher Costs/Dasher Base Pay": {
+            "name": "Dasher Base Pay",
+            "type": "numeric",
+            "description": "Base pay our Dashers receive for fulfilling an order",
+            "alias": "",
+            "is_calculated_field": false,
+            "calculated_field_statement": "",
+            "enum_values": [],
+            "children": [],
+            "isExpanded": false,
+            "enumValues": [],
+            "parentNodes": [
+              {
+                "name": "financials",
+                "type": "parent",
+                "description": "",
+                "alias": "",
+                "is_calculated_field": false,
+                "calculated_field_statement": "",
+                "enum_values": [],
+                "isExpanded": false,
+                "enumValues": []
+              },
+              {
+                "name": "Dasher Costs",
+                "type": "parent",
+                "description": "",
+                "alias": "",
+                "is_calculated_field": false,
+                "calculated_field_statement": "",
+                "enum_values": [],
+                "isExpanded": false,
+                "enumValues": []
+              }
+            ],
+            "parentPath": "financials/Dasher Costs/Dasher Base Pay"
+          }
+        },
+        "calculatedComponents": {},
+        "query": {
+          "combinator": "and",
+          "rules": [
+            {
+              "id": "89dd9d8b-4ae4-49b8-854b-eede8da88c64",
+              "field": "lob",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "Subscription - CAV"
+            },
+            {
+              "id": "4dceb635-4902-465d-b52d-c13e1bc6bbc8",
+              "field": "Active Date",
+              "operator": "=",
+              "valueSource": "value",
+              "value": "2024-10-01"
+            }
+          ],
+          "id": "2c91a94d-9330-4923-8c10-03fed2a10b37"
+        },
+        "selectedDomain": {
+          "label": "finance"
+        },
+        "selectedDataMart": {
+          "label": "unit-economics"
+        }
+      },
+      "createdAt": "2024-10-11T06:13:46.000Z",
+      "createdBy": "Henry.Menichetti@doordash.com"
     }
   ]
 }

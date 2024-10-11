@@ -1,6 +1,7 @@
 export type TreeNode = {
   name: string;
   parentNodes?: TreeNode[];
+  parentPath: string;
   alias?: string;
   type?: string;
   description?: string;

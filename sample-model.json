@@ -1,0 +1,106 @@
+{
+  "selectedColumns": {
+    "Active Date": {
+      "name": "Active Date",
+      //   "aggfun": "sum",
+      //   "period": "sum",
+      "type": "date",
+      "description": "based on quoted delivery time, in Local Timezone",
+      "alias": "",
+      "is_calculated_field": false,
+      "calculated_field_statement": "",
+      "enum_values": [],
+      "children": [],
+      "isExpanded": false,
+      "enumValues": [],
+      "parentNodes": []
+    },
+    "financials/Gov": {
+      "name": "financials/Gov",
+      "type": "numeric",
+      "description": "Gross Order Value.Sum of cash inflow that DoorDash generates that comes from consumers (end users) i.e Subtotal + Tax + Tip + Cx Fees",
+      "alias": "",
+      "is_calculated_field": false,
+      "calculated_field_statement": "",
+      "enum_values": [],
+      "children": [],
+      "isExpanded": false,
+      "enumValues": [],
+      "parentNodes": [
+        {
+          "name": "financials",
+          "type": "parent",
+          "description": "",
+          "alias": "",
+          "is_calculated_field": false,
+          "calculated_field_statement": "",
+          "enum_values": [],
+          "isExpanded": false,
+          "enumValues": []
+        }
+      ]
+    },
+    "financials/Dasher Costs/Dasher Base Pay": {
+      "name": "financials/Dasher Costs/Dasher Base Pay",
+      "type": "numeric",
+      "description": "Base pay our Dashers receive for fulfilling an order",
+      "alias": "",
+      "is_calculated_field": false,
+      "calculated_field_statement": "",
+      "enum_values": [],
+      "children": [],
+      "isExpanded": false,
+      "enumValues": [],
+      "parentNodes": [
+        {
+          "name": "financials",
+          "type": "parent",
+          "description": "",
+          "alias": "",
+          "is_calculated_field": false,
+          "calculated_field_statement": "",
+          "enum_values": [],
+          "isExpanded": false,
+          "enumValues": []
+        },
+        {
+          "name": "Dasher Costs",
+          "type": "parent",
+          "description": "",
+          "alias": "",
+          "is_calculated_field": false,
+          "calculated_field_statement": "",
+          "enum_values": [],
+          "isExpanded": false,
+          "enumValues": []
+        }
+      ]
+    }
+  },
+  "query": {
+    "combinator": "and",
+    "rules": [
+      {
+        "id": "624fae13-a80a-4ff1-988c-d219c29b4d5e",
+        "field": "lob",
+        "operator": "=",
+        "valueSource": "value",
+        "value": "Subscription - CAV"
+      },
+      {
+        "id": "d058bf43-322a-45a0-a01d-d7300defb208",
+        "field": "Active Date",
+        "operator": ">=",
+        "valueSource": "value",
+        "value": "2024-10-01"
+      }
+    ],
+    "id": "3defe683-8c29-4a85-a926-6768bb8fd052"
+  },
+  "selectedDomain": {
+    "label": "finance"
+  },
+  "selectedDataMart": {
+    "label": "unit-economics"
+  }
+}

@@ -122,16 +122,16 @@ export const useDataExpressStore = create<useDataExpressStoreType>()(
         },
         setSelectedColumns(value: TreeNode) {
           set((state) => {
-            if (state.values.selectedColumns[value.name]) {
+            if (state.values.selectedColumns[value.parentPath]) {
               // remove if already exists
               state.values.selectedColumns = {
-                ...omit(state.values.selectedColumns, value.name),
+                ...omit(state.values.selectedColumns, value.parentPath),
               };
             } else {
               // add if not exists
               state.values.selectedColumns = {
                 ...state.values.selectedColumns,
-                [value.name]: value,
+                [value.parentPath]: value,
               };
             }
           });
