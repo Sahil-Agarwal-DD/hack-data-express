@@ -1,5 +1,5 @@
 {
-  "consumer": ["subscriptions", "attribution", "notification", "account"],
-  "merchant": ["menu", "payout", "ads", "bbot"],
-  "finance": ["unit-economics"]
+  "Consumer": ["subscriptions", "attribution", "notification", "account"],
+  "Merchant": ["menu", "payout", "ads", "bbot"],
+  "Finance": ["Unit-Economics"]
 }

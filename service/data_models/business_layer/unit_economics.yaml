@@ -1,8 +1,8 @@
 business_model:
   version: 1
   description: "DataMart for finance unit economics"
-  datamart: unit-economics
-  domain: finance
+  datamart: Unit-Economics
+  domain: Finance
   attributes:
     - name: Delivery ID
       mapping: delivery_id
