@@ -2,7 +2,7 @@ import * as React from "react";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 
-type DxMenuListItem = {
+export type DxMenuListItem = {
   label: string;
 };
 

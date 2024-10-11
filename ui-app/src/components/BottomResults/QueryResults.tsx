@@ -7,7 +7,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Chance from "chance";
-import { Box, Tab, TablePagination, Tabs } from "@mui/material";
+import { TablePagination } from "@mui/material";
 import { useDataExpressStore } from "../../stores/useDataExpressStore";
 
 interface Data {

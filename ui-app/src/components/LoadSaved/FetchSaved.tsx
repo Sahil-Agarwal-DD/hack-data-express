@@ -1,3 +1,5 @@
+import Chance from "chance";
+
 import * as React from "react";
 import { DxModal } from "../DxModal";
 import { useDataExpressStore } from "../../stores/useDataExpressStore";
@@ -16,12 +18,16 @@ import {
   Typography,
 } from "@mui/material";
 import { delay } from "../../utils";
+import { DxMenuList, DxMenuListItem } from "../DxMenuList/DxMenuList";
+import { fetchTemplates } from "../../apis";
 
 type ConfigRow = {
   name: string;
   createdBy: string;
   createdAt: string;
 };
+const chance = new Chance();
+const menuItems = ["Saved", "Template"];
 
 interface SaveModalProps {}
 
@@ -37,6 +43,9 @@ export const FetchSaved: React.FC<SaveModalProps> = () => {
     values: { queryExecutionState: queryExecuting },
   } = useDataExpressStore();
 
+  const [selectedLoadOption, setSelectedLoadOption] = React.useState<
+    "saved" | "template"
+  >();
   const [page, setPage] = React.useState(0);
   const [open, setOpen] = React.useState(false);
 
@@ -51,6 +60,27 @@ export const FetchSaved: React.FC<SaveModalProps> = () => {
       .then((v: any) => v.json())
       .then((v: any) => {
         setList(v as ConfigRow[]);
+      })
+      .catch(() => {
+        alert("error loading");
+      })
+      .finally(() => {
+        setPage(0);
+      });
+  };
+  const fetchTemplatesHelper = () => {
+    fetchTemplates()
+      .then((v: any) => {
+        setList(
+          (v?.query_templates_list as string[]).map(
+            (v) =>
+              ({
+                name: v,
+                createdBy: `${chance.first()}.${chance.last()}@doordash.com`,
+                createdAt: chance.date().toISOString(),
+              } as ConfigRow)
+          )
+        );
       })
       .catch(() => {
         alert("error loading");
@@ -116,24 +146,40 @@ export const FetchSaved: React.FC<SaveModalProps> = () => {
     [page, list]
   );
 
+  const menuItemsInput = React.useMemo(
+    () => menuItems.map((v) => ({ label: v })),
+    []
+  );
+
+  const onOptionClicked = (opt: DxMenuListItem) => {
+    switch (opt.label) {
+      case "Saved":
+        fetchData();
+        setOpen(true);
+        setSelectedLoadOption("saved");
+        break;
+      case "Template":
+        fetchTemplatesHelper();
+        setOpen(true);
+        setSelectedLoadOption("template");
+        break;
+    }
+  };
+
   return (
     <>
-      <Button
-        variant="contained"
-        onClick={() => {
-          fetchData();
-          setOpen(true);
-        }}
-        disabled={queryExecuting === "loading"}
-      >
-        Load
-      </Button>
-
+      <DxMenuList menuItems={menuItemsInput} onOptionClick={onOptionClicked}>
+        <Button variant="contained" disabled={queryExecuting === "loading"}>
+          Load
+        </Button>
+      </DxMenuList>
       <DxModal
         open={open}
         maxWidth="md"
         onClose={onClose}
-        title="Saved Configurations"
+        title={
+          selectedLoadOption === "saved" ? "Saved Configurations" : "Templates"
+        }
         onOk={() => {}}
       >
         <Stack
@@ -142,12 +188,25 @@ export const FetchSaved: React.FC<SaveModalProps> = () => {
             justifyContent: "flex-start",
           }}
         >
-          <Typography>Click on any "Config Name" to load that configuration</Typography>
+          <Typography>
+            Click on any "
+            {selectedLoadOption === "saved" ? "Config Name" : "Template Name"}"
+            to load that configuration
+          </Typography>
+          <br />
           <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 650 }} size="small" aria-label="simple table">
+            <Table
+              sx={{ minWidth: 650 }}
+              size="small"
+              aria-label="simple table"
+            >
               <TableHead>
                 <TableRow>
-                  <TableCell>Config Name</TableCell>
+                  <TableCell>
+                    {selectedLoadOption === "saved"
+                      ? "Config Name"
+                      : "Template Name"}
+                  </TableCell>
                   <TableCell>Created By</TableCell>
                   <TableCell>Created At</TableCell>
                 </TableRow>
