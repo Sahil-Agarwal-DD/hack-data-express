@@ -3,7 +3,7 @@ import { RuleGroupTypeAny } from "react-querybuilder";
 import { create } from "zustand";
 import { createJSONStorage, devtools, persist } from "zustand/middleware";
 import { immer } from "zustand/middleware/immer";
-import { CalculatedColumn, DataMart, Domain } from "../types";
+import { CalculatedColumn, DataMart, Domain, QueryTemplate } from "../types";
 import { TreeNode } from "../components/TreeView/type";
 import { cloneDeep } from "lodash";
 
@@ -25,6 +25,8 @@ type useDataExpressStoreTypeValues = {
   showSql: boolean;
   queryResultsTabs: number;
   selectedQueryTabIndex: number;
+  QueryTemplate: QueryTemplate[];
+  selectedQueryTemplate?: QueryTemplate | null;
 };
 type useDataExpressStoreType = {
   values: useDataExpressStoreTypeValues;
@@ -47,6 +49,8 @@ type useDataExpressStoreType = {
   setShowSql: (val: boolean) => void;
   setQueryResultsTabs: (val: number) => void;
   setSelectedQueryTabIndex: (val: number) => void;
+  setQueryTemplates: (value: QueryTemplate[]) => void;
+  setSelectedQueryTemplate: (value: QueryTemplate | null) => void;
 };
 
 const initialValues: useDataExpressStoreTypeValues = {
@@ -74,7 +78,10 @@ const initialValues: useDataExpressStoreTypeValues = {
   showSql: false,
   queryResultsTabs: 0,
   selectedQueryTabIndex: 0,
+  QueryTemplate: [],
+  selectedQueryTemplate:  undefined,
 };
+
 
 export const useDataExpressStore = create<useDataExpressStoreType>()(
   devtools(
@@ -159,6 +166,16 @@ export const useDataExpressStore = create<useDataExpressStoreType>()(
         setSelectedDataMart(value: DataMart | null) {
           set((state) => {
             state.values.selectedDataMart = value;
+          });
+        },
+          setQueryTemplates(value: QueryTemplate[]) {
+          set((state) => {
+            state.values.QueryTemplate = value;
+          });
+        },
+          setSelectedQueryTemplate(value: QueryTemplate | null) {
+          set((state) => {
+            state.values.selectedQueryTemplate = value;
           });
         },
         setLeafNodes(value: TreeNode[]) {
