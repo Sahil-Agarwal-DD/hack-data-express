@@ -3,6 +3,8 @@ import * as React from "react";
 import { SaveModal } from "./SaveModal";
 import { FetchSaved } from "./FetchSaved";
 import { useDataExpressStore } from "../../stores/useDataExpressStore";
+
+import { delay } from "../../utils";
 import { fetchDomainList } from "../../apis";
 
 interface LoadSavedProps {}
@@ -12,6 +14,13 @@ export const LoadSaved: React.FC<LoadSavedProps> = () => {
     reset,
     values: { queryExecutionState: queryExecuting },
   } = useDataExpressStore();
+
+  const onResetClick = async () => {
+    reset();
+    await delay(1000);
+    // window.location.reload();
+    fetchDomainList();
+  };
 
   return (
     <Stack
@@ -26,8 +35,7 @@ export const LoadSaved: React.FC<LoadSavedProps> = () => {
         disabled={queryExecuting === "loading"}
         variant="contained"
         onClick={() => {
-          reset();
-          fetchDomainList();
+          onResetClick();
         }}
       >
         Reset

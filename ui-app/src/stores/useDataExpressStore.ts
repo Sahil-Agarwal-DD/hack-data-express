@@ -67,9 +67,9 @@ const initialValues: useDataExpressStoreTypeValues = {
     },
   },
   domains: [],
-  selectedDomain: undefined,
+  selectedDomain: null,
   dataMarts: [],
-  selectedDataMart: undefined,
+  selectedDataMart: null,
   leafNodes: [],
   nodes: [],
   showCalculatedModal: false,
@@ -79,7 +79,7 @@ const initialValues: useDataExpressStoreTypeValues = {
   queryResultsTabs: 0,
   selectedQueryTabIndex: 0,
   QueryTemplate: [],
-  selectedQueryTemplate: undefined,
+  selectedQueryTemplate: null,
 };
 
 export const useDataExpressStore = create<useDataExpressStoreType>()(
