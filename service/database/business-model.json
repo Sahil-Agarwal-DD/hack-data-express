@@ -76,7 +76,7 @@
                         "children": []
                     },
                     {
-                        "name": "active date",
+                        "name": "Active Date",
                         "type": "parent",
                         "description": "",
                         "alias": "",
@@ -137,7 +137,7 @@
                         ]
                     },
                     {
-                        "name": "created_at",
+                        "name": "Created At",
                         "type": "parent",
                         "description": "",
                         "alias": "",

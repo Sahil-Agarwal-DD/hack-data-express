@@ -80,6 +80,44 @@ class DataMartDefinition:
                 f"driver_entity={self.driver_entity!r}, attributes={self.attributes!r})")
 
 
+class PhysicalEntityAttribute:
+    def __init__(self, name, type=None, description=None, is_primary_key=False):
+        self.name = name
+        self.type = type
+        self.description = description
+        self.is_primary_key = is_primary_key
+    def __repr__(self):
+        return (f"PhysicalEntityAttribute(name={self.name!r}, type={self.type!r}, "
+                f"description={self.description!r}, is_primary_key={self.is_primary_key!r})")
+
+class PhysicalEntityDefinition:
+    def __init__(self, version, description, entity, snf_table_name, fields, dl_table_name=None):
+        self.version = version
+        self.description = description
+        self.entity = entity
+        self.snf_table_name = snf_table_name
+        self.dl_table_name = dl_table_name
+        self.fields = fields
+
+class JoinKey:
+    def __init__(self, from_entity_key, to_entity_key):
+        self.from_entity_key = from_entity_key
+        self.to_entity_key = to_entity_key
+    def __repr__(self):
+        return (f"JoinKey(from_entity_key={self.from_entity_key!r}, to_entity_key={self.to_entity_key!r})")
+
+
+class JoinDefinition:
+    def __init__(self, from_entity, to_entity, type, join_key):
+        self.from_entity = from_entity
+        self.to_entity = to_entity
+        self.type = type
+        self.join_key = join_key
+    def __repr__(self):
+        return (f"JoinDefinition(from_entity={self.from_entity!r}, to_entity={self.to_entity!r}, "
+                f"type={self.type!r}, join_key={self.join_key!r})")
+
+
 def __get_business_model_definitions(
     relative_file_path: Text, section: Text, cls: Optional[Callable[..., Any]]
 ) -> List[Any]:
@@ -180,6 +218,10 @@ def transform_config_to_ui_model(business_model_def: BusinessModelDefinition) ->
                     "fields": ui_fields,
                 }
     }
+
+
+
+
 
 ALLOWED_LIST = ["unit_economics.yaml"]
 

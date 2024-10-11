@@ -37,7 +37,7 @@ business_model:
     - name: merchant
       mapping: "@merchant"
   hierarchical_entity:
-    active date:
+    Active Date:
       - name: dt
         mapping: active_date
         description: based on quoted delivery time, in Local Timezone
@@ -58,7 +58,7 @@ business_model:
         expr: YEAR([active_date])
         description: Year based on quoted delivery time, in Local Timezone
         type: number
-    created_at:
+    Created At:
       - name: dt
         expr: DATE([created_at])
         description: Date the delivery was created by the customer (UTC)
