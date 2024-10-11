@@ -1,0 +1,61 @@
+2024-10-10 18:39:52,145 [INFO] Using Warehouse: SERVICE_ETLXPRESS_TEST
+2024-10-10 18:39:52,145 [INFO] Snowflake Connector for Python Version: 3.3.0, Python Version: 3.10.9, Platform: macOS-14.7-arm64-arm-64bit
+2024-10-10 18:39:52,145 [INFO] This connection is in OCSP Fail Open Mode. TLS Certificates would be checked for validity and revocation status. Any other Certificate Revocation related exceptions or OCSP Responder failures would be disregarded in favor of connectivity.
+2024-10-10 18:39:52,145 [INFO] Setting use_openssl_only mode to False
+2024-10-10 18:39:53,435 [INFO] Connected to Snowflake
+2024-10-10 18:39:53,435 [INFO] query: [ALTER SESSION SET lock_timeout=0]
+2024-10-10 18:39:53,549 [INFO] query execution done
+2024-10-10 18:39:53,549 [INFO] Number of results in first chunk: 1
+2024-10-10 18:39:53,550 [INFO] query: [SHOW parameters like 'LOCK_TIMEOUT']
+2024-10-10 18:39:53,691 [INFO] query execution done
+2024-10-10 18:39:53,692 [INFO] Number of results in first chunk: 1
+2024-10-10 18:39:53,692 [INFO] Setting SESSION lock_timeout to: 0
+2024-10-10 18:39:53,693 [INFO] query: [SELECT current_warehouse() || '.' || current_database() || '.' || current_schema...]
+2024-10-10 18:39:53,841 [INFO] query execution done
+2024-10-10 18:39:53,842 [INFO] Number of results in first chunk: 1
+2024-10-10 18:39:53,843 [INFO] Snowflake default connection: SERVICE_ETLXPRESS_TEST.PRODDB.PUBLIC
+2024-10-10 18:39:53,843 [INFO] query: [S]
+2024-10-10 18:39:53,940 [INFO] query execution done
+2024-10-10 18:39:53,945 [INFO] closed
+2024-10-10 18:39:54,002 [INFO] No async queries seem to be running, deleting session
+2024-10-10 18:40:50,944 [INFO] Using Warehouse: SERVICE_ETLXPRESS_TEST
+2024-10-10 18:40:50,944 [INFO] Snowflake Connector for Python Version: 3.3.0, Python Version: 3.10.9, Platform: macOS-14.7-arm64-arm-64bit
+2024-10-10 18:40:50,944 [INFO] This connection is in OCSP Fail Open Mode. TLS Certificates would be checked for validity and revocation status. Any other Certificate Revocation related exceptions or OCSP Responder failures would be disregarded in favor of connectivity.
+2024-10-10 18:40:50,944 [INFO] Setting use_openssl_only mode to False
+2024-10-10 18:40:51,348 [INFO] Connected to Snowflake
+2024-10-10 18:40:51,348 [INFO] query: [ALTER SESSION SET lock_timeout=0]
+2024-10-10 18:40:51,498 [INFO] query execution done
+2024-10-10 18:40:51,498 [INFO] Number of results in first chunk: 1
+2024-10-10 18:40:51,498 [INFO] query: [SHOW parameters like 'LOCK_TIMEOUT']
+2024-10-10 18:40:51,650 [INFO] query execution done
+2024-10-10 18:40:51,650 [INFO] Number of results in first chunk: 1
+2024-10-10 18:40:51,650 [INFO] Setting SESSION lock_timeout to: 0
+2024-10-10 18:40:51,650 [INFO] query: [SELECT current_warehouse() || '.' || current_database() || '.' || current_schema...]
+2024-10-10 18:40:51,754 [INFO] query execution done
+2024-10-10 18:40:51,754 [INFO] Number of results in first chunk: 1
+2024-10-10 18:40:51,755 [INFO] Snowflake default connection: SERVICE_ETLXPRESS_TEST.PRODDB.PUBLIC
+2024-10-10 18:40:51,755 [INFO] query: [S]
+2024-10-10 18:40:51,854 [INFO] query execution done
+2024-10-10 18:40:51,857 [INFO] closed
+2024-10-10 18:40:51,916 [INFO] No async queries seem to be running, deleting session
+2024-10-10 18:42:13,954 [INFO] Using Warehouse: SERVICE_ETLXPRESS_TEST
+2024-10-10 18:42:13,954 [INFO] Snowflake Connector for Python Version: 3.3.0, Python Version: 3.10.9, Platform: macOS-14.7-arm64-arm-64bit
+2024-10-10 18:42:13,954 [INFO] This connection is in OCSP Fail Open Mode. TLS Certificates would be checked for validity and revocation status. Any other Certificate Revocation related exceptions or OCSP Responder failures would be disregarded in favor of connectivity.
+2024-10-10 18:42:13,954 [INFO] Setting use_openssl_only mode to False
+2024-10-10 18:42:14,479 [INFO] Connected to Snowflake
+2024-10-10 18:42:14,480 [INFO] query: [ALTER SESSION SET lock_timeout=0]
+2024-10-10 18:42:14,606 [INFO] query execution done
+2024-10-10 18:42:14,607 [INFO] Number of results in first chunk: 1
+2024-10-10 18:42:14,607 [INFO] query: [SHOW parameters like 'LOCK_TIMEOUT']
+2024-10-10 18:42:14,706 [INFO] query execution done
+2024-10-10 18:42:14,707 [INFO] Number of results in first chunk: 1
+2024-10-10 18:42:14,707 [INFO] Setting SESSION lock_timeout to: 0
+2024-10-10 18:42:14,707 [INFO] query: [SELECT current_warehouse() || '.' || current_database() || '.' || current_schema...]
+2024-10-10 18:42:14,818 [INFO] query execution done
+2024-10-10 18:42:14,818 [INFO] Number of results in first chunk: 1
+2024-10-10 18:42:14,818 [INFO] Snowflake default connection: SERVICE_ETLXPRESS_TEST.PRODDB.PUBLIC
+2024-10-10 18:42:14,819 [INFO] query: [SELECT STORE_ID, BUSINESS_ID, BUSINESS_NAME FROM EDW.FINANCE.DIMENSION_DELIVERIE...]
+2024-10-10 18:42:15,550 [INFO] query execution done
+2024-10-10 18:42:15,551 [INFO] Number of results in first chunk: 10
+2024-10-10 18:42:15,552 [INFO] closed
+2024-10-10 18:42:15,609 [INFO] No async queries seem to be running, deleting session
