@@ -1,0 +1,311 @@
+entity_definition:
+  version: 1
+  description: "Table containing metadata about consumer subscriptions"
+  entity: consumer_subscription_metadata
+  snf_table_name: proddb.public.consumer_subscription_metadata
+  dl_table_name: consumer.dl_fact_consumer_subscription_metadata
+  fields:
+    - name: balance_category_change
+      type: string
+      is_primary_key: false
+      nullable: true
+    - name: subscription_status
+      type: string
+      is_primary_key: false
+      nullable: true
+    - name: submarket_id_subscribed_from
+      type: number
+      is_primary_key: false
+      nullable: true
+    - name: is_in_ohar
+      type: boolean
+      is_primary_key: false
+      nullable: true
+    - name: user_id
+      type: number
+      is_primary_key: false
+      nullable: true
+    - name: cancellation_requested_at
+      type: time
+      is_primary_key: false
+      nullable: true
+    - name: invoice_trial_conversion_date
+      type: date
+      is_primary_key: false
+      nullable: true
+    - name: is_in_trial_balance
+      type: boolean
+      is_primary_key: false
+      nullable: true
+    - name: is_final_converted_to_pay
+      type: boolean
+      is_primary_key: false
+      nullable: true
+    - name: currency
+      type: string
+      is_primary_key: false
+      nullable: true
+    - name: is_last_day_of_month
+      type: boolean
+      is_primary_key: false
+      nullable: true
+    - name: is_cancelled_subscription_date
+      type: boolean
+      is_primary_key: false
+      nullable: true
+    - name: cancelled_at
+      type: time
+      is_primary_key: false
+      nullable: true
+    - name: partnership_plan_type
+      type: string
+      is_primary_key: false
+      nullable: true
+    - name: subscription_unit_first_failed_charge_date
+      type: date
+      is_primary_key: false
+      nullable: true
+    - name: consumer_id
+      type: number
+      is_primary_key: false
+      nullable: true
+    - name: consumer_subscription_plan_id
+      type: number
+      is_primary_key: false
+      nullable: true
+    - name: is_upgraded
+      type: boolean
+      is_primary_key: false
+      nullable: true
+    - name: elected_time
+      type: string
+      is_primary_key: false
+      nullable: true
+    - name: billing_period
+      type: number
+      is_primary_key: false
+      nullable: true
+    - name: dynamic_subscription_status
+      type: string
+      is_primary_key: false
+      nullable: true
+    - name: is_convert_to_pay_date
+      type: boolean
+      is_primary_key: false
+      nullable: true
+    - name: is_direct_to_pay_date
+      type: boolean
+      is_primary_key: false
+      nullable: true
+    - name: conversion_channel
+      type: string
+      is_primary_key: false
+      nullable: true
+    - name: is_last_day_of_quarter
+      type: boolean
+      is_primary_key: false
+      nullable: true
+    - name: unit_id
+      type: number
+      is_primary_key: false
+      nullable: true
+    - name: is_paid_plan
+      type: boolean
+      is_primary_key: false
+      nullable: true
+    - name: subscription_id
+      type: number
+      is_primary_key: false
+      nullable: true
+    - name: monthly_period
+      type: number
+      is_primary_key: false
+      nullable: true
+    - name: bod_balance_category
+      type: string
+      is_primary_key: false
+      nullable: true
+    - name: trial_id
+      type: number
+      is_primary_key: false
+      nullable: true
+    - name: is_in_intraday_pay_balance
+      type: boolean
+      is_primary_key: false
+      nullable: true
+    - name: is_new_paying_subscription_date
+      type: boolean
+      is_primary_key: false
+      nullable: true
+    - name: first_subscription_charge_attempt_date
+      type: date
+      is_primary_key: false
+      nullable: true
+    - name: first_subscription_successful_charge_date
+      type: date
+      is_primary_key: false
+      nullable: true
+    - name: is_last_day_of_week
+      type: boolean
+      is_primary_key: false
+      nullable: true
+    - name: is_new_subscription_date
+      type: boolean
+      is_primary_key: false
+      nullable: true
+    - name: unit_ended
+      type: boolean
+      is_primary_key: false
+      nullable: true
+    - name: is_paid_unit
+      type: boolean
+      is_primary_key: false
+      nullable: true
+    - name: is_corporate_plan
+      type: boolean
+      is_primary_key: false
+      nullable: true
+    - name: is_in_ending_balance
+      type: boolean
+      is_primary_key: false
+      nullable: true
+    - name: is_invoice_converted_to_pay
+      type: boolean
+      is_primary_key: false
+      nullable: true
+    - name: pause_period
+      type: number
+      is_primary_key: false
+      nullable: true
+    - name: country_id_subscribed_from
+      type: number
+      is_primary_key: false
+      nullable: true
+    - name: unit_end_time
+      type: time
+      is_primary_key: false
+      nullable: true
+    - name: end_time
+      type: time
+      is_primary_key: false
+      nullable: true
+    - name: is_new_pause_date
+      type: boolean
+      is_primary_key: false
+      nullable: true
+    - name: is_caviar
+      type: boolean
+      is_primary_key: false
+      nullable: true
+    - name: monthly_fee
+      type: number
+      is_primary_key: false
+      nullable: true
+    - name: dte
+      type: date
+      is_primary_key: false
+      nullable: true
+    - name: list_price
+      type: number
+      is_primary_key: false
+      nullable: true
+    - name: balance_category
+      type: string
+      is_primary_key: false
+      nullable: true
+    - name: original_unit_end_time
+      type: time
+      is_primary_key: false
+      nullable: true
+    - name: is_in_trial_period
+      type: boolean
+      is_primary_key: false
+      nullable: true
+    - name: final_trial_conversion_date
+      type: date
+      is_primary_key: false
+      nullable: true
+    - name: subscription_first_plan_id
+      type: number
+      is_primary_key: false
+      nullable: true
+    - name: subscription_unit_first_successful_charge_date
+      type: date
+      is_primary_key: false
+      nullable: true
+    - name: prior_consumer_subscription_plan_id
+      type: number
+      is_primary_key: false
+      nullable: true
+    - name: prior_partnership_plan_type
+      type: string
+      is_primary_key: false
+      nullable: true
+    - name: is_in_paid_balance
+      type: boolean
+      is_primary_key: false
+      nullable: true
+    - name: is_plan_transition_date
+      type: boolean
+      is_primary_key: false
+      nullable: true
+    - name: is_in_intraday_pause_balance
+      type: boolean
+      is_primary_key: false
+      nullable: true
+    - name: subscription_attributes
+      type: null
+      is_primary_key: false
+      nullable: true
+    - name: unit_start_time
+      type: time
+      is_primary_key: false
+      nullable: true
+    - name: region_id_subscribed_from
+      type: number
+      is_primary_key: false
+      nullable: true
+    - name: free_trial_days
+      type: number
+      is_primary_key: false
+      nullable: true
+    - name: start_time
+      type: time
+      is_primary_key: false
+      nullable: true
+    - name: is_sharing
+      type: boolean
+      is_primary_key: false
+      nullable: true
+    - name: is_dtp_ohar_ctp_date
+      type: boolean
+      is_primary_key: false
+      nullable: true
+    - name: is_in_free_balance
+      type: boolean
+      is_primary_key: false
+      nullable: true
+    - name: is_partner_plan
+      type: boolean
+      is_primary_key: false
+      nullable: true
+    - name: is_new_unpause_date
+      type: boolean
+      is_primary_key: false
+      nullable: true
+    - name: first_subscription_failed_charge_date
+      type: date
+      is_primary_key: false
+      nullable: true
+    - name: pause_requested_at
+      type: time
+      is_primary_key: false
+      nullable: true
+    - name: paused_at
+      type: time
+      is_primary_key: false
+      nullable: true
+    - name: is_in_intraday_trial_balance
+      type: boolean
+      is_primary_key: false
+      nullable: true

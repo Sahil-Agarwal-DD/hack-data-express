@@ -1,0 +1,16 @@
+DataMart_Definition:
+  version: 1
+  description: "DataMart for Consumer Subscription Metrics"
+  driver_entity: consumer_subscription_fact
+  attributes:
+    - name: new_subs
+    - name: paid_churn
+    - name: net_adds
+    - name: trial_churns
+    - name: trial_balance
+    - name: paid_balance
+    - name: orders
+    - name: delivery_orders
+    - name: gov
+    - name: delivery_gov
+    - name: variable_profit

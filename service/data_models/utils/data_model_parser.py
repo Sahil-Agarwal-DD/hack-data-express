@@ -451,7 +451,7 @@ def parse_and_save(allowed_list):
     save_all_models_to_file_for_ui(models, "{}/{}".format(ui_models_repo_directory, "business-model.json"))
 
 
-ALLOWED_LIST = ["unit_economics.yaml"]
+ALLOWED_LIST = ["unit_economics.yaml", "consumer_subscription_entity.yaml"]
 # Build Business DataModels and Save to file
 parse_and_save(ALLOWED_LIST)
 

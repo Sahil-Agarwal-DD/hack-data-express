@@ -1,0 +1,131 @@
+business_model:
+  version: 1
+  description: "DataMart for Consumer Entity"
+  datamart: consumer_entity
+  domain: consumer
+  attributes:
+    - name: Date
+      mapping: dte
+      type: number
+      description: This represent date for which metrics are calculated
+    - name: Region
+      mapping: region
+      description: Region where the consumer started this specific subscription
+      type: string
+      enum_values:
+        - Active
+        - Cancelled
+  HierarchicalEntity:
+    date:
+      - name: date
+        mapping: date
+        description: based on quoted delivery time, in Local Timezone
+        type: date
+      - name: Week
+        expr: WEEK([date])
+        description: Week number of the year based on quoted delivery time, in Local Timezone
+        type: number
+      - name: Month
+        expr: MONTH([date])
+        description: Month number of the year based on quoted delivery time, in Local Timezone
+        type: number
+      - name: Quarter
+        expr: QUARTER([date])
+        description: Quarter number of the year based on quoted delivery time, in Local Timezone
+        type: number
+      - name: Year
+        expr: YEAR([date])
+        description: Year based on quoted delivery time, in Local Timezone
+        type: number
+    Start Time:
+      - name: dt
+        expr: DATE([start_time])
+        description: Date the delivery was created by the customer (UTC)
+        type: date
+      - name: Week
+        expr: WEEK([start_time])
+        description: Week number of the year based on when the delivery was created by the customer (UTC)
+        type: number
+      - name: Month
+        expr: MONTH([start_time])
+        description: Month number of the year based on when the delivery was created by the customer (UTC)
+        type: number
+      - name: Quarter
+        expr: QUARTER([start_time])
+        description: Quarter number of the year based on when the delivery was created by the customer (UTC)
+        type: number
+      - name: Year
+        expr: YEAR([start_time])
+        description: Year based on when the delivery was created by the customer (UTC)
+        type: number
+    End Time:
+      - name: dt
+        expr: DATE([end_time])
+        description: Date the delivery was created by the customer (UTC)
+        type: date
+      - name: Week
+        expr: WEEK([end_time])
+        description: Week number of the year based on when the delivery was created by the customer (UTC)
+        type: number
+      - name: Month
+        expr: MONTH([end_time])
+        description: Month number of the year based on when the delivery was created by the customer (UTC)
+        type: number
+      - name: Quarter
+        expr: QUARTER([end_time])
+        description: Quarter number of the year based on when the delivery was created by the customer (UTC)
+        type: number
+      - name: Year
+        expr: YEAR([end_time])
+        description: Year based on when the delivery was created by the customer (UTC)
+        type: number
+    financials:
+      - name: Gov
+        mapping: gov
+        description: Gross Order Value.Sum of cash inflow that DoorDash generates that comes from consumers (end users) i.e Subtotal + Tax + Tip + Cx Fees
+        type: numeric
+      - R & C:
+        - name: New Subs
+          mapping: new_subs
+          description: Total new subscriptions for this date
+          type: number
+        - name: Paid Churn
+          type: string
+          mapping: paid_churn
+          description: Total paid subscriptions churned on this date
+        - name: Net Adds
+          type: number
+          mapping: net_adds
+          description: Calculated from total new subscriptions - churned
+        - name: Trial Churns
+          type: number
+          mapping: trial_churns
+          description: Total churns at this point
+        - name: trial_balance
+          type: number
+          mapping: trial_balance
+          description: Total trials at this point
+        - name: paid_balance
+          type: number
+          mapping: paid_balance
+          description: Total paid subscriptions at this point
+        - name: Orders
+          type: number
+          mapping: orders
+          description: Total orders(delivery+pickup) by subscribed consumers
+        - name: Delivery Orders
+          type: number
+          mapping: delivery_orders
+          description: Total delivery orders by subscribed consumers
+        - name: Gov
+          type: number
+          mapping: gov
+          description: Total GOV for orders from subscribed consumers
+        - name: Delivery Gov
+          type: number
+          mapping: delivery_gov
+          description: Total GOV for delivery orders from subscribed consumers
+        - name: Variable Profit
+          type: number
+          mapping: variable_profit
+          description: Total variable profit for orders from subscribed consumersTotal GOV for delivery orders from subscribed consumers
