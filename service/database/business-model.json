@@ -1,6 +1,360 @@
 {
     "business_model": [
         {
+            "consumer-consumer_entity": {
+                "fields": [
+                    {
+                        "name": "Date",
+                        "type": "number",
+                        "description": "This represent date for which metrics are calculated",
+                        "alias": "",
+                        "is_calculated_field": false,
+                        "calculated_field_statement": "",
+                        "enum_values": [],
+                        "children": []
+                    },
+                    {
+                        "name": "Region",
+                        "type": "string",
+                        "description": "Region where the consumer started this specific subscription",
+                        "alias": "",
+                        "is_calculated_field": false,
+                        "calculated_field_statement": "",
+                        "enum_values": [
+                            "Active",
+                            "Cancelled"
+                        ],
+                        "children": []
+                    },
+                    {
+                        "name": "date",
+                        "type": "parent",
+                        "description": "",
+                        "alias": "",
+                        "is_calculated_field": false,
+                        "calculated_field_statement": "",
+                        "enum_values": [],
+                        "children": [
+                            {
+                                "name": "date",
+                                "type": "date",
+                                "description": "based on quoted delivery time, in Local Timezone",
+                                "alias": "",
+                                "is_calculated_field": false,
+                                "calculated_field_statement": "",
+                                "enum_values": [],
+                                "children": []
+                            },
+                            {
+                                "name": "Week",
+                                "type": "number",
+                                "description": "Week number of the year based on quoted delivery time, in Local Timezone",
+                                "alias": "",
+                                "is_calculated_field": true,
+                                "calculated_field_statement": "WEEK([date])",
+                                "enum_values": [],
+                                "children": []
+                            },
+                            {
+                                "name": "Month",
+                                "type": "number",
+                                "description": "Month number of the year based on quoted delivery time, in Local Timezone",
+                                "alias": "",
+                                "is_calculated_field": true,
+                                "calculated_field_statement": "MONTH([date])",
+                                "enum_values": [],
+                                "children": []
+                            },
+                            {
+                                "name": "Quarter",
+                                "type": "number",
+                                "description": "Quarter number of the year based on quoted delivery time, in Local Timezone",
+                                "alias": "",
+                                "is_calculated_field": true,
+                                "calculated_field_statement": "QUARTER([date])",
+                                "enum_values": [],
+                                "children": []
+                            },
+                            {
+                                "name": "Year",
+                                "type": "number",
+                                "description": "Year based on quoted delivery time, in Local Timezone",
+                                "alias": "",
+                                "is_calculated_field": true,
+                                "calculated_field_statement": "YEAR([date])",
+                                "enum_values": [],
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Start Time",
+                        "type": "parent",
+                        "description": "",
+                        "alias": "",
+                        "is_calculated_field": false,
+                        "calculated_field_statement": "",
+                        "enum_values": [],
+                        "children": [
+                            {
+                                "name": "dt",
+                                "type": "date",
+                                "description": "Date the delivery was created by the customer (UTC)",
+                                "alias": "",
+                                "is_calculated_field": true,
+                                "calculated_field_statement": "DATE([start_time])",
+                                "enum_values": [],
+                                "children": []
+                            },
+                            {
+                                "name": "Week",
+                                "type": "number",
+                                "description": "Week number of the year based on when the delivery was created by the customer (UTC)",
+                                "alias": "",
+                                "is_calculated_field": true,
+                                "calculated_field_statement": "WEEK([start_time])",
+                                "enum_values": [],
+                                "children": []
+                            },
+                            {
+                                "name": "Month",
+                                "type": "number",
+                                "description": "Month number of the year based on when the delivery was created by the customer (UTC)",
+                                "alias": "",
+                                "is_calculated_field": true,
+                                "calculated_field_statement": "MONTH([start_time])",
+                                "enum_values": [],
+                                "children": []
+                            },
+                            {
+                                "name": "Quarter",
+                                "type": "number",
+                                "description": "Quarter number of the year based on when the delivery was created by the customer (UTC)",
+                                "alias": "",
+                                "is_calculated_field": true,
+                                "calculated_field_statement": "QUARTER([start_time])",
+                                "enum_values": [],
+                                "children": []
+                            },
+                            {
+                                "name": "Year",
+                                "type": "number",
+                                "description": "Year based on when the delivery was created by the customer (UTC)",
+                                "alias": "",
+                                "is_calculated_field": true,
+                                "calculated_field_statement": "YEAR([start_time])",
+                                "enum_values": [],
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "name": "End Time",
+                        "type": "parent",
+                        "description": "",
+                        "alias": "",
+                        "is_calculated_field": false,
+                        "calculated_field_statement": "",
+                        "enum_values": [],
+                        "children": [
+                            {
+                                "name": "dt",
+                                "type": "date",
+                                "description": "Date the delivery was created by the customer (UTC)",
+                                "alias": "",
+                                "is_calculated_field": true,
+                                "calculated_field_statement": "DATE([end_time])",
+                                "enum_values": [],
+                                "children": []
+                            },
+                            {
+                                "name": "Week",
+                                "type": "number",
+                                "description": "Week number of the year based on when the delivery was created by the customer (UTC)",
+                                "alias": "",
+                                "is_calculated_field": true,
+                                "calculated_field_statement": "WEEK([end_time])",
+                                "enum_values": [],
+                                "children": []
+                            },
+                            {
+                                "name": "Month",
+                                "type": "number",
+                                "description": "Month number of the year based on when the delivery was created by the customer (UTC)",
+                                "alias": "",
+                                "is_calculated_field": true,
+                                "calculated_field_statement": "MONTH([end_time])",
+                                "enum_values": [],
+                                "children": []
+                            },
+                            {
+                                "name": "Quarter",
+                                "type": "number",
+                                "description": "Quarter number of the year based on when the delivery was created by the customer (UTC)",
+                                "alias": "",
+                                "is_calculated_field": true,
+                                "calculated_field_statement": "QUARTER([end_time])",
+                                "enum_values": [],
+                                "children": []
+                            },
+                            {
+                                "name": "Year",
+                                "type": "number",
+                                "description": "Year based on when the delivery was created by the customer (UTC)",
+                                "alias": "",
+                                "is_calculated_field": true,
+                                "calculated_field_statement": "YEAR([end_time])",
+                                "enum_values": [],
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "name": "financials",
+                        "type": "parent",
+                        "description": "",
+                        "alias": "",
+                        "is_calculated_field": false,
+                        "calculated_field_statement": "",
+                        "enum_values": [],
+                        "children": [
+                            {
+                                "name": "Gov",
+                                "type": "numeric",
+                                "description": "Gross Order Value.Sum of cash inflow that DoorDash generates that comes from consumers (end users) i.e Subtotal + Tax + Tip + Cx Fees",
+                                "alias": "",
+                                "is_calculated_field": false,
+                                "calculated_field_statement": "",
+                                "enum_values": [],
+                                "children": []
+                            },
+                            {
+                                "name": "R & C",
+                                "type": "parent",
+                                "description": "",
+                                "alias": "",
+                                "is_calculated_field": false,
+                                "calculated_field_statement": "",
+                                "enum_values": [],
+                                "children": [
+                                    {
+                                        "name": "New Subs",
+                                        "type": "number",
+                                        "description": "Total new subscriptions for this date",
+                                        "alias": "",
+                                        "is_calculated_field": false,
+                                        "calculated_field_statement": "",
+                                        "enum_values": [],
+                                        "children": []
+                                    },
+                                    {
+                                        "name": "Paid Churn",
+                                        "type": "string",
+                                        "description": "Total paid subscriptions churned on this date",
+                                        "alias": "",
+                                        "is_calculated_field": false,
+                                        "calculated_field_statement": "",
+                                        "enum_values": [],
+                                        "children": []
+                                    },
+                                    {
+                                        "name": "Net Adds",
+                                        "type": "number",
+                                        "description": "Calculated from total new subscriptions - churned",
+                                        "alias": "",
+                                        "is_calculated_field": false,
+                                        "calculated_field_statement": "",
+                                        "enum_values": [],
+                                        "children": []
+                                    },
+                                    {
+                                        "name": "Trial Churns",
+                                        "type": "number",
+                                        "description": "Total churns at this point",
+                                        "alias": "",
+                                        "is_calculated_field": false,
+                                        "calculated_field_statement": "",
+                                        "enum_values": [],
+                                        "children": []
+                                    },
+                                    {
+                                        "name": "trial_balance",
+                                        "type": "number",
+                                        "description": "Total trials at this point",
+                                        "alias": "",
+                                        "is_calculated_field": false,
+                                        "calculated_field_statement": "",
+                                        "enum_values": [],
+                                        "children": []
+                                    },
+                                    {
+                                        "name": "paid_balance",
+                                        "type": "number",
+                                        "description": "Total paid subscriptions at this point",
+                                        "alias": "",
+                                        "is_calculated_field": false,
+                                        "calculated_field_statement": "",
+                                        "enum_values": [],
+                                        "children": []
+                                    },
+                                    {
+                                        "name": "Orders",
+                                        "type": "number",
+                                        "description": "Total orders(delivery+pickup) by subscribed consumers",
+                                        "alias": "",
+                                        "is_calculated_field": false,
+                                        "calculated_field_statement": "",
+                                        "enum_values": [],
+                                        "children": []
+                                    },
+                                    {
+                                        "name": "Delivery Orders",
+                                        "type": "number",
+                                        "description": "Total delivery orders by subscribed consumers",
+                                        "alias": "",
+                                        "is_calculated_field": false,
+                                        "calculated_field_statement": "",
+                                        "enum_values": [],
+                                        "children": []
+                                    },
+                                    {
+                                        "name": "Gov",
+                                        "type": "number",
+                                        "description": "Total GOV for orders from subscribed consumers",
+                                        "alias": "",
+                                        "is_calculated_field": false,
+                                        "calculated_field_statement": "",
+                                        "enum_values": [],
+                                        "children": []
+                                    },
+                                    {
+                                        "name": "Delivery Gov",
+                                        "type": "number",
+                                        "description": "Total GOV for delivery orders from subscribed consumers",
+                                        "alias": "",
+                                        "is_calculated_field": false,
+                                        "calculated_field_statement": "",
+                                        "enum_values": [],
+                                        "children": []
+                                    },
+                                    {
+                                        "name": "Variable Profit",
+                                        "type": "number",
+                                        "description": "Total variable profit for orders from subscribed consumersTotal GOV for delivery orders from subscribed consumers",
+                                        "alias": "",
+                                        "is_calculated_field": false,
+                                        "calculated_field_statement": "",
+                                        "enum_values": [],
+                                        "children": []
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
             "finance-unit-economics": {
                 "fields": [
                     {

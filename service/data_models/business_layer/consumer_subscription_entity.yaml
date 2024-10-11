@@ -15,7 +15,7 @@ business_model:
       enum_values:
         - Active
         - Cancelled
-  HierarchicalEntity:
+  hierarchical_entity:
     date:
       - name: date
         mapping: date
