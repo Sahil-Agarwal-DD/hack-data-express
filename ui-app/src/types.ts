@@ -16,4 +16,8 @@ export type QueryExecutionPayload = {
   id: string;
   status: QueryExecutionPayloadStatus;
   seconds: number;
+  loadedSavedConfigName: string | null; // this property is only for demo purpose. it can be remove later
+  result?: {
+    resultset: any[];
+  };
 };

@@ -34,6 +34,7 @@ type useDataExpressStoreTypeValues = {
   QueryTemplate: QueryTemplate[];
   selectedQueryTemplate?: QueryTemplate | null;
   queryExecutionPayloads: Record<string, QueryExecutionPayload>;
+  loadedSavedConfigName: string | null;
 };
 type useDataExpressStoreType = {
   values: useDataExpressStoreTypeValues;
@@ -60,6 +61,7 @@ type useDataExpressStoreType = {
   setSelectedQueryTemplate: (value: QueryTemplate | null) => void;
   setQueryExecutionPayload: (value: QueryExecutionPayload) => void;
   removeQueryExecutionPayload: (id: string) => void;
+  setLoadedSavedConfigName: (val: string) => void;
 };
 
 const initialValues: useDataExpressStoreTypeValues = {
@@ -90,6 +92,7 @@ const initialValues: useDataExpressStoreTypeValues = {
   QueryTemplate: [],
   selectedQueryTemplate: null,
   queryExecutionPayloads: {},
+  loadedSavedConfigName: null,
 };
 
 export const useDataExpressStore = create<useDataExpressStoreType>()(
@@ -100,6 +103,11 @@ export const useDataExpressStore = create<useDataExpressStoreType>()(
         setSelectedQueryTabIndex(val: number) {
           set((state) => {
             state.values.selectedQueryTabIndex = val;
+          });
+        },
+        setLoadedSavedConfigName(val: string | null) {
+          set((state) => {
+            state.values.loadedSavedConfigName = val;
           });
         },
         setQueryResultsTabs(val: number) {
