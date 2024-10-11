@@ -133,12 +133,7 @@ export const CalculatedComponents: React.FC<CalculatedComponentsProps> = () => {
                 controlClassnames={{
                   queryBuilder: "queryBuilder-branches",
                 }}
-                combinators={[
-                  {
-                    label: "",
-                    options: [],
-                  },
-                ]}
+                // combinators={}
                 showCombinatorsBetweenRules={false}
                 fields={fields}
                 // @ts-expect-error
