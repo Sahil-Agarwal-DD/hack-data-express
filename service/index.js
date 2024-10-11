@@ -213,7 +213,7 @@ app.get("/data-express-model/execute-query", (req, res) => {
     res.json({
       resultset: json.dumps(data),
     });
-}
+});
 
 // Start the server
 app.listen(port, () => {
