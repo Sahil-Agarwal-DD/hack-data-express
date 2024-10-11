@@ -74,10 +74,29 @@ export const ResultsPane: React.FC = () => {
     return "";
   }, [calculatedComponents]);
 
-  const fields = React.useMemo(
-    () => [...Object.keys(selectedColumns), cases],
-    [selectedColumns, cases]
-  );
+  const fields = React.useMemo(() => {
+    let returnValue = [
+      ...Object.values(selectedColumns).map((v) => {
+        let returnValue = `${v.parentPath}`;
+
+        if (v.aggfun) {
+          returnValue = `${v.aggfun}(${returnValue})`;
+        }
+
+        if (v.alias) {
+          returnValue = `${returnValue} AS "${v.alias}"`;
+        }
+
+        return returnValue;
+      }),
+    ];
+
+    if (cases?.length > 0) {
+      returnValue.push(cases);
+    }
+
+    return returnValue;
+  }, [selectedColumns, cases]);
 
   const formattedQuery = React.useMemo(() => {
     try {
@@ -93,13 +112,19 @@ export const ResultsPane: React.FC = () => {
     [fields, formattedQuery, cases]
   );
 
-  const prettifiedSql = React.useMemo(
-    () =>
-      formatDialect(generatedSql, {
+  const prettifiedSql = React.useMemo(() => {
+    let returnValue = "";
+    try {
+      returnValue = formatDialect(generatedSql, {
         dialect: sql,
-      }),
-    [generatedSql]
-  );
+      });
+    } catch (exp) {
+      alert(`Error generating sql: ${(exp as any)?.message}`);
+      console.error("Error generating sqls", exp);
+      returnValue = "";
+    }
+    return returnValue;
+  }, [generatedSql]);
 
   return (
     <Stack className="common-border" style={{ height: "35vh" }}>
