@@ -133,6 +133,7 @@ export const CalculatedComponents: React.FC<CalculatedComponentsProps> = () => {
                 controlClassnames={{
                   queryBuilder: "queryBuilder-branches",
                 }}
+                // if we uncomment combinators below to remove them then it explodes
                 // combinators={}
                 showCombinatorsBetweenRules={false}
                 fields={fields}
