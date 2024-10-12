@@ -9,7 +9,9 @@ Hackathon Project Data Express
 2. Install dependencies
    `npm install`
 3. Start the server
-   `npm run start`
+   `npm run dev` - server auto restarts after changes
+   or
+   `npm run start` - server need to manually restart after changes
 4. Use client either postman or ui to call the APIs and get the data
 
 # Running frontend locally
@@ -21,4 +23,3 @@ Hackathon Project Data Express
 3. Start the server
    `npm run start`
 4. A browser window automatically opens this url http://localhost:3001
-
