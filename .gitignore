@@ -4,3 +4,4 @@ build
 development.yaml
 .env
 service/.env
+snowflake.log
