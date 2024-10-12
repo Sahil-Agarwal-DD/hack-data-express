@@ -61,19 +61,19 @@ export const ActualQueryResults: React.FC<{ resultset: any[] }> = ({
         <Table sx={{ width: "100%" }} size="small">
           <TableHead>
             <TableRow>
-              {tableHeaders.map((col) => (
-                <TableCell key={col}>{col}</TableCell>
+              {tableHeaders.map((col, colI) => (
+                <TableCell key={`header${colI}`}>{col}</TableCell>
               ))}
             </TableRow>
           </TableHead>
           <TableBody>
-            {visibleRows.map((row) => (
+            {visibleRows.map((row, i) => (
               <TableRow
-                key={row.id}
+                key={`row${i}`}
                 //   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
-                {tableHeaders.map((col) => (
-                  <TableCell component="th" scope="row">
+                {tableHeaders.map((col, ci) => (
+                  <TableCell key={`col${ci}`} component="th" scope="row">
                     {row[col]}
                   </TableCell>
                 ))}
