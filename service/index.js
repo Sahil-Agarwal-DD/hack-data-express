@@ -1,6 +1,6 @@
 require("@dotenvx/dotenvx").config();
 
-console.log("====> SNOWFLAKE_ACCOUNT" + process.env.SNOWFLAKE_ACCOUNT);
+console.log("====> SNOWFLAKE_ACCOUNT: " + process.env.SNOWFLAKE_ACCOUNT);
 
 const fs = require("fs");
 const express = require("express");
