@@ -60,6 +60,39 @@ DataMart_Definition:
     - name: dasher_subsidies
     - name: internet_servers
     - name: merchant_menu_cost
+    - name: delivery_fees
+    - name: inflation_tax_retailer
+    - name: legislative_fees
+    - name: priority_fee
+    - name: service_fees
+    - name: small_order_fees
+    - name: subscription_delivery_fees_discount
+    - name: subscription_fees
+    - name: subscription_service_fees_discount
+    - name: commission
+    - name: ddfw_internal_benefits
+    - name: drive_saas_fees
+    - name: kitchen_fees
+    - name: merchant_marketing_fees
+    - name: merchant_promotions
+    - name: merchant_service_fees
+    - name: merchant_tips
+    - name: revenue_reserve
+    - name: storefront_merchant_fees
+    - name: voice_ordering_revenue
+    - name: gift_card_revenue
+    - name: grab_revenue
+    - name: product_revenue_machinery
+    - name: gross_fees
+    - name: classic_cav_volume
+    - name: ddfw_volume
+    - name: dashlink_volume
+    - name: drive_checkout_volume
+    - name: drive_volume
+    - name: pickup_cav_volume
+    - name: strorefront_volume
+    - name: subscription_cav_volume
+    - name: volume
     - name: consumer
       source: "@delivery_fact__consumer_dim"
     - name: merchant

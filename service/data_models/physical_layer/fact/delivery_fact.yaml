@@ -122,3 +122,69 @@ entity_definition:
       type: numeric
     - name: merchant_menu_cost
       type: numeric
+    - name: delivery_fees
+      type: numeric
+    - name: inflation_tax_retailer
+      type: numeric
+    - name: legislative_fees
+      type: numeric
+    - name: priority_fee
+      type: numeric
+    - name: service_fees
+      type: numeric
+    - name: small_order_fees
+      type: numeric
+    - name: subscription_delivery_fees_discount
+      type: numeric
+    - name: subscription_fees
+      type: numeric
+    - name: subscription_service_fees_discount
+      type: numeric
+    - name: commission
+      type: numeric
+    - name: ddfw_internal_benefits
+      type: numeric
+    - name: drive_saas_fees
+      type: numeric
+    - name: kitchen_fees
+      type: numeric
+    - name: merchant_marketing_fees
+      type: numeric
+    - name: merchant_promotions
+      type: numeric
+    - name: merchant_service_fees
+      type: numeric
+    - name: merchant_tips
+      type: numeric
+    - name: revenue_reserve
+      type: numeric
+    - name: storefront_merchant_fees
+      type: numeric
+    - name: voice_ordering_revenue
+      type: numeric
+    - name: gift_card_revenue
+      type: numeric
+    - name: grab_revenue
+      type: numeric
+    - name: product_revenue_machinery
+      type: numeric
+    - name: gross_fees
+      type: numeric
+    - name: classic_cav_volume
+      type: numeric
+    - name: ddfw_volume
+      type: numeric
+    - name: dashlink_volume
+      type: numeric
+    - name: drive_checkout_volume
+      type: numeric
+    - name: drive_volume
+      type: numeric
+    - name: pickup_cav_volume
+      type: numeric
+    - name: strorefront_volume
+      type: numeric
+    - name: subscription_cav_volume
+      type: numeric
+    - name: volume
+      type: numeric
