@@ -2,6 +2,10 @@
 
 Hackathon Project Data Express
 
+# To easily run locally
+
+1. execute start.sh file, you may need to give execute permission to that file e.g. `chmod +x start.sh`
+
 # Running backend locally
 
 1. Navigate to service directory
