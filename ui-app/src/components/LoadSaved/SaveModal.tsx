@@ -3,10 +3,12 @@ import { DxModal } from "../DxModal";
 import { useDataExpressStore } from "../../stores/useDataExpressStore";
 import { API_PATH } from "../../constants";
 import { Button, TextField } from "@mui/material";
+import { useNotifications } from "@toolpad/core";
 
 interface SaveModalProps {}
 
 export const SaveModal: React.FC<SaveModalProps> = () => {
+  const notifications = useNotifications();
   const {
     values: {
       selectedColumns,
@@ -14,7 +16,7 @@ export const SaveModal: React.FC<SaveModalProps> = () => {
       query,
       selectedDomain,
       selectedDataMart,
-      queryExecutionState: queryExecuting
+      queryExecutionState: queryExecuting,
     },
   } = useDataExpressStore();
 
@@ -44,10 +46,16 @@ export const SaveModal: React.FC<SaveModalProps> = () => {
         }),
       })
         .then(() => {
-          alert("saved");
+          notifications.show("Successfully saved data model.", {
+            autoHideDuration: 4000,
+            severity: "success",
+          });
         })
         .catch(() => {
-          alert("error saving");
+          notifications.show("Error occurred while saving data model.", {
+            autoHideDuration: 4000,
+            severity: "error",
+          });
         })
         .finally(() => {
           onClose();
@@ -56,7 +64,11 @@ export const SaveModal: React.FC<SaveModalProps> = () => {
   };
   return (
     <>
-      <Button variant="contained" onClick={() => setOpen(true)} disabled={queryExecuting === 'loading'}>
+      <Button
+        variant="contained"
+        onClick={() => setOpen(true)}
+        disabled={queryExecuting === "loading"}
+      >
         Save
       </Button>
 

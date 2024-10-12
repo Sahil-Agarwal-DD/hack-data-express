@@ -3,10 +3,10 @@ import CssBaseline from "@mui/material/CssBaseline";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { DataExpressPanes } from "./components/DataExpressPanes";
-import GlobalStyles from "@mui/material/GlobalStyles";
-import { css } from "@emotion/react";
+import { NotificationsProvider } from "@toolpad/core/useNotifications";
 
 import "./App.css";
+import { Snackbar, styled } from "@mui/material";
 
 const router = createBrowserRouter([
   {
@@ -19,7 +19,18 @@ function App() {
   return (
     <>
       <CssBaseline />
-      <RouterProvider router={router} />
+      <NotificationsProvider
+        slotProps={{
+          snackbar: {
+            anchorOrigin: {
+              horizontal: "center",
+              vertical: "top",
+            },
+          },
+        }}
+      >
+        <RouterProvider router={router} />
+      </NotificationsProvider>
     </>
   );
 }

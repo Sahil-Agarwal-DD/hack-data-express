@@ -1,3 +1,4 @@
+import * as React from "react";
 import {
   Box,
   Button,
@@ -6,7 +7,8 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import * as React from "react";
+import { useNotifications } from "@toolpad/core/useNotifications";
+
 import { QueryBuilder, RuleGroupTypeAny } from "react-querybuilder";
 import { CalculatedQueryBuilderStyles } from "./styles";
 import { useDataExpressStore } from "../../stores/useDataExpressStore";
@@ -28,6 +30,8 @@ const style = {
 interface CalculatedComponentsProps {}
 
 export const CalculatedComponents: React.FC<CalculatedComponentsProps> = () => {
+  const notifications = useNotifications();
+
   const [alias, setAlias] = React.useState("");
   const [caseStatement, setCaseStatement] = React.useState<RuleGroupTypeAny>({
     rules: [],
@@ -83,12 +87,19 @@ export const CalculatedComponents: React.FC<CalculatedComponentsProps> = () => {
   };
   const okClicked = () => {
     if (!alias) {
-      alert("Add alias");
+      notifications.show("Add alias", {
+        autoHideDuration: 4000,
+        severity: "error",
+      });
       return;
     }
 
     if (caseStatement?.rules?.length === 0) {
-      alert("Add conditions");
+      notifications.show("Add conditions", {
+        autoHideDuration: 4000,
+        severity: "error",
+      });
+
       return;
     }
 

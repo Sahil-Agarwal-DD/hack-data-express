@@ -15,6 +15,7 @@ import { formatDialect, sql } from "sql-formatter";
 import { Stack } from "@mui/material";
 import { useDataExpressStore } from "../../../stores/useDataExpressStore";
 import { isNumber } from "lodash";
+import { useNotifications } from "@toolpad/core";
 
 const customRuleProcessor: RuleProcessor = (rule, options) => {
   const rr = { ...rule, value: rule.value?.mainValue };
@@ -34,6 +35,7 @@ const customRuleProcessor: RuleProcessor = (rule, options) => {
 };
 
 export const ResultsPane: React.FC = () => {
+  const notifications = useNotifications();
   const query = useDataExpressStore((state) => state.values.query);
   const calculatedComponents = useDataExpressStore(
     (state) => state.values.calculatedComponents
@@ -119,7 +121,11 @@ export const ResultsPane: React.FC = () => {
         dialect: sql,
       });
     } catch (exp) {
-      alert(`Error generating sql: ${(exp as any)?.message}`);
+      notifications.show(`Error generating sql: ${(exp as any)?.message}`, {
+        autoHideDuration: 4000,
+        severity: "error",
+      });
+
       console.error("Error generating sqls", exp);
       returnValue = "";
     }

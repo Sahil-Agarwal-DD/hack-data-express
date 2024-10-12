@@ -20,6 +20,7 @@ import {
 import { delay } from "../../utils";
 import { DxMenuList, DxMenuListItem } from "../DxMenuList/DxMenuList";
 import { fetchTemplates } from "../../apis";
+import { useNotifications } from "@toolpad/core";
 
 type ConfigRow = {
   name: string;
@@ -49,7 +50,7 @@ export const FetchSaved: React.FC<SaveModalProps> = () => {
   >();
   const [page, setPage] = React.useState(0);
   const [open, setOpen] = React.useState(false);
-
+  const notifications = useNotifications();
   const [list, setList] = React.useState<ConfigRow[]>([]);
 
   const onClose = () => {
@@ -63,7 +64,10 @@ export const FetchSaved: React.FC<SaveModalProps> = () => {
         setList(v as ConfigRow[]);
       })
       .catch(() => {
-        alert("error loading");
+        notifications.show("Error occurred while loading saved data model.", {
+          autoHideDuration: 4000,
+          severity: "error",
+        });
       })
       .finally(() => {
         setPage(0);
@@ -79,12 +83,18 @@ export const FetchSaved: React.FC<SaveModalProps> = () => {
                 name: v,
                 createdBy: `${chance.first()}.${chance.last()}@doordash.com`,
                 createdAt: chance.date().toISOString(),
-              } as ConfigRow)
+              }) as ConfigRow
           )
         );
       })
       .catch(() => {
-        alert("error loading");
+        notifications.show(
+          "Error occurred while loading data model template.",
+          {
+            autoHideDuration: 4000,
+            severity: "error",
+          }
+        );
       })
       .finally(() => {
         setPage(0);
@@ -112,6 +122,10 @@ export const FetchSaved: React.FC<SaveModalProps> = () => {
       //   setCalculatedComponent(data.calculatedComponents);
     } catch (err) {
       console.error(err);
+      notifications.show("Error occurred while loading data model.", {
+        autoHideDuration: 4000,
+        severity: "error",
+      });
       setBlockUI(false);
     }
   };
@@ -131,7 +145,10 @@ export const FetchSaved: React.FC<SaveModalProps> = () => {
       })
       .catch(() => {
         reset();
-        alert("error loading");
+        notifications.show("Error occurred while loading data model.", {
+          autoHideDuration: 4000,
+          severity: "error",
+        });
         setBlockUI(false);
       });
   };
